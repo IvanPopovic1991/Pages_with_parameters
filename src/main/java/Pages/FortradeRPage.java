@@ -69,6 +69,9 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@data-cmd='menu']")
     public WebElement menuBtn;
 
+    @FindBy(xpath = "//div[@id='platformRegulation']")
+    public WebElement regulationMsg;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='form-wrapper']//a[text()='Privacy Policy']");
     public By termsAndConditionsLinkBy = By.xpath("//div[@class='form-wrapper']//a[contains(text(), 'Terms and Conditions')]");
     public By clickHereLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='click here']");
@@ -183,13 +186,13 @@ public class FortradeRPage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        //assertColor("green"); - razlikuje se od stranice do stranice
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickOnContinueBtn();
+        clickMenuBtn();
     }
 
     public void unsuccessfullyRegistrationWithWrongData(String firstNameData, String lastNameData, String emailData, String countryCode, String phoneNumberData) {
@@ -262,6 +265,12 @@ public class FortradeRPage extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver, waitTime);
         wait.until(ExpectedConditions.urlContains(url));
         Assert.assertEquals(driver.getCurrentUrl(), url);
+    }
+
+    public void checkRegulation() throws IOException, AWTException {
+        String actualText = getText(regulationMsg, "regulation text");
+        Assert.assertEquals(actualText, "Broker: Fortrade (Mauritius) Ltd (FSC)");
+        new BasePage(driver).takeScreenshot("Broker Fortrade Mauritius Ltd FSC - successfully registered demo account - FortradeR", regulationMsg);
     }
 
     public void alreadyRegisteredAccount(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData) {

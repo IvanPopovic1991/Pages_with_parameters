@@ -163,7 +163,7 @@ public class BasePage {
         BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
 
         // Saving the full screen image
-        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/" + fileName + ".png"));
+        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/"+ fileName + ".png"));
     }
 
     public void takeScreenshot(String fileName) throws AWTException, IOException {
