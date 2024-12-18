@@ -5,4 +5,13 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
+    <test name="Demo account registration - FortradeR">
+        <classes>
+            <class name="TestsFortradeR.new_dark_2024_dlp">
+                <methods>
+                    <include name="demoAccountRegistration"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

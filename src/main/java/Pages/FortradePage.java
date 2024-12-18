@@ -48,14 +48,14 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[@class='Send-Button']")
-    public WebElement submitButton;
+    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    public WebElement submitBtn;
+
+    @FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
+    public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
     public WebElement denyBtn;
-
-    @FindBy(xpath = "//div[@id='startTradingButton']")
-    public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
     public WebElement menuBtn;
@@ -94,7 +94,7 @@ public class FortradePage extends BasePage {
     public WebElement knowledge;
 
     @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
-    public WebElement continueBtn2;
+    public WebElement continueBtn;
 
     public By privacyPolicyLinkBy = By.xpath("//div[@class='form-wrapper']//a[text()='Privacy Policy']");
     public By termsAndConditionsLinkBy = By.xpath("//div[@class='form-wrapper']//a[contains(text(), 'Terms and Conditions')]");
@@ -303,7 +303,11 @@ public class FortradePage extends BasePage {
     }
 
     public void clickOnSubmitButton() {
-        clickElement(submitButton, "get started button");
+        if(submitBtn.isDisplayed()){
+            clickElement(submitBtn, "Get Started button");
+        }else{
+            clickElement(submitBtnAsic,"Get Started button - Asic regulation");
+        }
     }
 
     public void clickDenyBtn() {
@@ -325,13 +329,14 @@ public class FortradePage extends BasePage {
         selectFromDropdown(saving,savingData,"saving dropdown");
     }
 
-    public void clickContinueBtn2(){
-        clickElement(continueBtn2,"Continue button");
-    }
 
     public void selectKnowledge(String knowledgeData){
         clickElement(knowledge,"Knowledge dropdown menu");
         selectFromDropdown(knowledge,knowledgeData,"knowledge dropdown");
+    }
+
+    public void clickContinueBtn(){
+        clickElement(continueBtn,"continue btn on 2nd widget");
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
@@ -348,17 +353,13 @@ public class FortradePage extends BasePage {
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
-        clickContinueBtn2();
+        clickContinueBtn();
     }
 
     public void assertURL(String url) {
         WebDriverWait wait = new WebDriverWait(driver, waitTime);
         wait.until(ExpectedConditions.urlContains(url));
         Assert.assertEquals(driver.getCurrentUrl(), url);
-    }
-
-    public void clickContinueBtn() {
-        clickElement(continueBtn, "continue button");
     }
 
     public void clickMenuBtn() {
