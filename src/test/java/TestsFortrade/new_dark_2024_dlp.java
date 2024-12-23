@@ -1,6 +1,8 @@
 package TestsFortrade;
 
+import Pages.CrmPage;
 import Pages.FortradePage;
+import Pages.FortradeRPage;
 import faker.TestData;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,7 +17,7 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
     @Parameters({"tag"})
     public void setUp(String tag) {
         baseSetup("Chrome", "131");
-        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge" + tag);
     }
 
     @AfterMethod
@@ -32,5 +34,80 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
         fortradePage.clickMenuBtn();
         fortradePage.checkRegulation(regulation);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingTagsInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
+                "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
+                "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.takeScreenshot("Account details Fortrade page " + regulation, crmPage.accFullNameCrm);
+        crmPage.takeScreenshot("SMS Verification field - no value" + regulation, crmPage.smsVerification);
+        //crmPage.checkSMSVerification("--");
+        crmPage.checkCrmTags();
+        crmPage.takeScreenshot("Marketing tags Fortrade page " + regulation, crmPage.accFullNameCrm);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age" + tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.ageParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "25-34");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        //crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Age parameter - no value" + regulation, crmPage.smsVerification);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=annual" + tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.annualParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "$15,000-$50,000");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        //crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Annual parameter - no value" + regulation, crmPage.smsVerification);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "tag"})
+    public void checkingSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=saving" + tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.savingParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "$50,000 – $100,000");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        //crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Saving parameter - no value" + regulation, crmPage.smsVerification);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "tag"})
+    public void checkingKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=knowledge" + tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "All the above");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        //crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value" + regulation, crmPage.smsVerification);
     }
 }

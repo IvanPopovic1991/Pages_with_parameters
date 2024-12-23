@@ -147,7 +147,7 @@ public class FortradeRPage extends BasePage {
         typeText(phoneNumber, phoneNumberData, "phone number");
     }
 
-    public void clickOnSubmitButton() {
+    public void clickSubmitButton() {
         clickElement(submitButton, "get started button");
     }
 
@@ -171,7 +171,7 @@ public class FortradeRPage extends BasePage {
         selectFromDropdown(knowledge,knowledgeData,"knowledge dropdown");
     }
 
-    public void clickOnContinueBtn(){
+    public void clickContinueBtn(){
         clickElement(continueBtn,"continue button");
     }
 
@@ -186,13 +186,57 @@ public class FortradeRPage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickOnSubmitButton();
+        clickSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
-        clickOnContinueBtn();
+        clickContinueBtn();
         clickMenuBtn();
+    }
+
+    public void ageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectAge(ageData);
+    }
+
+    public void annualParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String annualData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectAnnual(annualData);
+    }
+
+    public void savingParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String savingData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectSaving(savingData);
+    }
+
+    public void knowledgeParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String knowledgeData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectKnowledge(knowledgeData);
     }
 
     public void unsuccessfullyRegistrationWithWrongData(String firstNameData, String lastNameData, String emailData, String countryCode, String phoneNumberData) {
@@ -201,7 +245,7 @@ public class FortradeRPage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
-        clickOnSubmitButton();
+        clickSubmitButton();
     }
 
     /**
@@ -279,7 +323,7 @@ public class FortradeRPage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickOnSubmitButton();
+        clickSubmitButton();
     }
 
     private String expTextForPopUp = "Invalid email. Please try another or proceed to log in. If needed, reset your " +
