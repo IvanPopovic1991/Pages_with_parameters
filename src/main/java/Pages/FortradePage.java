@@ -172,76 +172,91 @@ public class FortradePage extends BasePage {
             }
             break;
         }
-    String termsAndConditions = "https://www.fortrade.com/"+text;
-    return termsAndConditions;
+        String termsAndConditions = "https://www.fortrade.com/" + text;
+        return termsAndConditions;
     }
 
-    public String riskWarning(String regulation){
+    public String riskWarning(String regulation) {
         String text = "";
-        switch (regulation){
-            case("FSC") : {
+        switch (regulation) {
+            case ("FSC"): {
                 text = "FSC/Fortrade_MA_Risk_Disclosure.pdf";
-            }break;
-            case("FCA"):{
+            }
+            break;
+            case ("FCA"): {
                 text = "Fortrade_Risk_Disclosure.pdf";
-            }break;
-            case("iiroc"):{
+            }
+            break;
+            case ("iiroc"): {
                 text = "IIROC/Relationship_Disclosure.pdf";
-            }break;
-            case("cysec"):{
+            }
+            break;
+            case ("cysec"): {
                 text = "CySEC/Risk_Disclosure.pdf";
-            }break;
-            case("Asic"):{
+            }
+            break;
+            case ("Asic"): {
                 text = "ASIC/Fort_Securities_AU_Product_Disclosure_Statement-ASIC.pdf";
-            }break;
+            }
+            break;
         }
-        String riskWarningURL = "https://www.fortrade.com/wp-content/uploads/legal/"+text;
+        String riskWarningURL = "https://www.fortrade.com/wp-content/uploads/legal/" + text;
         return riskWarningURL;
     }
 
-    public String footerPrivacyPolicy(String regulation){
-        String text="";
-        switch (regulation){
-            case "FSC":{
+    public String footerPrivacyPolicy(String regulation) {
+        String text = "";
+        switch (regulation) {
+            case "FSC": {
                 text = "FSC/Fortrade_MA_Privacy_Policy.pdf";
-            }break;
-            case "FCA":{
-                text="Fortrade_Privacy_Policy.pdf";
-            }break;
-            case "Asic":{
+            }
+            break;
+            case "FCA": {
+                text = "Fortrade_Privacy_Policy.pdf";
+            }
+            break;
+            case "Asic": {
                 text = "ASIC/Fort_Securities_AU_Privacy_Policy-ASIC.pdf";
-            }break;
-            case "cysec":{
-                text ="CySEC/Privacy_Policy.pdf";
-            }break;
-            case "iiroc":{
-                text ="IIROC/Privacy_Policy.pdf";
-            }break;
+            }
+            break;
+            case "cysec": {
+                text = "CySEC/Privacy_Policy.pdf";
+            }
+            break;
+            case "iiroc": {
+                text = "IIROC/Privacy_Policy.pdf";
+            }
+            break;
         }
         String privacyPolicyFooterURL = "https://www.fortrade.com/wp-content/uploads/legal/" + text;
         return privacyPolicyFooterURL;
     }
 
-    public String fbPage(String regulation){
-        String text="";
-        switch (regulation){
-            case ("FSC"):{
+    public String fbPage(String regulation) {
+        String text = "";
+        switch (regulation) {
+            case ("FSC"): {
                 text = "Fortrade.International";
-            }break;
-            case ("FCA"):{
+            }
+            break;
+            case ("FCA"): {
                 text = "Fortrade.UK/";
-            }break;
-            case ("Asic"):{
+            }
+            break;
+            case ("Asic"): {
                 text = "Fortrade.AU";
-            }break;
-            case ("iiroc"):{
+            }
+            break;
+            case ("iiroc"): {
                 text = "Fortrade.International";
-            }break;
-            case ("cysec"):{
+            }
+            break;
+            case ("cysec"): {
                 text = "Fortrade.EU";
-            }break;
+            }
+            break;
         }
-        String fbURL = "https://www.facebook.com/" +text;
+        String fbURL = "https://www.facebook.com/" + text;
         return fbURL;
     }
 
@@ -303,10 +318,10 @@ public class FortradePage extends BasePage {
     }
 
     public void clickOnSubmitButton() {
-        if(submitBtn.isDisplayed()){
+        if (submitBtn.isDisplayed()) {
             clickElement(submitBtn, "Get Started button");
-        }else{
-            clickElement(submitBtnAsic,"Get Started button - Asic regulation");
+        } else {
+            clickElement(submitBtnAsic, "Get Started button - Asic regulation");
         }
     }
 
@@ -314,34 +329,33 @@ public class FortradePage extends BasePage {
         clickElement(denyBtn, "deny cookies button");
     }
 
-    public void selectAge(String ageData){
-        clickElement(age,"Age dropdown menu");
-        selectFromDropdown(age,ageData,"age dropdown");
+    public void selectAge(String ageData) {
+        clickElement(age, "Age dropdown menu");
+        selectFromDropdown(age, ageData, "age dropdown");
     }
 
-    public void selectAnnual(String annualData){
-        clickElement(annual,"Annual dropdown menu");
-        selectFromDropdown(annual,annualData,"annual dropdown");
+    public void selectAnnual(String annualData) {
+        clickElement(annual, "Annual dropdown menu");
+        selectFromDropdown(annual, annualData, "annual dropdown");
     }
 
-    public void selectSaving(String savingData){
-        clickElement(saving,"Saving dropdown menu");
-        selectFromDropdown(saving,savingData,"saving dropdown");
+    public void selectSaving(String savingData) {
+        clickElement(saving, "Saving dropdown menu");
+        selectFromDropdown(saving, savingData, "saving dropdown");
     }
 
 
-    public void selectKnowledge(String knowledgeData){
-        clickElement(knowledge,"Knowledge dropdown menu");
-        selectFromDropdown(knowledge,knowledgeData,"knowledge dropdown");
+    public void selectKnowledge(String knowledgeData) {
+        clickElement(knowledge, "Knowledge dropdown menu");
+        selectFromDropdown(knowledge, knowledgeData, "knowledge dropdown");
     }
 
-    public void clickContinueBtn(){
-        clickElement(continueBtn,"continue btn on 2nd widget");
+    public void clickContinueBtn() {
+        clickElement(continueBtn, "continue btn on 2nd widget");
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
-        String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
-
+           String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -354,6 +368,54 @@ public class FortradePage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
+    }
+
+    public void ageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectAge(ageData);
+    }
+
+    public void annualParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String annualData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectAnnual(annualData);
+    }
+
+    public void savingParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String savingData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectSaving(savingData);
+    }
+
+    public void knowledgeParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String knowledgeData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectKnowledge(knowledgeData);
     }
 
     public void assertURL(String url) {
@@ -535,7 +597,7 @@ public class FortradePage extends BasePage {
                 , "Please enter a valid country code");
     }
 
-    public void clickOnSelectedLink(By element, String url,String document, String regulation) throws IOException, AWTException, InterruptedException {
+    public void clickOnSelectedLink(By element, String url, String document, String regulation) throws IOException, AWTException, InterruptedException {
         WebElement displayedElement = returnDisplayedElement(element);
         if (displayedElement != null) {
             clickElement(displayedElement, "link " + displayedElement.getText());
@@ -546,10 +608,10 @@ public class FortradePage extends BasePage {
         driver.switchTo().window(tabs.get(1));
         assertURL(url);
         Thread.sleep(2000);
-        takeScreenshot(document +" document - " + regulation + " regulation");
+        takeScreenshot(document + " document - " + regulation + " regulation");
         WebDriverWait wait = new WebDriverWait(driver, 10);
         /*if (!regulation.equalsIgnoreCase("FSC")){
-*//*
+         *//*
             wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//body/embed[@original-url='https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf']")));
 *//*
             Assert.assertTrue(readAttribute(driver.findElement(By.xpath("//body/embed[@original-url='https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf']")), "original-url", "attribute url").equals("https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf"));
@@ -565,23 +627,24 @@ public class FortradePage extends BasePage {
     }
 
     public void loginRedirection(String regulation) throws IOException, AWTException {
-        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy),"Already have an account?");
+        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy), "Already have an account?");
         //takeScreenshot("Login widget - " + regulation + " regulation");
     }
-/*    public void clickOnMailLink(String mailLink){
-        if (mailLink.equalsIgnoreCase("contactUs")){
-            clickElementBy(contactUsLinkBy, "contact us link");
-        } else if (mailLink.equalsIgnoreCase("support")){
-            clickElementBy(supportLinkBy, "support link");
+
+    /*    public void clickOnMailLink(String mailLink){
+            if (mailLink.equalsIgnoreCase("contactUs")){
+                clickElementBy(contactUsLinkBy, "contact us link");
+            } else if (mailLink.equalsIgnoreCase("support")){
+                clickElementBy(supportLinkBy, "support link");
+            }
+            Assert.assertTrue(isOutlookRunning());
+        }*/
+    public void clickOnMailLink(String mailLink) {
+        if (mailLink.equalsIgnoreCase("contactUs")) {
+            clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");
+        } else if (mailLink.equalsIgnoreCase("support")) {
+            clickElement(returnDisplayedElement(supportLinkBy), "support link");
         }
         Assert.assertTrue(isOutlookRunning());
-    }*/
-public void clickOnMailLink(String mailLink){
-    if (mailLink.equalsIgnoreCase("contactUs")){
-        clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");
-    } else if (mailLink.equalsIgnoreCase("support")){
-        clickElement(returnDisplayedElement(supportLinkBy), "support link");
     }
-    Assert.assertTrue(isOutlookRunning());
-}
 }
