@@ -51,13 +51,14 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         crmPage.takeScreenshot("Account details Fortrade page " + regulation, crmPage.accFullNameCrm);
         crmPage.takeScreenshot("SMS Verification field - no value" + regulation, crmPage.smsVerification);
         //crmPage.checkSMSVerification("--");
+        //crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkCrmTags();
         crmPage.takeScreenshot("Marketing tags Fortrade page " + regulation, crmPage.accFullNameCrm);
     }
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
-    public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+    public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age" + tag);
         FortradePage fortradePage = new FortradePage(driver);
@@ -66,12 +67,15 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Age parameter - no value" + regulation, crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkLinkIdValue("25_34_age,PC-windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Age parameter value "+regulation, crmPage.linkId);
     }
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
-    public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+    public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=annual" + tag);
         FortradePage fortradePage = new FortradePage(driver);
@@ -80,12 +84,15 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Annual parameter - no value" + regulation, crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkLinkIdValue("15000_50000_annual,PC-windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Annual parameter value "+regulation, crmPage.linkId);
     }
 
     @Test
-    @Parameters({"tag", "countryCode", "tag"})
-    public void checkingSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=saving" + tag);
         FortradePage fortradePage = new FortradePage(driver);
@@ -94,12 +101,15 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Saving parameter - no value" + regulation, crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkLinkIdValue("50000_100000_savings,PC-windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Saving parameter value " + regulation, crmPage.linkId);
     }
 
     @Test
-    @Parameters({"tag", "countryCode", "tag"})
-    public void checkingKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=knowledge" + tag);
         FortradePage fortradePage = new FortradePage(driver);
@@ -108,6 +118,9 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value" + regulation, crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Knowledge parameter value "+regulation, crmPage.linkId);
     }
 }

@@ -36,7 +36,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[@class='Send-Button']")
+    @FindBy(xpath = "//input[@name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -204,6 +204,7 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
+        clickContinueBtn();
     }
 
     public void annualParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -215,6 +216,7 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAnnual(annualData);
+        clickContinueBtn();
     }
 
     public void savingParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -226,6 +228,7 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectSaving(savingData);
+        clickContinueBtn();
     }
 
     public void knowledgeParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -237,6 +240,7 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectKnowledge(knowledgeData);
+        clickContinueBtn();
     }
 
     public void unsuccessfullyRegistrationWithWrongData(String firstNameData, String lastNameData, String emailData, String countryCode, String phoneNumberData) {

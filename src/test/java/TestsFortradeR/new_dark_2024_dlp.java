@@ -48,7 +48,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void checkingAgeParameter() throws IOException, AWTException {
+    public void checkingAgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
@@ -57,24 +57,31 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Age parameter - no value", crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Age parameter - no value", crmPage.smsVerification);
+        crmPage.checkLinkIdValue("25_34_age,PC-Windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Age parameter value - FortradeR", crmPage.linkId);
     }
 
     @Test
-    public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException {
+    public void checkingAnnualParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=annual" + tag);
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=annual");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.annualParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+        fortradeRPage.annualParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Annual parameter - no value" + regulation, crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Annual parameter - no value", crmPage.smsVerification);
+        crmPage.checkLinkIdValue("15000_50000_annual,PC-Windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Annual parameter value - FortradeR", crmPage.linkId);
+
     }
 
     @Test
-    public void checkingSavingParameter() throws IOException, AWTException {
+    public void checkingSavingParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=saving");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
@@ -83,18 +90,23 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Saving parameter - no value", crmPage.smsVerification);
+        crmPage.checkLinkIdValue("50000_100000_savings,PC-Windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Saving parameter value - FortradeR", crmPage.linkId);
     }
     @Test
-    public void checkingKnowledgeParameter() throws IOException, AWTException {
+    public void checkingKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=saving");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=knowledge");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.knowledgeParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "All the above");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         //crmPage.checkSMSVerification("--");
-        crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value", crmPage.smsVerification);
+        //crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value", crmPage.smsVerification);
+        crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-Windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot( "Knowledge parameter value - FortradeR", crmPage.linkId);
     }
 }

@@ -5,11 +5,10 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Account details and marketing tags in the CRM - FortradeR">
+    <test name="Parameter values in the CRM - LinkID field - FortradeR">
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="checkingTagsInTheCrm"/>
                     <include name="checkingAgeParameter"/>
                     <include name="checkingAnnualParameter"/>
                     <include name="checkingSavingParameter"/>

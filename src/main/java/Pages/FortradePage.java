@@ -355,7 +355,7 @@ public class FortradePage extends BasePage {
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
-           String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
+                                         String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -380,6 +380,7 @@ public class FortradePage extends BasePage {
         clickDenyBtn();
         clickOnSubmitButton();
         selectAge(ageData);
+        clickContinueBtn();
     }
 
     public void annualParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -392,6 +393,7 @@ public class FortradePage extends BasePage {
         clickDenyBtn();
         clickOnSubmitButton();
         selectAnnual(annualData);
+        clickContinueBtn();
     }
 
     public void savingParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -404,6 +406,7 @@ public class FortradePage extends BasePage {
         clickDenyBtn();
         clickOnSubmitButton();
         selectSaving(savingData);
+        clickContinueBtn();
     }
 
     public void knowledgeParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -416,6 +419,7 @@ public class FortradePage extends BasePage {
         clickDenyBtn();
         clickOnSubmitButton();
         selectKnowledge(knowledgeData);
+        clickContinueBtn();
     }
 
     public void assertURL(String url) {
