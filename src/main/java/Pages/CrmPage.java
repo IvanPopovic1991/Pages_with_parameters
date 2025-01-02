@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.awt.*;
+import java.io.IOException;
+
 public class CrmPage extends BasePage {
     public CrmPage(WebDriver driver) {
         super(driver);
@@ -65,6 +68,9 @@ public class CrmPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='lc_sms_verification']/div//span")
     public WebElement smsVerification;
+
+    @FindBy(xpath = "//div[@id='lv_linkid']//div//span")
+    public WebElement linkId;
 
     public void logInCrm(String username, String password) {
         typeText(usernameCrm, username, "username for CRM");
@@ -124,9 +130,19 @@ public class CrmPage extends BasePage {
         loopForTagsCrm();
     }
 
-    public void checkSMSVerification(String smsVerificationValue){
-        String smsVerificationVal = getText(smsVerification,"Extracted text from SMS Verification field in the CRM");
-        Assert.assertEquals(getText(smsVerification,"Value of SMS Verification field is : "+smsVerificationVal),smsVerificationValue);
+    public void checkSMSVerification(String smsVerificationValue) throws IOException, AWTException {
+        CrmPage crmPage = new CrmPage(driver);
+        String smsVerificationVal = getText(smsVerification,"SMS Verification field from the CRM");
+        Assert.assertEquals(smsVerificationVal,smsVerificationValue);
+        crmPage.takeScreenshot("SMS verification value: ", smsVerification);
+    }
+
+    public void checkLinkIdValue(String linkIdValue){
+        clickElement(menuBtn, "menu button");
+        clickElement(envAndMarSec, "environment and marketing section button");
+        String linkIdVal = getText(linkId,"Link ID field from the CRM");
+        System.out.println("Link ID field value from the CRM "+linkIdVal);
+        Assert.assertEquals(linkIdVal,linkIdValue);
     }
     public void assertBorderColorInCRM (String regulation){
         String borderColor = "rgb(255, 192, 203)";
