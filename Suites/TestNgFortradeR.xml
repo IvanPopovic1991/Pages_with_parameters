@@ -5,14 +5,22 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Parameter values in the CRM - LinkID field - FortradeR">
+    <test name="Links redirection - FortradeR">
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="checkingAgeParameter"/>
-                    <include name="checkingAnnualParameter"/>
-                    <include name="checkingSavingParameter"/>
-                    <include name="checkingKnowledgeParameter"/>
+                    <include name="privacyPolicyTest"/>
+                    <include name="termsAndConditionsTest"/>
+                    <include name="howToUnsubscribeTest"/>
+                    <include name="loginRedirectionTest"/>
+                    <include name="footerPrivacyPolicy"/>
+                    <include name="fscRegulationTest"/>
+                    <include name="fbLinkRedirection"/>
+                    <include name="insLinkRedirection"/>
+                    <include name="ytLinkRedirection"/>
+                    <include name="contactUsLink"/>
+                    <include name="infoLink"/>
+                    <include name="supportLink"/>
                 </methods>
             </class>
         </classes>

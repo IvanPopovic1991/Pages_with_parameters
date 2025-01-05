@@ -49,7 +49,7 @@ public class FortradeRPage extends BasePage {
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[contains(text(),'Login')]")
-    public WebElement loginToFortrade;
+public WebElement loginToFortrade;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
     public WebElement age;
@@ -72,26 +72,17 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@id='platformRegulation']")
     public WebElement regulationMsg;
 
-    public By privacyPolicyLinkBy = By.xpath("//div[@class='form-wrapper']//a[text()='Privacy Policy']");
-    public By termsAndConditionsLinkBy = By.xpath("//div[@class='form-wrapper']//a[contains(text(), 'Terms and Conditions')]");
+    public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
+    public By termsAndConditionsLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
     public By clickHereLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='click here']");
     public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
     public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
-
-    public By facebookLinkBy = By.xpath("//a[@class='facebook-links']");
+    public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
     public By youtubeLinkBy = By.xpath("//a[@href='https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg']");
-
     public By infoLinkBy = By.xpath("//div[@class='col-md-12 text-center']//a[text()='info@fortrade.com']");
     public By supportLinkBy = By.xpath("//a[text()='support@fortrade.com']");
-    public By footerRiskWarningLinkBy = By.xpath("//div[@class='footerRiskDisclaimer']//a[contains(text(), 'Risk warning')]");
     public By footerPrivacyPolicyLinkBy = By.xpath("//div[@class='fscClass']//a[contains(text(),'Privacy policy')]");
-    public By footerPrivacyPolicyFortradeRLinkBy = By.xpath("//div[@class='fscClass']//a[contains(text(), 'Privacy policy')]");
-
-    public By fcaRegulationLinkBy = By.xpath("//a[text()='FRN: 609970']");
-    public By ciroRegulationLinkBy = By.xpath("//a[text()='CRN: BC1148613']");
-    public By asicRegulationLinkBy = By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520']");
-    public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
     public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
 
 
@@ -422,7 +413,7 @@ public class FortradeRPage extends BasePage {
         performRightClick(returnDisplayedElement(element), url, "link" + returnDisplayedElement(element).getText());
     }
 
-    public void loginRedirection() throws IOException, AWTException {
+    public void loginRedirection(){
         clickElement(driver.findElement(alreadyHaveAnAccountLinkBy),"An already have account?");
     }
 }

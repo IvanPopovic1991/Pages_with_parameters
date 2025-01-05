@@ -96,13 +96,16 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
-    public By privacyPolicyLinkBy = By.xpath("//div[@class='form-wrapper']//a[text()='Privacy Policy']");
-    public By termsAndConditionsLinkBy = By.xpath("//div[@class='form-wrapper']//a[contains(text(), 'Terms and Conditions')]");
-    public By clickHereLink = By.xpath("//div[@class='MarketingMaterials2']//a[text()='click here']");
+    @FindBy(xpath = "//span[text()='Fortrade']")
+    public WebElement fortradeLogo;
+
+    public By privacyPolicyLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
+    public By termsAndConditionsLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
+    public By clickHereLink = By.xpath("//span[@class='MarketingMaterials2']//a[text()='click here']");
     public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
     public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
 
-    public By facebookLinkBy = By.xpath("//a[@class='facebook-links']");
+    public By facebookLinkBy = By.xpath("//img[@alt='facebook']");
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
     public By youtubeLinkBy = By.xpath("//a[@href='https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg']");
 
@@ -630,19 +633,9 @@ public class FortradePage extends BasePage {
         performRightClick(returnDisplayedElement(element), url, "link " + returnDisplayedElement(element).getText());
     }
 
-    public void loginRedirection(String regulation) throws IOException, AWTException {
-        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy), "Already have an account?");
-        //takeScreenshot("Login widget - " + regulation + " regulation");
-    }
-
-    /*    public void clickOnMailLink(String mailLink){
-            if (mailLink.equalsIgnoreCase("contactUs")){
-                clickElementBy(contactUsLinkBy, "contact us link");
-            } else if (mailLink.equalsIgnoreCase("support")){
-                clickElementBy(supportLinkBy, "support link");
-            }
-            Assert.assertTrue(isOutlookRunning());
-        }*/
+    public void loginRedirection(String regulation){
+        clickElementBy(alreadyHaveAnAccountLinkBy, "Already have an account?");
+        }
     public void clickOnMailLink(String mailLink) {
         if (mailLink.equalsIgnoreCase("contactUs")) {
             clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");

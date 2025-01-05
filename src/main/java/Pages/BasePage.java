@@ -227,6 +227,13 @@ public class BasePage {
         System.out.println("Scrolled to the " + element.getText());
     }
 
+    public void scrollToAnElementBy(By by){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(by));
+        js.executeScript("window.scrollBy(0,600)");
+        System.out.println("Scrolled to the " + driver.findElement(by));
+    }
+
     public void doubleClick(WebElement element, String log) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, waitTime);
