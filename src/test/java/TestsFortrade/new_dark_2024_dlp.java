@@ -2,10 +2,9 @@ package TestsFortrade;
 
 import Pages.CrmPage;
 import Pages.FortradePage;
+import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -190,6 +189,20 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         FortradePage fortradePage = new FortradePage(driver);
         fortradePage.checkCountryCodeErrorMessage("01852833kdkd");
         fortradePage.takeScreenshot("Country code error message - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"regulation", "countryCode"})
+    public void emailIsReceivedSuccessfully(String regulation, String countryCode) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+        driver.get("https://www.mailinator.com/");
+        Mailinator mailinator = new Mailinator(driver);
+        mailinator.findEmail(email);
+        mailinator.zoomOutMethod();
+        mailinator.takeScreenshot("Email is received successfully - " + regulation + " regulation", mailinator.emailTitle);
     }
 
     @Test
