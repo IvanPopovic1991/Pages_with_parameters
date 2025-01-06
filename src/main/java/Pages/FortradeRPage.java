@@ -45,7 +45,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//header/a/div[@class='logo']")
+    @FindBy(xpath = "//header/div[@class='logo']")
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[contains(text(),'Login')]")

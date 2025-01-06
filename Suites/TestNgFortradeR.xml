@@ -5,22 +5,16 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Links redirection - FortradeR">
+    <test name="Demo account is not registered - FortradeR">
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="privacyPolicyTest"/>
-                    <include name="termsAndConditionsTest"/>
-                    <include name="howToUnsubscribeTest"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="fscRegulationTest"/>
-                    <include name="fbLinkRedirection"/>
-                    <include name="insLinkRedirection"/>
-                    <include name="ytLinkRedirection"/>
-                    <include name="contactUsLink"/>
-                    <include name="infoLink"/>
-                    <include name="supportLink"/>
+                    <include name="unsuccessfullyDemoAccountRegistration"/>
+                    <include name="emptyDemoAccountRegistration"/>
+                    <include name="alreadyRegisteredAccountTest"/>
+                    <include name="sameFNameAndLName"/>
+                    <include name="checkingForLogoClickability"/>
+                    <include name="checkForCountryCodeErrorMessage"/>
                 </methods>
             </class>
         </classes>

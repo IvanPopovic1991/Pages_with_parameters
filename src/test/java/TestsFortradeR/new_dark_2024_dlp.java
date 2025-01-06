@@ -112,6 +112,63 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     }
 
     @Test
+    public void unsuccessfullyDemoAccountRegistration() throws IOException, AWTException {
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.unsuccessfullyRegistrationWithWrongData("123", "456", "345342=--=/.,><",
+                "123456", "1234567890123456");
+        fortradeRPage.assertErrorMessages();
+        fortradeRPage.assertColor("red");
+        fortradeRPage.takeScreenshot("Unsuccessfully demo account registration - FortradeR", fortradeRPage.submitButton);
+    }
+
+    @Test
+    public void emptyDemoAccountRegistration() throws IOException, AWTException {
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.unsuccessfullyRegistrationWithWrongData("", "", "", "", "");
+        fortradeRPage.assertErrorMessages();
+        fortradeRPage.assertColor("red");
+        fortradeRPage.takeScreenshot("Demo account registration - no data - Fortrader", fortradeRPage.submitButton);
+    }
+
+    @Test
+    public void alreadyRegisteredAccountTest() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email,
+                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000 – $100,000", "All the above");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge");
+        fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
+        fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
+    }
+
+    @Test
+    public void sameFNameAndLName() throws IOException, AWTException {
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.enterFirstName("Test");
+        fortradeRPage.enterLastName("Test");
+        fortradeRPage.clickElement(fortradeRPage.firstName, "on first name field");
+        fortradeRPage.clickElement(fortradeRPage.lastName, "on last name field");
+        fortradeRPage.assertSameNameErrorMsgs();
+        fortradeRPage.takeScreenshot("Error messages for the same first and last name - FortradeR");
+    }
+
+    @Test
+    public void checkingForLogoClickability() throws IOException, AWTException {
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.checkLogoClickability("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge");
+        fortradeRPage.takeScreenshot("Logo is not clickable - FortradeR");
+    }
+
+    @Test
+    public void checkForCountryCodeErrorMessage() throws IOException, AWTException {
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.checkCountryCodeErrorMessage("01852833kdkd");
+        fortradeRPage.takeScreenshot("Country code error message - FortradeR");
+    }
+
+    @Test
     public void privacyPolicyTest() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.clickOnSelectedLink(fortradeRPage.privacyPolicyLinkBy, fortradeRPage.privacyPolicyFSC,

@@ -128,6 +128,72 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
 
     @Test
     @Parameters({"regulation"})
+    public void unsuccessfullyDemoAccountRegistration(String regulation) throws IOException, AWTException {
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.unsuccessfullyRegistrationWrongData("12/*", "+-*5", "test#123", "123456", "/*-+");
+        fortradePage.assertErrorMessages();
+        fortradePage.assertColor("red");
+        fortradePage.takeScreenshot("Unsuccessfully demo account registration " + regulation + " regulation", fortradePage.firstName);
+    }
+
+    @Test
+    @Parameters({"regulation"})
+    public void emptyDemoAccountRegistration(String regulation) throws IOException, AWTException {
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "", "");
+        fortradePage.assertErrorMessages();
+        fortradePage.assertColor("red");
+        if(regulation.equalsIgnoreCase("Asic")){
+            fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtnAsic);
+        }else{
+            fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtn);
+        }
+    }
+
+    @Test
+    @Parameters({"countryCode", "regulation","tag"})
+    public void alreadyRegisteredAccountTest(String countryCode, String regulation,String tag) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
+                "All the above");
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge"+tag);
+        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
+        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+    }
+
+    @Test
+    @Parameters({"regulation"})
+    public void sameFNameAndLName(String regulation) throws IOException, AWTException {
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.enterFirstName("Test");
+        fortradePage.enterLastName("Test");
+        fortradePage.clickElement(fortradePage.firstName, "on the first name field");
+        fortradePage.clickElement(fortradePage.lastName, "on the last name field");
+        fortradePage.assertSameNameErrorMsgs();
+        fortradePage.takeScreenshot("Error messages for the same first and last name - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"regulation", "tag"})
+    public void checkingLogoClickability(String regulation, String tag) throws IOException, AWTException {
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkLogoClickability(regulation, "https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge" + tag);
+        fortradePage.takeScreenshot("Logo is not clickable - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"regulation"})
+    public void checkForCountryCodeErrorMessage(String regulation) throws IOException, AWTException {
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkCountryCodeErrorMessage("01852833kdkd");
+        fortradePage.takeScreenshot("Country code error message - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"regulation"})
     public void privacyPolicyTest(String regulation) throws IOException, AWTException, InterruptedException {
         FortradePage fortradePage = new FortradePage(driver);
         fortradePage.clickDenyBtn();
