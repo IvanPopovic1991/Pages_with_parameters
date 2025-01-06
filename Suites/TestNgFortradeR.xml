@@ -5,16 +5,11 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Demo account is not registered - FortradeR">
+    <test name="Email is received successfully - FortradeR">
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="unsuccessfullyDemoAccountRegistration"/>
-                    <include name="emptyDemoAccountRegistration"/>
-                    <include name="alreadyRegisteredAccountTest"/>
-                    <include name="sameFNameAndLName"/>
-                    <include name="checkingForLogoClickability"/>
-                    <include name="checkForCountryCodeErrorMessage"/>
+                    <include name="emailIsReceivedSuccessfully"/>
                 </methods>
             </class>
         </classes>

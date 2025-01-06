@@ -2,6 +2,7 @@ package TestsFortradeR;
 
 import Pages.CrmPage;
 import Pages.FortradeRPage;
+import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
@@ -166,6 +167,20 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.checkCountryCodeErrorMessage("01852833kdkd");
         fortradeRPage.takeScreenshot("Country code error message - FortradeR");
+    }
+
+    @Test
+    public void emailIsReceivedSuccessfully() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email,
+                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000 – $100,000", "All the above");
+        driver.get("https://www.mailinator.com/");
+        Mailinator mailinator = new Mailinator(driver);
+        mailinator.findEmail(email);
+        mailinator.zoomOutMethod();
+        mailinator.takeScreenshot("Email is received successfully - FortradeR", mailinator.emailTitle);
     }
 
     @Test
