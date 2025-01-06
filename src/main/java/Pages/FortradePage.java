@@ -358,7 +358,7 @@ public class FortradePage extends BasePage {
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
-                                         String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
+                String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -561,7 +561,7 @@ public class FortradePage extends BasePage {
             driverWait.until(ExpectedConditions.visibilityOf(logo));
             try {
                 logo.click();
-                System.out.println("Log is not clickable.");
+                System.out.println("Logo is not clickable.");
             } catch (Exception e) {
                 System.out.println("Logo is not clickable, as expected.");
             }
@@ -573,7 +573,7 @@ public class FortradePage extends BasePage {
             driverWait.until(ExpectedConditions.visibilityOf(logoIiroc));
             try {
                 logoIiroc.click();
-                System.out.println("Log is not clickable.");
+                System.out.println("Logo is not clickable.");
             } catch (Exception e) {
                 System.out.println("Logo is not clickable, as expected.");
             }
@@ -585,7 +585,7 @@ public class FortradePage extends BasePage {
             driverWait.until(ExpectedConditions.visibilityOf(logoCysec));
             try {
                 logoCysec.click();
-                System.out.println("Log is not clickable.");
+                System.out.println("Logo is not clickable.");
             } catch (Exception e) {
                 System.out.println("Logo is not clickable, as expected.");
             }

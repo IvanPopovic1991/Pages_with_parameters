@@ -12,18 +12,12 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <include name="privacyPolicyTest"/>
-                    <include name="termsAndConditionsTest"/>
-                    <include name="howToUnsubscribeTest"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="riskWarningTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="fscRegulationTest"/>
-                    <include name="fbLinkRedirection"/>
-                    <include name="insLinkRedirection"/>
-                    <include name="ytLinkRedirection"/>
-                    <include name="contactUsLink"/>
-                    <include name="supportLink"/>
+                    <include name="unsuccessfullyDemoAccountRegistration"/>
+                    <include name="emptyDemoAccountRegistration"/>
+                    <include name="sameFNameAndLName"/>
+                    <include name="checkingLogoClickability"/>
+                    <include name="checkForCountryCodeErrorMessage"/>
+                    <include name="alreadyRegisteredAccountTest"/>
                 </methods>
             </class>
         </classes>
@@ -35,18 +29,12 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <include name="privacyPolicyTest"/>
-                    <include name="termsAndConditionsTest"/>
-                    <include name="howToUnsubscribeTest"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="riskWarningTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="fcaRegulationTest"/>
-                    <include name="fbLinkRedirection"/>
-                    <include name="insLinkRedirection"/>
-                    <include name="ytLinkRedirection"/>
-                    <include name="contactUsLink"/>
-                    <include name="supportLink"/>
+                    <include name="unsuccessfullyDemoAccountRegistration"/>
+                    <include name="emptyDemoAccountRegistration"/>
+                    <include name="sameFNameAndLName"/>
+                    <include name="checkingLogoClickability"/>
+                    <include name="checkForCountryCodeErrorMessage"/>
+                    <include name="alreadyRegisteredAccountTest"/>
                 </methods>
             </class>
         </classes>
@@ -58,14 +46,12 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <include name="privacyPolicyTest"/>
-                    <include name="termsAndConditionsTest"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="riskWarningTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="iirocRegulationTest"/>
-                    <include name="contactUsLink"/>
-                    <include name="supportLink"/>
+                    <include name="unsuccessfullyDemoAccountRegistration"/>
+                    <include name="emptyDemoAccountRegistration"/>
+                    <include name="sameFNameAndLName"/>
+                    <include name="checkingLogoClickability"/>
+                    <include name="checkForCountryCodeErrorMessage"/>
+                    <include name="alreadyRegisteredAccountTest"/>
                 </methods>
             </class>
         </classes>
@@ -77,18 +63,12 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <include name="loginRedirectionTest"/>
-                    <include name="riskWarningTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="asicRegulationTest"/>
-                    <include name="fsgDocumentTest"/>
-                    <include name="pdsDocumentTest"/>
-                    <include name="tmdDocumentTest"/>
-                    <include name="fbLinkRedirection"/>
-                    <include name="insLinkRedirection"/>
-                    <include name="ytLinkRedirection"/>
-                    <include name="contactUsLink"/>
-                    <include name="supportLink"/>
+                    <include name="unsuccessfullyDemoAccountRegistration"/>
+                    <include name="emptyDemoAccountRegistration"/>
+                    <include name="sameFNameAndLName"/>
+                    <include name="checkingLogoClickability"/>
+                    <include name="checkForCountryCodeErrorMessage"/>
+                    <include name="alreadyRegisteredAccountTest"/>
                 </methods>
             </class>
         </classes>
