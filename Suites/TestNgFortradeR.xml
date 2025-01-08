@@ -11,7 +11,7 @@
                 <methods>
                     <include name="assertInvalidTokenMsg"/>
                     <include name="didNotGetToken"/>
-                    <!--<include name="userIsReturnedTo1stWidget"/>-->
+                    <include name="userIsReturnedTo1stWidget"/>
                 </methods>
             </class>
         </classes>
