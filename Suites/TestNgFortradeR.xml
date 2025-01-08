@@ -5,11 +5,13 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Email is received successfully - FortradeR">
+    <test name="SMS Feature - FortradeR">
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="emailIsReceivedSuccessfully"/>
+                    <include name="assertInvalidTokenMsg"/>
+                    <include name="didNotGetToken"/>
+                    <!--<include name="userIsReturnedTo1stWidget"/>-->
                 </methods>
             </class>
         </classes>

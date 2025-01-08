@@ -48,8 +48,8 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//header/div[@class='logo']")
     public WebElement fortradeLogo;
 
-    @FindBy(xpath = "//div[contains(text(),'Login')]")
-public WebElement loginToFortrade;
+    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
+    public WebElement loginToFortrade;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
     public WebElement age;
@@ -72,17 +72,52 @@ public WebElement loginToFortrade;
     @FindBy(xpath = "//div[@id='platformRegulation']")
     public WebElement regulationMsg;
 
+    @FindBy(xpath = "//input[@name='Token0']")
+    public WebElement tokenField0;
+
+    @FindBy(xpath = "//input[@name='Token1']")
+    public WebElement tokenField1;
+
+    @FindBy(xpath = "//input[@name='Token2']")
+    public WebElement tokenField2;
+
+    @FindBy(xpath = "//input[@name='Token3']")
+    public WebElement tokenField3;
+
+    @FindBy(xpath="//input[@class='TokenBack-Button']")
+    public WebElement didNotGetToken;
+
+    @FindBy(xpath = "//label[@name='SentAgainLabel']")
+    public WebElement codeIsSent;
+
+    @FindBy(xpath = "//div[@class='formErrorMessage']")
+    public WebElement incorrectTokenMsg;
+
+    @FindBy(xpath="//input[@id='Details-Edit-Btn']")
+    public WebElement editTokenBtn;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
+
     public By termsAndConditionsLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
+
     public By clickHereLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='click here']");
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]");
+
     public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
+
     public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
+
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
+
     public By youtubeLinkBy = By.xpath("//a[@href='https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg']");
+
     public By infoLinkBy = By.xpath("//div[@class='col-md-12 text-center']//a[text()='info@fortrade.com']");
+
     public By supportLinkBy = By.xpath("//a[text()='support@fortrade.com']");
+
     public By footerPrivacyPolicyLinkBy = By.xpath("//div[@class='fscClass']//a[contains(text(),'Privacy policy')]");
+
     public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
 
 
@@ -142,36 +177,36 @@ public WebElement loginToFortrade;
         clickElement(submitButton, "get started button");
     }
 
-    public void selectAge(String ageData){
-        clickElement(age,"Age dropdown menu");
-        selectFromDropdown(age,ageData,"age dropdown");
+    public void selectAge(String ageData) {
+        clickElement(age, "Age dropdown menu");
+        selectFromDropdown(age, ageData, "age dropdown");
     }
 
-    public void selectAnnual(String annualData){
-        clickElement(annual,"Annual dropdown menu");
-        selectFromDropdown(annual,annualData,"annual dropdown");
+    public void selectAnnual(String annualData) {
+        clickElement(annual, "Annual dropdown menu");
+        selectFromDropdown(annual, annualData, "annual dropdown");
     }
 
-    public void selectSaving(String savingData){
-        clickElement(saving,"Saving dropdown menu");
-        selectFromDropdown(saving,savingData,"saving dropdown");
+    public void selectSaving(String savingData) {
+        clickElement(saving, "Saving dropdown menu");
+        selectFromDropdown(saving, savingData, "saving dropdown");
     }
 
-    public void selectKnowledge(String knowledgeData){
-        clickElement(knowledge,"Knowledge dropdown menu");
-        selectFromDropdown(knowledge,knowledgeData,"knowledge dropdown");
+    public void selectKnowledge(String knowledgeData) {
+        clickElement(knowledge, "Knowledge dropdown menu");
+        selectFromDropdown(knowledge, knowledgeData, "knowledge dropdown");
     }
 
-    public void clickContinueBtn(){
-        clickElement(continueBtn,"continue button");
+    public void clickContinueBtn() {
+        clickElement(continueBtn, "continue button");
     }
 
-    public void clickMenuBtn(){
-        clickElement(menuBtn,"menu button");
+    public void clickMenuBtn() {
+        clickElement(menuBtn, "menu button");
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
-            ,String ageData, String annualData, String savingData, String knowledgeData) {
+            , String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -243,6 +278,42 @@ public WebElement loginToFortrade;
         clickSubmitButton();
     }
 
+    public void unsuccessfullyRegistrationWrongSMS(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData,String tokenField0Value
+            , String tokenField1Value, String tokenField2Value,String tokenField3Value) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        incorrectToken(tokenField0Value,tokenField1Value,tokenField2Value,tokenField3Value);
+        clickContinueBtn();
+    }
+
+    public void tokenIsNotReceived(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        clickElement(didNotGetToken, "I didn't get the code button");
+        driverWait.until(ExpectedConditions.visibilityOf(codeIsSent));
+    }
+
+    public void clickEditTokenBtn(){
+        clickElement(editTokenBtn,"Edit token button");
+    }
     /**
      * Izvlaci tekst iz DOM-a i poredi ih sa ocekivanim porukama definisanih u nizu errorMessages
      */
@@ -371,7 +442,7 @@ public WebElement loginToFortrade;
         }
     }
 
-    public void clickOnSelectedLink(By element, String url,String document) throws IOException, AWTException, InterruptedException {
+    public void clickOnSelectedLink(By element, String url, String document) throws IOException, AWTException, InterruptedException {
         WebElement displayedElement = returnDisplayedElement(element);
         if (displayedElement != null) {
             clickElement(displayedElement, "link " + displayedElement.getText());
@@ -382,28 +453,28 @@ public WebElement loginToFortrade;
         driver.switchTo().window(tabs.get(1));
         assertURL(url);
         Thread.sleep(2000);
-        takeScreenshot(document +" document - FortradeR");
+        takeScreenshot(document + " document - FortradeR");
         driver.close();
         driver.switchTo().window(tabs.get(0));
     }
 
-    public void clickOnMailLink(String mailLink){
-        if (mailLink.equalsIgnoreCase("contactUs")){
+    public void clickOnMailLink(String mailLink) {
+        if (mailLink.equalsIgnoreCase("contactUs")) {
             clickElementBy(contactUsLinkBy, "contact us link");
-        } else if (mailLink.equalsIgnoreCase("info")){
+        } else if (mailLink.equalsIgnoreCase("info")) {
             clickElementBy(infoLinkBy, "info link");
-        } else if (mailLink.equalsIgnoreCase("support")){
+        } else if (mailLink.equalsIgnoreCase("support")) {
             clickElementBy(supportLinkBy, "support link");
         }
         Assert.assertTrue(isOutlookRunning());
     }
 
-    public void rightClickOnMailLink(String mailLink){
-        if (mailLink.equalsIgnoreCase("contactUs")){
+    public void rightClickOnMailLink(String mailLink) {
+        if (mailLink.equalsIgnoreCase("contactUs")) {
             performRightClickForMailLink(driver.findElement(contactUsLinkBy), "contact us link");
-        } else if (mailLink.equalsIgnoreCase("info")){
+        } else if (mailLink.equalsIgnoreCase("info")) {
             performRightClickForMailLink(driver.findElement(infoLinkBy), "info link");
-        } else if (mailLink.equalsIgnoreCase("support")){
+        } else if (mailLink.equalsIgnoreCase("support")) {
             performRightClickForMailLink(driver.findElement(supportLinkBy), "support link");
         }
         Assert.assertTrue(isOutlookRunning());
@@ -413,7 +484,14 @@ public WebElement loginToFortrade;
         performRightClick(returnDisplayedElement(element), url, "link" + returnDisplayedElement(element).getText());
     }
 
-    public void loginRedirection(){
-        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy),"An already have account?");
+    public void loginRedirection() {
+        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy), "An already have account?");
+    }
+
+    public void incorrectToken(String token0, String token1, String token2, String token3) {
+        typeText(tokenField0, token0, "first token input field");
+        typeText(tokenField1, token1, "second token input field");
+        typeText(tokenField2, token2, "third token input field");
+        typeText(tokenField3, token3, "fourth token input field");
     }
 }

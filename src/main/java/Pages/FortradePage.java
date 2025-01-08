@@ -21,9 +21,6 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//body[@data-lcreg]")
-    public WebElement bodyTag;
-
     @FindBy(xpath = "//div[contains(@class,'logo')]")
     public WebElement logo;
 
@@ -78,7 +75,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//div[contains(text(),'Login')]")
+    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
     public WebElement loginToFotrade;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
@@ -95,6 +92,30 @@ public class FortradePage extends BasePage {
 
     @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
+
+    @FindBy(xpath = "//input[@name='Token0']")
+    public WebElement tokenField0;
+
+    @FindBy(xpath = "//input[@name='Token1']")
+    public WebElement tokenField1;
+
+    @FindBy(xpath = "//input[@name='Token2']")
+    public WebElement tokenField2;
+
+    @FindBy(xpath = "//input[@name='Token3']")
+    public WebElement tokenField3;
+
+    @FindBy(xpath = "//div[@class='formErrorMessage']")
+    public WebElement incorrectTokenMsg;
+
+    @FindBy(xpath="//input[@class='TokenBack-Button']")
+    public WebElement didNotGetToken;
+
+    @FindBy(xpath = "//label[@name='SentAgainLabel']")
+    public WebElement codeIsSent;
+
+    @FindBy(xpath="//input[@id='Details-Edit-Btn']")
+    public WebElement editTokenBtn;
 
     @FindBy(xpath = "//span[text()='Fortrade']")
     public WebElement fortradeLogo;
@@ -296,8 +317,6 @@ public class FortradePage extends BasePage {
 
     public String ytURL = "https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg";
 
-    public String fbURL = "https://www.facebook.com/";
-
     public String insURL = "https://www.instagram.com/fortrade_online_trading/?hl=en";
 
     public void enterFirstName(String firstNameData) {
@@ -346,7 +365,6 @@ public class FortradePage extends BasePage {
         clickElement(saving, "Saving dropdown menu");
         selectFromDropdown(saving, savingData, "saving dropdown");
     }
-
 
     public void selectKnowledge(String knowledgeData) {
         clickElement(knowledge, "Knowledge dropdown menu");
@@ -423,6 +441,35 @@ public class FortradePage extends BasePage {
         clickOnSubmitButton();
         selectKnowledge(knowledgeData);
         clickContinueBtn();
+    }
+
+    public void unsuccessfullyRegistrationWrongSMS(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData,String tokenField0Value
+            , String tokenField1Value, String tokenField2Value,String tokenField3Value) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        incorrectToken(tokenField0Value,tokenField1Value,tokenField2Value,tokenField3Value);
+        clickContinueBtn();
+    }
+
+    public void incorrectToken(String token0, String token1, String token2, String token3) {
+        typeText(tokenField0, token0, "first token input field");
+        typeText(tokenField1, token1, "second token input field");
+        typeText(tokenField2, token2, "third token input field");
+        typeText(tokenField3, token3, "fourth token input field");
+    }
+
+    public void clickEditTokenBtn(){
+        clickElement(editTokenBtn,"edit token button");
     }
 
     public void assertURL(String url) {
@@ -509,6 +556,23 @@ public class FortradePage extends BasePage {
             Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidationIn'])[position()=number]".replace("number", String.valueOf(i))), "error message " + errorMessages[i - 1]), errorMessages[i - 1]);
         }
     }
+
+    public void tokenIsNotReceived(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
+        clickOnSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        clickElement(didNotGetToken, "I didn't get the code button");
+        driverWait.until(ExpectedConditions.visibilityOf(codeIsSent));
+     }
 
     public void assertSameNameErrorMsgs() {
         for (int i = 1; i <= 2; i++) {
@@ -636,6 +700,7 @@ public class FortradePage extends BasePage {
     public void loginRedirection(String regulation){
         clickElementBy(alreadyHaveAnAccountLinkBy, "Already have an account?");
         }
+
     public void clickOnMailLink(String mailLink) {
         if (mailLink.equalsIgnoreCase("contactUs")) {
             clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");

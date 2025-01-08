@@ -5,6 +5,7 @@ import Pages.FortradeRPage;
 import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -110,6 +111,47 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-Windows");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Knowledge parameter value - FortradeR", crmPage.linkId);
+    }
+
+    @Test
+    public void assertInvalidTokenMsg() throws IOException, AWTException {
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "381",
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
+                "1","1","1","1");
+        Assert.assertEquals(fortradeRPage.incorrectTokenMsg.getText(),"Incorrect Code. Please check and try again.");
+        fortradeRPage.takeScreenshot("Incorrect code - Please check and try again - FortradeR");
+    }
+
+    @Test
+    public void didNotGetToken() throws IOException, AWTException, InterruptedException {
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "381",
+        TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+        Assert.assertEquals(fortradeRPage.codeIsSent.getText(),"We sent you the code again");
+        Thread.sleep(2000);
+        if(fortradeRPage.codeIsSent.isDisplayed()){
+            fortradeRPage.takeScreenshot("We sent you the code again - FortradeR",fortradeRPage.codeIsSent);
+        }
+    }
+
+    @Test
+    public void userIsReturnedTo1stWidget() throws IOException, AWTException, InterruptedException {
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.enterFirstName("Testq");
+        fortradeRPage.enterLastName("Testa");
+        fortradeRPage.enterEmail(TestData.emailGenerator());
+        fortradeRPage.enterCountryCode("381");
+        fortradeRPage.enterPhoneNumber(TestData.phoneNumberGenerator());
+        fortradeRPage.clickSubmitButton();
+        fortradeRPage.selectAge("75+");
+        fortradeRPage.clickEditTokenBtn();
+        if(fortradeRPage.loginToFortrade.isDisplayed()){
+            fortradeRPage.takeScreenshot("The user is returned to the 1st form widget - FortradeR",fortradeRPage.loginToFortrade);
+        }
     }
 
     @Test

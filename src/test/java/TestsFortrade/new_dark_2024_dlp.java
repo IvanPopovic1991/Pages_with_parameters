@@ -5,6 +5,7 @@ import Pages.FortradePage;
 import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
@@ -133,6 +134,50 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         fortradePage.assertErrorMessages();
         fortradePage.assertColor("red");
         fortradePage.takeScreenshot("Unsuccessfully demo account registration " + regulation + " regulation", fortradePage.firstName);
+    }
+
+    @Test
+    @Parameters({"tag","countryCode","regulation"})
+    public void assertInvalidTokenMsg(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), countryCode,
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
+                "1","1","1","1");
+        Assert.assertEquals(fortradePage.incorrectTokenMsg.getText(),"Incorrect Code. Please check and try again.");
+        fortradePage.takeScreenshot("Incorrect code - Please check and try again - "+regulation);
+    }
+
+    @Test
+    @Parameters({"tag","countryCode","regulation"})
+    public void didNotGetToken(String tag,String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), countryCode,
+        TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+        Assert.assertEquals(fortradePage.codeIsSent.getText(),"We sent you the code again");
+        Thread.sleep(1500);
+        if (fortradePage.codeIsSent.isDisplayed()){
+            fortradePage.takeScreenshot("We sent you the code again "+regulation,fortradePage.codeIsSent);
+        }
+    }
+
+    @Test
+    @Parameters({"tag","countryCode","regulation"})
+    public void userIsReturnedTo1stWidget(String tag,String countryCode, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.enterFirstName("Testq");
+        fortradePage.enterLastName("Testa");
+        fortradePage.enterEmail(TestData.emailGenerator());
+        fortradePage.enterCountryCode(countryCode);
+        fortradePage.enterPhoneNumber(TestData.phoneNumberGenerator());
+        fortradePage.clickOnSubmitButton();
+        fortradePage.clickDenyBtn();
+        fortradePage.clickEditTokenBtn();
+        if(fortradePage.loginToFotrade.isDisplayed()){
+            fortradePage.takeScreenshot("The user is returned to the 1st form widget " + regulation,fortradePage.loginToFotrade);
+        }
     }
 
     @Test
