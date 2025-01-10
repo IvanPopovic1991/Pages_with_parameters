@@ -390,6 +390,29 @@ public class FortradePage extends BasePage {
         selectKnowledge(knowledgeData);
         clickContinueBtn();
     }
+    public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData, String ageDataSelect, String annualDataSelect, String savingDataSelect, String knowledgeDataSelect) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickOnSubmitButton();
+
+        selectAge(ageData);
+        selectAge(ageDataSelect);
+
+        selectAnnual(annualData);
+        selectAnnual(annualDataSelect);
+
+        selectSaving(savingData);
+        selectSaving(savingDataSelect);
+
+        selectKnowledge(knowledgeData);
+        selectKnowledge(knowledgeDataSelect);
+
+        clickContinueBtn();
+    }
 
     public void ageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData) {
@@ -708,5 +731,12 @@ public class FortradePage extends BasePage {
             clickElement(returnDisplayedElement(supportLinkBy), "support link");
         }
         Assert.assertTrue(isOutlookRunning());
+    }
+    public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
+        Thread.sleep(2000);
+        for (int i = 1; i <= numberOfParameters; i++) {
+            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidation'])[position()=number]".replace("number", String.valueOf(i))),
+                    "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
+        }
     }
 }

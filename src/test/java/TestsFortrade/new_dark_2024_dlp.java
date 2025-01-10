@@ -2,6 +2,7 @@ package TestsFortrade;
 
 import Pages.CrmPage;
 import Pages.FortradePage;
+import Pages.FortradeRPage;
 import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
@@ -475,5 +476,65 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         Thread.sleep(2000);
         fortradePage.takeScreenshot("Fortrade " + regulation + " - support redirection");
         fortradePage.closeOutlook();
+    }
+    @Test
+    @Parameters({"regulation"})
+    public void errorMessageAgeParameter(String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age");
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.ageParameter("Testq", "Testa", email, "381", phoneNumber,
+                "-- Select --");
+        fortradePage.secondStepErrorMessage(1);
+        fortradePage.takeScreenshot("Age parameter error message - Fortrade - " + regulation + " regulation");
+    }
+    @Test
+    @Parameters({"regulation"})
+    public void errorMessageAnnualParameter(String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=annual");
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.annualParameter("Testq", "Testa", email, "381", phoneNumber,
+                "-- Select --");
+        fortradePage.secondStepErrorMessage(1);
+        fortradePage.takeScreenshot("Annual parameter error message - Fortrade - " + regulation + " regulation");
+    }
+    @Test
+    @Parameters({"regulation"})
+    public void errorMessageSavingParameter(String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=saving");
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.savingParameter("Testq", "Testa", email, "381", phoneNumber,
+                "-- Select --");
+        fortradePage.secondStepErrorMessage(1);
+        fortradePage.takeScreenshot("Saving parameter error message - Fortrade - " + regulation + " regulation");
+    }
+    @Test
+    @Parameters({"regulation"})
+    public void errorMessageKnowledgeParameter(String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=knowledge");
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.knowledgeParameter("Testq", "Testa", email, "381", phoneNumber,
+                "-- Select --");
+        fortradePage.secondStepErrorMessage(1);
+        fortradePage.takeScreenshot("Knowledge parameter error message - Fortrade - " + regulation + " regulation");
+    }
+    @Test
+    @Parameters({"regulation"})
+    public void errorMessagesAllParameters(String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.unsuccessfullyRegistration("Testq", "Testa", email, "381", phoneNumber,
+                "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
+                "-- Select --", "-- Select --", "-- Select --", "-- Select --");
+        fortradePage.secondStepErrorMessage(4);
+        fortradePage.takeScreenshot("All parameters error message - Fortrade - " + regulation + " regulation");
     }
 }
