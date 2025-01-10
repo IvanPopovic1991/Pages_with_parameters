@@ -36,8 +36,10 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//iframe[@id='contentIFrame0']")
     public WebElement iFrameSearch;
 
-    @FindBy(xpath = "//div[@style='height:100%']//input[@id='crmGrid_findCriteria']")
+    @FindBy(xpath = "//input[@id='crmGrid_findCriteria']")
     public WebElement searchInCrm;
+
+    ////div[@style='height:100%']//input[@id='crmGrid_findCriteria']
 
     @FindBy(xpath = "//a[@id='crmGrid_findCriteriaButton']//img[@id='crmGrid_findCriteriaImg']")
     public WebElement searchBtnCrm;
@@ -138,8 +140,9 @@ public class CrmPage extends BasePage {
     }
 
     public void checkLinkIdValue(String linkIdValue){
-        clickElement(menuBtn, "menu button");
-        clickElement(envAndMarSec, "environment and marketing section button");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.clickElement(menuBtn, "menu button");
+        crmPage.clickElement(envAndMarSec, "environment and marketing section button");
         String linkIdVal = getText(linkId,"Link ID field from the CRM");
         System.out.println("Link ID field value from the CRM "+linkIdVal);
         Assert.assertEquals(linkIdVal,linkIdValue);

@@ -13,10 +13,12 @@ import org.testng.annotations.Test;
 import java.awt.*;
 import java.io.IOException;
 
-public class new_dark_2024_dlp extends BaseTestFortradeR {
+public class new_dark_2024_dlp_b extends BaseTestFortradeR {
     @BeforeMethod
     public void setUp() {
         baseSetup("Chrome", "131");
+        FortradeRPage fortradeRPage =new FortradeRPage(driver);
+        fortradeRPage.clickGetStartedBtn();
     }
 
     @AfterMethod
@@ -37,7 +39,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void checkingTagsInTheCrm() throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=age-annual-saving-knowledge&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
@@ -53,7 +55,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void checkingAgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=age");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.ageParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "25-34");
@@ -62,14 +64,14 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         //crmPage.checkSMSVerification("--");
         //crmPage.takeScreenshot("SMS Verification field Age parameter - no value", crmPage.smsVerification);
         crmPage.checkLinkIdValue("25_34_age,PC-windows");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         crmPage.takeScreenshot( "Age parameter value - FortradeR", crmPage.linkId);
     }
 
     @Test
     public void checkingAnnualParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=annual");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=annual");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.annualParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
@@ -78,7 +80,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         //crmPage.checkSMSVerification("--");
         //crmPage.takeScreenshot("SMS Verification field Annual parameter - no value", crmPage.smsVerification);
         crmPage.checkLinkIdValue("15000_50000_annual,PC-windows");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         crmPage.takeScreenshot( "Annual parameter value - FortradeR", crmPage.linkId);
 
     }
@@ -86,7 +88,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void checkingSavingParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=saving");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=saving");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.savingParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "$50,000 – $100,000");
@@ -94,13 +96,13 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         //crmPage.checkSMSVerification("--");
         crmPage.checkLinkIdValue("50000_100000_savings,PC-windows");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         crmPage.takeScreenshot( "Saving parameter value - FortradeR", crmPage.linkId);
     }
     @Test
     public void checkingKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=knowledge");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=knowledge");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.knowledgeParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
                 "All the above");
@@ -109,13 +111,13 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         //crmPage.checkSMSVerification("--");
         //crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value", crmPage.smsVerification);
         crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-windows");
-        Thread.sleep(1000);
+        Thread.sleep(2000);
         crmPage.takeScreenshot( "Knowledge parameter value - FortradeR", crmPage.linkId);
     }
 
     @Test
     public void assertInvalidTokenMsg() throws IOException, AWTException {
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=sms-age-annual-saving-knowledge");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "381",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
@@ -126,7 +128,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
 
     @Test
     public void didNotGetToken() throws IOException, AWTException, InterruptedException {
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=sms-age-annual-saving-knowledge");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "381",
         TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
@@ -138,8 +140,8 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void userIsReturnedTo1stWidget() throws IOException, AWTException, InterruptedException {
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=sms-age-annual-saving-knowledge");
+    public void userIsReturnedTo1stWidget() throws IOException, AWTException{
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=sms-age-annual-saving-knowledge");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.enterFirstName("Testq");
         fortradeRPage.enterLastName("Testa");
@@ -181,7 +183,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000 – $100,000", "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge");
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=age-annual-saving-knowledge");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
     }
@@ -200,7 +202,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void checkingForLogoClickability() throws IOException, AWTException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.checkLogoClickability("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age-annual-saving-knowledge");
+        fortradeRPage.checkLogoClickability("https://www.fortrader.com/minilps/en/new-dark-2024-b/?fts=age-annual-saving-knowledge");
         fortradeRPage.takeScreenshot("Logo is not clickable - FortradeR");
     }
 
@@ -228,16 +230,14 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void privacyPolicyTest() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.clickOnSelectedLink(fortradeRPage.privacyPolicyLinkBy, fortradeRPage.privacyPolicyFSC,
-                "Privacy policy");
-        fortradeRPage.rightClickOnSelectedLink(fortradeRPage.privacyPolicyLinkBy, fortradeRPage.privacyPolicyFSC);
+        fortradeRPage.clickOnSelectedLink(fortradeRPage.privacyPolicyLinkBy,fortradeRPage.privacyPolicyFSC, "Privacy policy" );
+        fortradeRPage.rightClickOnSelectedLink(fortradeRPage.privacyPolicyLinkBy,fortradeRPage.privacyPolicyFSC);
     }
 
     @Test
     public void termsAndConditionsTest() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.clickOnSelectedLink(fortradeRPage.termsAndConditionsLinkBy, fortradeRPage.termsAndConditionsFSC,
-                "Terms and conditions");
+        fortradeRPage.clickOnSelectedLink(fortradeRPage.termsAndConditionsLinkBy, fortradeRPage.termsAndConditionsFSC,"Terms and conditions");
         fortradeRPage.rightClickOnSelectedLink(fortradeRPage.termsAndConditionsLinkBy, fortradeRPage.termsAndConditionsFSC);
     }
 
@@ -254,7 +254,7 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.loginRedirection();
         if (driver.getCurrentUrl().contains(fortradeRPage.alrHaveAccount)) {
-            fortradeRPage.takeScreenshot("Login page - the user is successfully redirected");
+            fortradeRPage.takeScreenshot("Login page - the user is successfully redirected", fortradeRPage.loginToFortrade);
         } else {
             System.out.println("Wrong link redirection");
         }
@@ -281,31 +281,11 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void fbLinkRedirection() throws IOException, InterruptedException, AWTException {
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.clickOnSelectedLink(fortradeRPage.facebookLinkBy, fortradeRPage.fbURL, "Facebook page");
-        fortradeRPage.rightClickOnSelectedLink(fortradeRPage.facebookLinkBy, fortradeRPage.fbURL);
-    }
-
-    @Test
-    public void insLinkRedirection() throws IOException, InterruptedException, AWTException {
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.clickOnSelectedLink(fortradeRPage.instagramLinkBy, fortradeRPage.insURL, "Instagram page");
-        fortradeRPage.rightClickOnSelectedLink(fortradeRPage.instagramLinkBy, fortradeRPage.insURL);
-    }
-
-    @Test
-    public void ytLinkRedirection() throws IOException, InterruptedException, AWTException {
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.clickOnSelectedLink(fortradeRPage.youtubeLinkBy, fortradeRPage.ytURL, "Youtube page");
-        fortradeRPage.rightClickOnSelectedLink(fortradeRPage.youtubeLinkBy, fortradeRPage.ytURL);
-    }
-
-    @Test
     public void contactUsLink() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        Thread.sleep(1500);
         fortradeRPage.clickOnMailLink("contactUs");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         fortradeRPage.takeScreenshot("FortradeR - contact us redirection");
         fortradeRPage.closeOutlook();
     }
@@ -313,8 +293,9 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void infoLink() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        Thread.sleep(1500);
         fortradeRPage.clickOnMailLink("info");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         fortradeRPage.takeScreenshot("FortradeR - info redirection");
         fortradeRPage.closeOutlook();
     }
@@ -322,64 +303,10 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
     @Test
     public void supportLink() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        Thread.sleep(1500);
         fortradeRPage.clickOnMailLink("support");
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         fortradeRPage.takeScreenshot("FortradeR - support redirection");
         fortradeRPage.closeOutlook();
-    }
-    @Test
-    public void errorMessageAgeParameter() throws IOException, AWTException, InterruptedException {
-        String email = TestData.emailGenerator();
-        String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=age");
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.ageParameter("Testq", "Testa", email, "381", phoneNumber,
-                "-- Select --");
-        fortradeRPage.secondStepErrorMessage(1);
-        fortradeRPage.takeScreenshot("Age parameter error message - FortradeR");
-    }
-    @Test
-    public void errorMessageAnnualParameter() throws IOException, AWTException, InterruptedException {
-        String email = TestData.emailGenerator();
-        String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=annual");
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.annualParameter("Testq", "Testa", email, "381", phoneNumber,
-                "-- Select --");
-        fortradeRPage.secondStepErrorMessage(1);
-        fortradeRPage.takeScreenshot("Annual parameter error message - FortradeR");
-    }
-    @Test
-    public void errorMessageSavingParameter() throws IOException, AWTException, InterruptedException {
-        String email = TestData.emailGenerator();
-        String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=saving");
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.savingParameter("Testq", "Testa", email, "381", phoneNumber,
-                "-- Select --");
-        fortradeRPage.secondStepErrorMessage(1);
-        fortradeRPage.takeScreenshot("Saving parameter error message - FortradeR");
-    }
-    @Test
-    public void errorMessageKnowledgeParameter() throws IOException, AWTException, InterruptedException {
-        String email = TestData.emailGenerator();
-        String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=knowledge");
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.knowledgeParameter("Testq", "Testa", email, "381", phoneNumber,
-                "-- Select --");
-        fortradeRPage.secondStepErrorMessage(1);
-        fortradeRPage.takeScreenshot("Knowledge parameter error message - FortradeR");
-    }
-    @Test
-    public void errorMessagesAllParameters() throws IOException, AWTException, InterruptedException {
-        String email = TestData.emailGenerator();
-        String phoneNumber = TestData.phoneNumberGenerator();
-        FortradeRPage fortradeRPage = new FortradeRPage(driver);
-        fortradeRPage.unsuccessfullyRegistration("Testq", "Testa", email, "381", phoneNumber,
-                "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
-                "-- Select --", "-- Select --", "-- Select --", "-- Select --");
-        fortradeRPage.secondStepErrorMessage(4);
-        fortradeRPage.takeScreenshot("All parameters error message - FortradeR");
     }
 }
