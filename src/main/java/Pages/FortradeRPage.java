@@ -220,6 +220,29 @@ public class FortradeRPage extends BasePage {
         clickContinueBtn();
         clickMenuBtn();
     }
+    public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String ageData, String annualData, String savingData, String knowledgeData, String ageDataSelect, String annualDataSelect, String savingDataSelect, String knowledgeDataSelect) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+
+        selectAge(ageData);
+        selectAge(ageDataSelect);
+
+        selectAnnual(annualData);
+        selectAnnual(annualDataSelect);
+
+        selectSaving(savingData);
+        selectSaving(savingDataSelect);
+
+        selectKnowledge(knowledgeData);
+        selectKnowledge(knowledgeDataSelect);
+
+        clickContinueBtn();
+    }
 
     public void ageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData) {
@@ -493,5 +516,12 @@ public class FortradeRPage extends BasePage {
         typeText(tokenField1, token1, "second token input field");
         typeText(tokenField2, token2, "third token input field");
         typeText(tokenField3, token3, "fourth token input field");
+    }
+    public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
+        Thread.sleep(2000);
+        for (int i = 1; i <= numberOfParameters; i++) {
+            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidationIn'])[position()=number]".replace("number", String.valueOf(i))),
+                    "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
+        }
     }
 }

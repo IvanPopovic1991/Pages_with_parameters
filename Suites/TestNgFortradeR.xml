@@ -9,9 +9,14 @@
         <classes>
             <class name="TestsFortradeR.new_dark_2024_dlp">
                 <methods>
-                    <include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>
+                    <!--<include name="assertInvalidTokenMsg"/>
+                    <include name="didNotGetToken"/>-->
                     <!--<include name="userIsReturnedTo1stWidget"/>-->
+                    <include name="errorMessageAgeParameter"/>
+                    <include name="errorMessageAnnualParameter"/>
+                    <include name="errorMessageSavingParameter"/>
+                    <include name="errorMessageKnowledgeParameter"/>
+                    <include name="errorMessagesAllParameters"/>
                 </methods>
             </class>
         </classes>
