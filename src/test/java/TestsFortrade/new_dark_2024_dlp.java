@@ -478,60 +478,60 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         fortradePage.closeOutlook();
     }
     @Test
-    @Parameters({"regulation"})
-    public void errorMessageAgeParameter(String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag","countryCode","regulation"})
+    public void errorMessageAgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age");
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=age"+tag);
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.ageParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradePage.ageParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Age parameter error message - Fortrade - " + regulation + " regulation");
     }
     @Test
-    @Parameters({"regulation"})
-    public void errorMessageAnnualParameter(String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag","countryCode","regulation"})
+    public void errorMessageAnnualParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=annual");
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=annual"+tag);
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.annualParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradePage.annualParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Annual parameter error message - Fortrade - " + regulation + " regulation");
     }
     @Test
-    @Parameters({"regulation"})
-    public void errorMessageSavingParameter(String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag","countryCode","regulation"})
+    public void errorMessageSavingParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=saving");
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=saving"+tag);
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.savingParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradePage.savingParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Saving parameter error message - Fortrade - " + regulation + " regulation");
     }
     @Test
-    @Parameters({"regulation"})
-    public void errorMessageKnowledgeParameter(String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag","countryCode","regulation"})
+    public void errorMessageKnowledgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=knowledge");
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=knowledge"+tag);
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.knowledgeParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Knowledge parameter error message - Fortrade - " + regulation + " regulation");
     }
     @Test
-    @Parameters({"regulation"})
-    public void errorMessagesAllParameters(String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"countryCode","regulation"})
+    public void errorMessagesAllParameters(String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.unsuccessfullyRegistration("Testq", "Testa", email, "381", phoneNumber,
+        fortradePage.unsuccessfullyRegistration("Testq", "Testa", email, countryCode, phoneNumber,
                 "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
                 "-- Select --", "-- Select --", "-- Select --", "-- Select --");
         fortradePage.secondStepErrorMessage(4);

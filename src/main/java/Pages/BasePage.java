@@ -59,6 +59,7 @@ public class BasePage {
         try {
             WebDriverWait wait = new WebDriverWait(driver, waitTime);
             wait.until(ExpectedConditions.visibilityOf(element));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
             element.clear();
             element.sendKeys(text);
             System.out.println("Typed " + text + " into " + log + " field");

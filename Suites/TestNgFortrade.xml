@@ -12,9 +12,6 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <!--<include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>
-                    <include name="userIsReturnedTo1stWidget"/>-->
                     <include name="errorMessageAgeParameter"/>
                     <include name="errorMessageAnnualParameter"/>
                     <include name="errorMessageSavingParameter"/>
@@ -31,10 +28,7 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <!--<include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>
-                    <include name="userIsReturnedTo1stWidget"/>-->
-                    <include name="errorMessageAgeParameter"/>
+                   <include name="errorMessageAgeParameter"/>
                     <include name="errorMessageAnnualParameter"/>
                     <include name="errorMessageSavingParameter"/>
                     <include name="errorMessageKnowledgeParameter"/>
@@ -50,9 +44,6 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <!--<include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>
-                    <include name="userIsReturnedTo1stWidget"/>-->
                     <include name="errorMessageAgeParameter"/>
                     <include name="errorMessageAnnualParameter"/>
                     <include name="errorMessageSavingParameter"/>
@@ -69,9 +60,6 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <!--<include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>
-                    <include name="userIsReturnedTo1stWidget"/>-->
                     <include name="errorMessageAgeParameter"/>
                     <include name="errorMessageAnnualParameter"/>
                     <include name="errorMessageSavingParameter"/>

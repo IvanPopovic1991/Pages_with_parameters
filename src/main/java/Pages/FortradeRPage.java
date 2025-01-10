@@ -96,6 +96,9 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath="//input[@id='Details-Edit-Btn']")
     public WebElement editTokenBtn;
 
+    @FindBy(xpath = "//div[@class='nav-button' and text()='Get Started']")
+    public WebElement getStartedBtn;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
 
     public By termsAndConditionsLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
@@ -220,6 +223,7 @@ public class FortradeRPage extends BasePage {
         clickContinueBtn();
         clickMenuBtn();
     }
+
     public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData, String annualData, String savingData, String knowledgeData, String ageDataSelect, String annualDataSelect, String savingDataSelect, String knowledgeDataSelect) {
         enterFirstName(firstNameData);
@@ -517,6 +521,11 @@ public class FortradeRPage extends BasePage {
         typeText(tokenField2, token2, "third token input field");
         typeText(tokenField3, token3, "fourth token input field");
     }
+
+    public void clickGetStartedBtn(){
+        clickElement(getStartedBtn,"Get started button");
+    }
+
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
         Thread.sleep(2000);
         for (int i = 1; i <= numberOfParameters; i++) {

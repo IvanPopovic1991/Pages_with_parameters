@@ -5,20 +5,9 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="SMS Feature - FortradeR">
+    <test name="All test cases - FortradeR">
         <classes>
-            <class name="TestsFortradeR.new_dark_2024_dlp">
-                <methods>
-                    <!--<include name="assertInvalidTokenMsg"/>
-                    <include name="didNotGetToken"/>-->
-                    <!--<include name="userIsReturnedTo1stWidget"/>-->
-                    <include name="errorMessageAgeParameter"/>
-                    <include name="errorMessageAnnualParameter"/>
-                    <include name="errorMessageSavingParameter"/>
-                    <include name="errorMessageKnowledgeParameter"/>
-                    <include name="errorMessagesAllParameters"/>
-                </methods>
-            </class>
+            <class name="TestsFortradeR.new_dark_2024_dlp"/>
         </classes>
     </test>
 </suite>
