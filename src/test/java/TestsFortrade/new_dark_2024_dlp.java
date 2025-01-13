@@ -2,7 +2,6 @@ package TestsFortrade;
 
 import Pages.CrmPage;
 import Pages.FortradePage;
-import Pages.FortradeRPage;
 import Pages.Mailinator;
 import faker.TestData;
 import org.openqa.selenium.By;
@@ -53,8 +52,8 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.takeScreenshot("Account details Fortrade page " + regulation, crmPage.accFullNameCrm);
         crmPage.takeScreenshot("SMS Verification field - no value" + regulation, crmPage.smsVerification);
-        //crmPage.checkSMSVerification("--");
-        //crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field without sms parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkCrmTags();
         crmPage.takeScreenshot("Marketing tags Fortrade page " + regulation, crmPage.accFullNameCrm);
     }
@@ -69,8 +68,8 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
                 "25-34");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        //crmPage.checkSMSVerification("--");
-        //crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("25_34_age,PC-windows");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Age parameter value "+regulation, crmPage.linkId);
@@ -86,8 +85,8 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
                 "$15,000-$50,000");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        //crmPage.checkSMSVerification("--");
-        //crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("15000_50000_annual,PC-windows");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Annual parameter value "+regulation, crmPage.linkId);
@@ -103,8 +102,8 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
                 "$50,000 – $100,000");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        //crmPage.checkSMSVerification("--");
-        //crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("50000_100000_savings,PC-windows");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Saving parameter value " + regulation, crmPage.linkId);
@@ -120,8 +119,8 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
                 "All the above");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        //crmPage.checkSMSVerification("--");
-        //crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
+        crmPage.checkSMSVerification("--");
+        crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-windows");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Knowledge parameter value "+regulation, crmPage.linkId);
