@@ -132,11 +132,9 @@ public class CrmPage extends BasePage {
         loopForTagsCrm();
     }
 
-    public void checkSMSVerification(String smsVerificationValue) throws IOException, AWTException {
-        CrmPage crmPage = new CrmPage(driver);
+    public void checkSMSVerification(String smsVerificationValue) {
         String smsVerificationVal = getText(smsVerification,"SMS Verification field from the CRM");
         Assert.assertEquals(smsVerificationVal,smsVerificationValue);
-        crmPage.takeScreenshot("SMS verification value: ", smsVerification);
     }
 
     public void checkLinkIdValue(String linkIdValue){
