@@ -120,6 +120,9 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[text()='Fortrade']")
     public WebElement fortradeLogo;
 
+    @FindBy(xpath = "//select[@name='LinkId']")
+    public WebElement languageField;
+
     public By privacyPolicyLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
     public By termsAndConditionsLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
     public By clickHereLink = By.xpath("//span[@class='MarketingMaterials2']//a[text()='click here']");
@@ -466,6 +469,23 @@ public class FortradePage extends BasePage {
         clickContinueBtn();
     }
 
+    public void selectLanguage(String languageData){
+        clickElement(languageField,"Desired communication language");
+        selectFromDropdown(languageField,languageData,"Desired communication language");
+    }
+
+    public void languageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String languageData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickOnSubmitButton();
+        selectLanguage(languageData);
+        clickContinueBtn();
+    }
+
     public void unsuccessfullyRegistrationWrongSMS(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData, String annualData, String savingData, String knowledgeData,String tokenField0Value
             , String tokenField1Value, String tokenField2Value,String tokenField3Value) {
@@ -639,6 +659,12 @@ public class FortradePage extends BasePage {
                 Assert.assertTrue(green < 200 && red > 50 && red < 120 && blue > 50 && blue < 100, "Border color is not approximately green.");
             }
         }
+    }
+
+    public void assertBorderColor(WebElement element){
+        String borderColor = element.getCssValue("border-color");
+        System.out.println("The field border color is " + borderColor);
+        Assert.assertEquals(borderColor,"rgb(255, 0, 0)");
     }
 
     public void checkLogoClickability(String regulation, String url) {

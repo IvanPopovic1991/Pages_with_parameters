@@ -536,4 +536,30 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         fortradePage.secondStepErrorMessage(4);
         fortradePage.takeScreenshot("All parameters error message - Fortrade - " + regulation + " regulation");
     }
+
+    @Test
+    @Parameters({"tag","countryCode","regulation"})
+    public void checkLanguageParameter(String tag, String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.languageParameter("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(),"English");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkLinkIdValue("lang_EN,PC-windows");
+        Thread.sleep(1000);
+        crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation",crmPage.linkId);
+    }
+    @Test
+    @Parameters({"tag","countryCode","regulation"})
+    public void errorLanguageParameter(String tag, String countryCode,String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.languageParameter("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(),"-- Select --");
+        fortradePage.assertBorderColor(fortradePage.languageField);
+        fortradePage.takeScreenshot("Desired communication language - error " + regulation + " regulation", fortradePage.languageField);
+    }
 }
