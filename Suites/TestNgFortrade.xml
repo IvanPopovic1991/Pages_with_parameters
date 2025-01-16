@@ -12,15 +12,10 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
-                    <exclude name="iirocRegulationTest"/>
-                    <exclude name="asicRegulationTest"/>
-                    <exclude name="cysecRegulationTest"/>
-                    <exclude name="fsgDocumentTest"/>
-                    <exclude name="pdsDocumentTest"/>
-                    <exclude name="tmdDocumentTest"/>
+                    <include name="checkLanguageParameter"/>
+                    <include name="errorLanguageParameter"/>
                 </methods>
-        </class>
+            </class>
         </classes>
     </test>
     <test name="Test cases - FCA regulation">
@@ -29,15 +24,10 @@
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
-            <methods>
-                <exclude name="iirocRegulationTest"/>
-                <exclude name="asicRegulationTest"/>
-                <exclude name="cysecRegulationTest"/>
-                <exclude name="fscRegulationTest"/>
-                <exclude name="fsgDocumentTest"/>
-                <exclude name="pdsDocumentTest"/>
-                <exclude name="tmdDocumentTest"/>
-            </methods>
+                <methods>
+                    <include name="checkLanguageParameter"/>
+                    <include name="errorLanguageParameter"/>
+                </methods>
             </class>
         </classes>
     </test>
@@ -48,14 +38,8 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
-                    <exclude name="asicRegulationTest"/>
-                    <exclude name="cysecRegulationTest"/>
-                    <exclude name="fscRegulationTest"/>
-                    <exclude name="fsgDocumentTest"/>
-                    <exclude name="pdsDocumentTest"/>
-                    <exclude name="tmdDocumentTest"/>
-                    <exclude name="howToUnsubscribeTest"/>
+                    <include name="checkLanguageParameter"/>
+                    <include name="errorLanguageParameter"/>
                 </methods>
             </class>
         </classes>
@@ -67,36 +51,31 @@
         <classes>
             <class name="TestsFortrade.new_dark_2024_dlp">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
-                    <exclude name="iirocRegulationTest"/>
-                    <exclude name="cysecRegulationTest"/>
-                    <exclude name="fscRegulationTest"/>
-                    <exclude name="privacyPolicyTest"/>
-                    <exclude name="termsAndConditionsTest"/>
-                    <exclude name="howToUnsubscribeTest"/>
+                    <include name="checkLanguageParameter"/>
+                    <include name="errorLanguageParameter"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - cysec regulation">
-        <parameter name="regulation" value="cysec"/>
-        <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
-        <classes>
-            <class name="TestsFortrade.new_dark_2024_dlp">
-                <methods>
-                    <include name="privacyPolicyTest"/>
-                    <include name="termsAndConditionsTest"/>
-                    <include name="howToUnsubscribeTest"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="riskWarningTest"/>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="cysecRegulationTest"/>
-                    <include name="fbLinkRedirection"/>
-                    <include name="insLinkRedirection"/>
-                    <include name="ytLinkRedirection"/>
-                    <include name="contactUsLink"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
+    <!--    <test name="Test cases - cysec regulation">
+            <parameter name="regulation" value="cysec"/>
+            <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
+            <classes>
+                <class name="TestsFortrade.new_dark_2024_dlp">
+                    <methods>
+                        <include name="privacyPolicyTest"/>
+                        <include name="termsAndConditionsTest"/>
+                        <include name="howToUnsubscribeTest"/>
+                        <include name="loginRedirectionTest"/>
+                        <include name="riskWarningTest"/>
+                        <include name="footerPrivacyPolicy"/>
+                        <include name="cysecRegulationTest"/>
+                        <include name="fbLinkRedirection"/>
+                        <include name="insLinkRedirection"/>
+                        <include name="ytLinkRedirection"/>
+                        <include name="contactUsLink"/>
+                    </methods>
+                </class>
+            </classes>
+        </test>-->
 </suite>

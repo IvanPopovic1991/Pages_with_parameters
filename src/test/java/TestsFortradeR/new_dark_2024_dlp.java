@@ -383,4 +383,27 @@ public class new_dark_2024_dlp extends BaseTestFortradeR {
         fortradeRPage.secondStepErrorMessage(4);
         fortradeRPage.takeScreenshot("All parameters error message - FortradeR");
     }
+
+    @Test
+    public void checkLanguageParameter() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all");
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.languageParameter("Testq", "Testa", email, "381",
+                TestData.phoneNumberGenerator(),"English");
+        CrmPage crmPage = new CrmPage(driver);
+        crmPage.checkCrmData(email, "Testq Testa", "FSC");
+        crmPage.checkLinkIdValue("lang_EN,PC-windows");
+        crmPage.takeScreenshot("Desired communication language - FortradeR",crmPage.linkId);
+    }
+    @Test
+    public void errorLanguageParameter() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrader.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all");
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.languageParameter("Testq", "Testa", email, "381",
+                TestData.phoneNumberGenerator(),"-- Select --");
+        fortradeRPage.assertBorderColor(fortradeRPage.languageField);
+        fortradeRPage.takeScreenshot("Desired communication language - error - FortradeR",fortradeRPage.languageField);
+    }
 }

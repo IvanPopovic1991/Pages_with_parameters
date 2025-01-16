@@ -99,6 +99,9 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='nav-button' and text()='Get Started']")
     public WebElement getStartedBtn;
 
+    @FindBy(xpath = "//select[@name='LinkId']")
+    public WebElement languageField;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
 
     public By termsAndConditionsLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
@@ -232,19 +235,14 @@ public class FortradeRPage extends BasePage {
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
-
         selectAge(ageData);
         selectAge(ageDataSelect);
-
         selectAnnual(annualData);
         selectAnnual(annualDataSelect);
-
         selectSaving(savingData);
         selectSaving(savingDataSelect);
-
         selectKnowledge(knowledgeData);
         selectKnowledge(knowledgeDataSelect);
-
         clickContinueBtn();
     }
 
@@ -293,6 +291,23 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectKnowledge(knowledgeData);
+        clickContinueBtn();
+    }
+
+    public void selectLanguage(String languageData){
+        clickElement(languageField,"Desired communication language");
+        selectFromDropdown(languageField,languageData,"Desired communication language");
+    }
+
+    public void languageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
+            , String languageData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        selectLanguage(languageData);
         clickContinueBtn();
     }
 
@@ -396,6 +411,12 @@ public class FortradeRPage extends BasePage {
                 Assert.assertTrue(green < 200 && red > 50 && red < 120 && blue > 50 && blue < 100, "Border color is not approximately green.");
             }
         }
+    }
+
+    public void assertBorderColor(WebElement element){
+        String borderColor = element.getCssValue("border-color");
+        System.out.println("The field border color is " + borderColor);
+        Assert.assertEquals(borderColor,"rgb(255, 0, 0)");
     }
 
     public void assertURL(String url) {
@@ -533,4 +554,5 @@ public class FortradeRPage extends BasePage {
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
     }
+
 }
