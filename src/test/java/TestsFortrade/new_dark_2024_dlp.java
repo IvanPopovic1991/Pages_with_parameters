@@ -232,7 +232,7 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void checkForCountryCodeErrorMessage(String regulation) throws IOException, AWTException {
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.checkCountryCodeErrorMessage("01852833kdkd");
+        fortradePage.checkCountryCodeErrorMessage("01852833kdkd",regulation);
         fortradePage.takeScreenshot("Country code error message - " + regulation + " regulation");
     }
 

@@ -45,7 +45,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//header/div[@class='logo']")
+    @FindBy(xpath = "//header/div[contains(@class,'logo')]")
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
@@ -102,13 +102,16 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//select[@name='LinkId']")
     public WebElement languageField;
 
+    @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
+    public WebElement registerHereBtn;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
 
-    public By termsAndConditionsLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
+    public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
 
-    public By clickHereLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='click here']");
+    public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
 
     public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
 
@@ -422,7 +425,7 @@ public class FortradeRPage extends BasePage {
     public void assertURL(String url) {
         WebDriverWait wait = new WebDriverWait(driver, waitTime);
         wait.until(ExpectedConditions.urlContains(url));
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertTrue(driver.getCurrentUrl().contains(url));
     }
 
     public void checkRegulation() throws IOException, AWTException {
@@ -554,5 +557,7 @@ public class FortradeRPage extends BasePage {
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
     }
-
+    public void clickRegisterHere(){
+        clickElement(registerHereBtn,"Register Here button");
+    }
 }

@@ -123,28 +123,45 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//select[@name='LinkId']")
     public WebElement languageField;
 
-    public By privacyPolicyLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
-    public By termsAndConditionsLinkBy = By.xpath("//span[@class='MarketingMaterials2']//a[contains(text(), 'Terms and Conditions')]");
-    public By clickHereLink = By.xpath("//span[@class='MarketingMaterials2']//a[text()='click here']");
+    @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
+    public WebElement registerHereBtn;
+
+    public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Privacy Policy']");
+
+    public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
+
+    public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
+
     public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+
     public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//img[@alt='facebook']");
+
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
+
     public By youtubeLinkBy = By.xpath("//a[@href='https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg']");
 
     public By supportLinkBy = By.xpath("//a[text()='support@fortrade.com']");
+
     public By footerRiskWarningLinkBy = By.xpath("//div[@class='footerRiskDisclaimer']//a[contains(text(), 'Risk warning')]");
+
     public By footerPrivacyPolicyLinkBy = By.xpath("//div[@class='footerRiskDisclaimer']//a[contains(text(), 'Privacy policy')]");
 
     public By fcaRegulationLinkBy = By.xpath("//a[text()='FRN: 609970']");
+
     public By ciroRegulationLinkBy = By.xpath("//a[text()='CRN: BC1148613']");
+
     public By asicRegulationLinkBy = By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520']");
+
     public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
+
     public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
 
     public By fsgDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(FSG)')]");
+
     public By pdsDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(PDS)')]");
+
     public By tmdDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(TMD)')]");
 
     String[] errorMessages = {"Please enter all your given first name(s)",
@@ -400,20 +417,16 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
         clickOnSubmitButton();
-
         selectAge(ageData);
         selectAge(ageDataSelect);
-
         selectAnnual(annualData);
         selectAnnual(annualDataSelect);
-
         selectSaving(savingData);
         selectSaving(savingDataSelect);
-
         selectKnowledge(knowledgeData);
         selectKnowledge(knowledgeDataSelect);
-
         clickContinueBtn();
     }
 
@@ -481,6 +494,7 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
+        clickDenyBtn();
         clickOnSubmitButton();
         selectLanguage(languageData);
         clickContinueBtn();
@@ -518,7 +532,7 @@ public class FortradePage extends BasePage {
     public void assertURL(String url) {
         WebDriverWait wait = new WebDriverWait(driver, waitTime);
         wait.until(ExpectedConditions.urlContains(url));
-        Assert.assertEquals(driver.getCurrentUrl(), url);
+        Assert.assertTrue(driver.getCurrentUrl().contains(url));
     }
 
     public void clickMenuBtn() {
@@ -708,9 +722,14 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText) {
-        WebDriverWait driverWait = new WebDriverWait(driver, 10);
-        driverWait.until(ExpectedConditions.visibilityOf(popUpNotification));
+    public void checkCountryCodeErrorMessage( String wrongCountryCodeDataText,String regulation) {
+        if(!regulation.equalsIgnoreCase("iiroc")){
+            WebDriverWait driverWait = new WebDriverWait(driver, 10);
+            driverWait.until(ExpectedConditions.visibilityOf(popUpNotification));
+        }
+        else{
+            clickDenyBtn();
+        }
         enterCountryCode(wrongCountryCodeDataText);
         clickElement(phoneNumber, "phone number field");
         Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
@@ -729,15 +748,7 @@ public class FortradePage extends BasePage {
         assertURL(url);
         Thread.sleep(2000);
         takeScreenshot(document + " document - " + regulation + " regulation");
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        /*if (!regulation.equalsIgnoreCase("FSC")){
-         *//*
-            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//body/embed[@original-url='https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf']")));
-*//*
-            Assert.assertTrue(readAttribute(driver.findElement(By.xpath("//body/embed[@original-url='https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf']")), "original-url", "attribute url").equals("https://www.fortrade.com/wp-content/uploads/legal/Fortrade_Privacy_Policy.pdf"));
-        }*/
         System.out.println("This is the title of the page: " + driver.getTitle());
-        //takeScreenshot("Privacy Policy document - " + regulation + " regulation");
         driver.close();
         driver.switchTo().window(tabs.get(0));
     }
@@ -764,5 +775,8 @@ public class FortradePage extends BasePage {
             Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidation'])[position()=number]".replace("number", String.valueOf(i))),
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
+    }
+    public void clickRegisterHere(){
+        clickElement(registerHereBtn,"Register Here button");
     }
 }

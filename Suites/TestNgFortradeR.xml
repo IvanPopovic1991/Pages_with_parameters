@@ -5,14 +5,9 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - FortradeR">
+    <test name="All test cases - new-day-trading-2025 landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.new_dark_2024_dlp">
-                <methods>
-                    <!--<include name="checkLanguageParameter"/>-->
-                    <include name="errorLanguageParameter"/>
-                </methods>
-            </class>
+            <class name="TestsFortradeR.new_day_trading_2025"/>
         </classes>
     </test>
 </suite>

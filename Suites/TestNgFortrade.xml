@@ -5,63 +5,84 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Test cases - FSC regulation">
+    <test name="Test cases - new-day-trading-2025 lading page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
         <classes>
-            <class name="TestsFortrade.new_dark_2024_dlp">
+            <class name="TestsFortrade.new_day_trading_2025">
                 <methods>
-                    <include name="checkLanguageParameter"/>
-                    <include name="errorLanguageParameter"/>
+                    <exclude name="fcaRegulationTest"/>
+                    <exclude name="iirocRegulationTest"/>
+                    <exclude name="asicRegulationTest"/>
+                    <exclude name="cysecRegulationTest"/>
+                    <exclude name="fsgDocumentTest"/>
+                    <exclude name="pdsDocumentTest"/>
+                    <exclude name="tmdDocumentTest"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - FCA regulation">
+    <test name="Test cases - new-day-trading-2025 landing page - FCA regulation">
         <parameter name="countryCode" value="44"/>
         <parameter name="regulation" value="FCA"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
-            <class name="TestsFortrade.new_dark_2024_dlp">
+            <class name="TestsFortrade.new_day_trading_2025">
                 <methods>
-                    <include name="checkLanguageParameter"/>
-                    <include name="errorLanguageParameter"/>
+                    <exclude name="iirocRegulationTest"/>
+                    <exclude name="asicRegulationTest"/>
+                    <exclude name="cysecRegulationTest"/>
+                    <exclude name="fscRegulationTest"/>
+                    <exclude name="fsgDocumentTest"/>
+                    <exclude name="pdsDocumentTest"/>
+                    <exclude name="tmdDocumentTest"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - iiroc regulation">
+    <test name="Test cases - new-day-trading-2025 landing page - iiroc regulation">
         <parameter name="countryCode" value="1"/>
         <parameter name="regulation" value="iiroc"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
         <classes>
-            <class name="TestsFortrade.new_dark_2024_dlp">
+            <class name="TestsFortrade.new_day_trading_2025">
                 <methods>
-                    <include name="checkLanguageParameter"/>
-                    <include name="errorLanguageParameter"/>
+                    <exclude name="fcaRegulationTest"/>
+                    <exclude name="asicRegulationTest"/>
+                    <exclude name="cysecRegulationTest"/>
+                    <exclude name="fscRegulationTest"/>
+                    <exclude name="fsgDocumentTest"/>
+                    <exclude name="pdsDocumentTest"/>
+                    <exclude name="tmdDocumentTest"/>
+                    <exclude name="howToUnsubscribeTest"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - Asic regulation">
+    <test name="Test cases - new-day-trading-2025 landing page - Asic regulation">
         <parameter name="countryCode" value="61"/>
         <parameter name="regulation" value="Asic"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>
         <classes>
-            <class name="TestsFortrade.new_dark_2024_dlp">
+            <class name="TestsFortrade.new_day_trading_2025">
                 <methods>
-                    <include name="checkLanguageParameter"/>
-                    <include name="errorLanguageParameter"/>
+                    <exclude name="fcaRegulationTest"/>
+                    <exclude name="iirocRegulationTest"/>
+                    <exclude name="cysecRegulationTest"/>
+                    <exclude name="fscRegulationTest"/>
+                    <exclude name="privacyPolicyTest"/>
+                    <exclude name="termsAndConditionsTest"/>
+                    <exclude name="howToUnsubscribeTest"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <!--    <test name="Test cases - cysec regulation">
+        <test name="Test cases - new-day-trading-2025 landing page - cysec regulation">
             <parameter name="regulation" value="cysec"/>
             <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
             <classes>
-                <class name="TestsFortrade.new_dark_2024_dlp">
+                <class name="TestsFortrade.new_day_trading_2025">
                     <methods>
                         <include name="privacyPolicyTest"/>
                         <include name="termsAndConditionsTest"/>
@@ -70,12 +91,10 @@
                         <include name="riskWarningTest"/>
                         <include name="footerPrivacyPolicy"/>
                         <include name="cysecRegulationTest"/>
-                        <include name="fbLinkRedirection"/>
-                        <include name="insLinkRedirection"/>
-                        <include name="ytLinkRedirection"/>
                         <include name="contactUsLink"/>
+                        <include name="checkingLogoClickability"/>
                     </methods>
                 </class>
             </classes>
-        </test>-->
+        </test>
 </suite>

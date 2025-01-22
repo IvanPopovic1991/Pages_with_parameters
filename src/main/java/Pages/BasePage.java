@@ -31,6 +31,7 @@ public class BasePage {
      * Svaka stranica u svom konstuktoru ce sadrzati page factory.
      */
     public WebDriverWait driverWait;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -164,7 +165,7 @@ public class BasePage {
         BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
 
         // Saving the full screen image
-        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/"+ fileName + ".png"));
+        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/" + fileName + ".png"));
     }
 
     public void takeScreenshot(String fileName) throws AWTException, IOException {
@@ -176,7 +177,7 @@ public class BasePage {
         BufferedImage screenFullImage = robot.createScreenCapture(screenRect);
 
         // Saving the full screen image
-        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/"+ fileName + ".png"));
+        ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/" + fileName + ".png"));
     }
 
     public String getText(WebElement element, String log) {
@@ -228,9 +229,9 @@ public class BasePage {
         System.out.println("Scrolled to the " + element.getText());
     }
 
-    public void scrollToAnElementBy(By by){
+    public void scrollToAnElementBy(By by) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(by));
+        js.executeScript("arguments[0].scrollIntoView(true);", driver.findElement(by));
         js.executeScript("window.scrollBy(0,600)");
         System.out.println("Scrolled to the " + driver.findElement(by));
     }
@@ -251,7 +252,7 @@ public class BasePage {
         }
     }
 
-    public void performRightClick(WebElement element, String url, String log){
+    public void performRightClick(WebElement element, String url, String log) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, waitTime);
             wait.until(ExpectedConditions.visibilityOf(element));
@@ -279,6 +280,7 @@ public class BasePage {
             System.out.println("Right click on " + log);
         }
     }
+
     public void performRightClickForMailLink(WebElement element, String log) {
         try {
             // Wait for the element to be visible and clickable
@@ -304,6 +306,7 @@ public class BasePage {
             System.out.println("Right-clicked on " + log + " after retrying.");
         }
     }
+
     /*
     returnDisplayedElement method accept By parameter and list all By locators and store them into WebElement
     elements. Checks all elements and return that element which is displayed on the page. If first time fails to find
@@ -330,6 +333,7 @@ public class BasePage {
         }
         return null; // Return null if not found after retries
     }
+
     public boolean isOutlookRunning() {
         /*try {
             // Use ProcessBuilder to run the "tasklist" command
@@ -367,6 +371,7 @@ public class BasePage {
         }
         return false;  // Outlook is not running
     }
+
     public void closeOutlook() {
         if (isOutlookRunning()) {
             try {
