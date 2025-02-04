@@ -32,8 +32,14 @@ public class Mailinator extends BasePage{
     @FindBy(xpath = "//td[contains(text(),'Fortrade')][1]")
     public WebElement emailMessage;
 
+    @FindBy(xpath = "//td[contains(text(),'KapitalRS')][1]")
+    public WebElement emailMessageKRS;
+
     @FindBy(xpath = "//div[contains(text(),'Welcome to Fortrade')]")
     public WebElement emailTitle;
+
+    @FindBy(xpath = "//div[contains(text(),'Čestitamo! Uspešno ste otvorili demo račun za trgo...')]")
+    public WebElement emailTitleKRS;
 
     public void findEmail(String emailValue){
         typeText(search,emailValue,"search input");
@@ -42,6 +48,15 @@ public class Mailinator extends BasePage{
         wait.until(ExpectedConditions.visibilityOf(emailMessage));
         wait.until(ExpectedConditions.elementToBeClickable(emailMessage));
         clickElement(emailMessage,"received message in mailbox");
+    }
+
+    public void findEmailKRS(String emailValue){
+        typeText(search,emailValue,"search input");
+        clickElement(goBtn,"go button");
+        WebDriverWait wait = new WebDriverWait(driver,15);
+        wait.until(ExpectedConditions.visibilityOf(emailMessageKRS));
+        wait.until(ExpectedConditions.elementToBeClickable(emailMessageKRS));
+        clickElement(emailMessageKRS,"received message in mailbox");
     }
 
     /**
