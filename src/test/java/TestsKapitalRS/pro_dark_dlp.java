@@ -34,6 +34,7 @@ public class pro_dark_dlp extends BaseTestKapitalRS {
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000 – $100,000", "Sve navedeno");
         kapitalRsPage.checkRegulation();
+        kapitalRsPage.assertURL("https://pro.kapitalrs.com/#chartticket");
         kapitalRsPage.takeScreenshot("Successfully demo account registration - KapitalRS", kapitalRsPage.regulationMsg);
     }
 

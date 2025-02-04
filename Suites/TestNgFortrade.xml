@@ -19,6 +19,8 @@
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkFCAPercentages"/>
+                    <exclude name="checkCysecPercentages"/>
                 </methods>
             </class>
         </classes>
@@ -37,6 +39,7 @@
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkCysecPercentages"/>
                 </methods>
             </class>
         </classes>
@@ -56,6 +59,8 @@
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="howToUnsubscribeTest"/>
+                    <exclude name="checkFCAPercentages"/>
+                    <exclude name="checkCysecPercentages"/>
                 </methods>
             </class>
         </classes>
@@ -74,6 +79,8 @@
                     <exclude name="privacyPolicyTest"/>
                     <exclude name="termsAndConditionsTest"/>
                     <exclude name="howToUnsubscribeTest"/>
+                    <exclude name="checkFCAPercentages"/>
+                    <exclude name="checkCysecPercentages"/>
                 </methods>
             </class>
         </classes>
@@ -93,6 +100,7 @@
                         <include name="cysecRegulationTest"/>
                         <include name="contactUsLink"/>
                         <include name="checkingLogoClickability"/>
+                        <include name="checkCysecPercentages"/>
                     </methods>
                 </class>
             </classes>
