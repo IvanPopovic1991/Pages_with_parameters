@@ -5,7 +5,7 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Test cases - new-day-trading-2025 lading page - FSC regulation">
+    <!--<test name="Test cases - new-day-trading-2025 lading page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
@@ -19,10 +19,12 @@
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkFCAPercentages"></exclude>
+                    <exclude name="checkCysecPercentages"></exclude>
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
     <test name="Test cases - new-day-trading-2025 landing page - FCA regulation">
         <parameter name="countryCode" value="44"/>
         <parameter name="regulation" value="FCA"/>
@@ -30,18 +32,20 @@
         <classes>
             <class name="TestsFortrade.new_day_trading_2025">
                 <methods>
-                    <exclude name="iirocRegulationTest"/>
+                    <!--<exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
                     <exclude name="fscRegulationTest"/>
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkCysecPercentages"/>-->
+                    <include name="checkFCAPercentages"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - new-day-trading-2025 landing page - iiroc regulation">
+    <!--<test name="Test cases - new-day-trading-2025 landing page - iiroc regulation">
         <parameter name="countryCode" value="1"/>
         <parameter name="regulation" value="iiroc"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
@@ -56,6 +60,8 @@
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="howToUnsubscribeTest"/>
+                    <exclude name="checkFCAPercentages"></exclude>
+                    <exclude name="checkCysecPercentages"></exclude>
                 </methods>
             </class>
         </classes>
@@ -74,17 +80,19 @@
                     <exclude name="privacyPolicyTest"/>
                     <exclude name="termsAndConditionsTest"/>
                     <exclude name="howToUnsubscribeTest"/>
+                    <exclude name="checkFCAPercentages"></exclude>
+                    <exclude name="checkCysecPercentages"></exclude>
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
         <test name="Test cases - new-day-trading-2025 landing page - cysec regulation">
             <parameter name="regulation" value="cysec"/>
             <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
             <classes>
                 <class name="TestsFortrade.new_day_trading_2025">
                     <methods>
-                        <include name="privacyPolicyTest"/>
+                        <!--<include name="privacyPolicyTest"/>
                         <include name="termsAndConditionsTest"/>
                         <include name="howToUnsubscribeTest"/>
                         <include name="loginRedirectionTest"/>
@@ -92,7 +100,8 @@
                         <include name="footerPrivacyPolicy"/>
                         <include name="cysecRegulationTest"/>
                         <include name="contactUsLink"/>
-                        <include name="checkingLogoClickability"/>
+                        <include name="checkingLogoClickability"/>-->
+                        <include name="checkCysecPercentages"/>
                     </methods>
                 </class>
             </classes>

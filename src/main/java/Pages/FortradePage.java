@@ -126,6 +126,18 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
     public WebElement registerHereBtn;
 
+    @FindBy(xpath = "(//div[@class='fcaClass']/strong[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')])[2]")
+    public WebElement dynamicFCAPercentages;
+
+    @FindBy(xpath = "//div[@class='fcaClass']/b[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')]")
+    public WebElement staticFCAPercentages;
+
+    @FindBy(xpath = "(//div[@class='cysecClass']/strong[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')])[2]")
+    public WebElement dynamicCysecPercentages;
+
+    @FindBy(xpath = "//div[@class='cysecClass']/b[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')]")
+    public WebElement staticCysecPercentages;
+
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Privacy Policy']");
 
     public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
@@ -778,5 +790,17 @@ public class FortradePage extends BasePage {
     }
     public void clickRegisterHere(){
         clickElement(registerHereBtn,"Register Here button");
+    }
+
+    public void checkFCAPercentages (String textForPercentages) {
+        Assert.assertEquals(getText(dynamicFCAPercentages, "get FCA dynamic percentage"), textForPercentages);
+        scrollToAnElement(staticFCAPercentages);
+        Assert.assertEquals(getText(staticFCAPercentages, "get FCA static percentage"), textForPercentages);
+    }
+
+    public void checkCysecPercentages (String textForPercentages) {
+        Assert.assertEquals(getText(dynamicCysecPercentages, "get Cysec dynamic percentage"), textForPercentages);
+        scrollToAnElement(staticCysecPercentages);
+        Assert.assertEquals(getText(staticCysecPercentages, "get Cysec static percentage"), textForPercentages);
     }
 }

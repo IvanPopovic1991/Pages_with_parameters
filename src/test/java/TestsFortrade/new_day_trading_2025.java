@@ -568,4 +568,24 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.assertBorderColor(fortradePage.languageField);
         fortradePage.takeScreenshot("Desired communication language - error " + regulation + " regulation", fortradePage.languageField);
     }
+
+    @Test
+    @Parameters({"tag", "regulation"})
+    public void checkFCAPercentages(String tag, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-day-trading-2025/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkFCAPercentages("66% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.clickDenyBtn();
+        fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"tag", "regulation"})
+    public void checkCysecPercentages(String tag, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-day-trading-2025/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkCysecPercentages("73.43% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.clickDenyBtn();
+        fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
+    }
 }

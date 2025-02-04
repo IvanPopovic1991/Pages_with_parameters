@@ -562,4 +562,23 @@ public class new_dark_2024_dlp extends BaseTestFortrade {
         fortradePage.assertBorderColor(fortradePage.languageField);
         fortradePage.takeScreenshot("Desired communication language - error " + regulation + " regulation", fortradePage.languageField);
     }
+    @Test
+    @Parameters({"tag", "regulation"})
+    public void checkFCAPercentages(String tag, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkFCAPercentages("66% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.clickDenyBtn();
+        fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"tag", "regulation"})
+    public void checkCysecPercentages(String tag, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/new-dark-2024-dlp/?fts=plang:srcs,all"+tag);
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.checkCysecPercentages("73.43% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.clickDenyBtn();
+        fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
+    }
 }
