@@ -482,6 +482,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.takeScreenshot("Fortrade " + regulation + " - support redirection");
         fortradePage.closeOutlook();
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageAgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -494,6 +495,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Age parameter error message - Fortrade - " + regulation + " regulation");
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageAnnualParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -506,6 +508,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Annual parameter error message - Fortrade - " + regulation + " regulation");
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageSavingParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -518,6 +521,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Saving parameter error message - Fortrade - " + regulation + " regulation");
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageKnowledgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -530,6 +534,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Knowledge parameter error message - Fortrade - " + regulation + " regulation");
     }
+
     @Test
     @Parameters({"countryCode","regulation"})
     public void errorMessagesAllParameters(String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -557,6 +562,7 @@ public class new_day_trading_2025 extends BaseTestFortrade {
         Thread.sleep(1000);
         crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation",crmPage.linkId);
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorLanguageParameter(String tag, String countryCode,String regulation) throws IOException, AWTException {

@@ -5,9 +5,14 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - new-day-trading-2025 landing page - FortradeR">
+    <test name="All test cases - pro-trader-steps landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.new_day_trading_2025"/>
+            <class name="TestsFortradeR.pro_trader_steps">
+                <methods>
+                    <include name="demoAccountRegistration"/>
+                    <include name="userIsReturnedTo1stWidget"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

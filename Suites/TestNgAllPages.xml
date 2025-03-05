@@ -6,6 +6,8 @@
         <listener class-name="listeners.Transform"/>
     </listeners>
     <suite-files>
-        <suite-file path="TestNgKapitalRs.xml"/>
+        <!--<suite-file path="TestNgFortrade.xml"/>-->
+        <suite-file path="TestNgFortradeR.xml"/>
+        <!--<suite-file path="TestNgKapitalRs.xml"/>-->
     </suite-files>
 </suite>
