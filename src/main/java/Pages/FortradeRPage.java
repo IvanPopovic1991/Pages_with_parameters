@@ -45,7 +45,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//header/div[contains(@class,'logo')]")
+    @FindBy(xpath = "//div[contains(@class,'svglogo')]")
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
@@ -105,15 +105,21 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
     public WebElement registerHereBtn;
 
+    @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
+    public WebElement denyBtn;
+
+    @FindBy(xpath = "//div[@class='exitButton']")
+    public WebElement iAmNotSerbianRes;
+
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
 
     public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='LoginLink']//a[contains(text(), 'Already have an account?')]");
 
-    public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
+    public By contactUsLinkBy = By.xpath("//a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
 
@@ -154,7 +160,7 @@ public class FortradeRPage extends BasePage {
     public String privacyPolicyFSCFooter = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
 
     // Financial Services Commission, Mauritius (FSC) link
-    public String fscLink = "https://www.fscmauritius.org/en/supervision/register-of-licensees/register-of-licensees-details?licence_no=GB21026472&key=&cat=_GB&code=";
+    public String fscLink = "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr";
 
     public String fbURL = "https://www.facebook.com/Fortrade.International";
 
@@ -557,7 +563,16 @@ public class FortradeRPage extends BasePage {
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
     }
+
     public void clickRegisterHere(){
         clickElement(registerHereBtn,"Register Here button");
+    }
+
+    public void clickDenyBtn() {
+        clickElement(denyBtn, "deny cookies button");
+    }
+
+    public void clickNotSerbResBtn(){
+        clickElement(iAmNotSerbianRes,"I am not Serbian resident button");
     }
 }
