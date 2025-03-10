@@ -151,10 +151,10 @@ public class KapitalRsPage extends BasePage {
     public String fcaLink = "https://register.fca.org.uk/s/firm?id=001b000000NMdUwAAL";
 
     // Australian Securities and Investments Commission (ASIC) link
-    public String asicLink = "https://asic.gov.au/online-services/service-availability/";
+    public String asicLink = "https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?";
 
     // Financial Services Commission, Mauritius (FSC) link
-    public String fscLink = "https://www.fscmauritius.org/en/supervision/register-of-licensees/register-of-licensees-details?licence_no=GB21026472&key=&cat=_GB&code=";
+    public String fscLink = "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr";
 
     public void enterFirstName(String firstNameData) {
         typeText(firstName, firstNameData, "first name");

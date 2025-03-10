@@ -20,7 +20,7 @@ public class BaseTestKapitalRS {
     public void baseSetup(String browser, String version) {
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver = driverManager.getWebDriver(version);
-        driver.get("https://www.kapitalrs.com/minilps/rs/pro-dark-dlp/?fts=age-annual-saving-knowledge");
+        driver.get("https://www.kapitalrs.com/minilps/rs/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge");
     }
 
     public void baseTearDown(){
