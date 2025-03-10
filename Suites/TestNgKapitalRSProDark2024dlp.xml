@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="KapitalRS Page">
+    <listeners>
+        <listener class-name="listeners.ScreenshotListener"/>
+        <listener class-name="listeners.Transform"/>
+    </listeners>
+    <test name="All test cases - pro-dark-2024-dlp landing page - KapitalRS">
+        <classes>
+            <class name="TestsKapitalRS.KapitalRSProDark2024dlp"/>
+        </classes>
+    </test>
+</suite>
