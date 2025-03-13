@@ -262,6 +262,8 @@ public class BasePage {
             js.executeScript("window.open(arguments[0], '_blank');", linkUrl);
             List<String> tabs = new ArrayList<>(driver.getWindowHandles());
             driver.switchTo().window(tabs.get(1));
+            System.out.println("This is the real URL: " + driver.getCurrentUrl());
+            System.out.println("This is the expected URL: " + url);
             Assert.assertTrue(driver.getCurrentUrl().contains(url));
             driver.close();
             driver.switchTo().window(tabs.get(0));

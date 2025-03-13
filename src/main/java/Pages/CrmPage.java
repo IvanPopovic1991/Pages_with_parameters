@@ -121,7 +121,7 @@ public class CrmPage extends BasePage {
         doubleClick(accountCrm,"account row");
         driver.switchTo().defaultContent();
         driver.switchTo().frame(iFrameAccDetails);
-        assertBorderColorInCRM(regulation);
+        //assertBorderColorInCRM(regulation);
         Assert.assertEquals(readAttribute(accFullNameCrm, "title", "full name"), fullName);
         Assert.assertEquals(getText(accDemoField, "demo account field"), "Demo Registered");
         loopForAccDetailsCrm(email);

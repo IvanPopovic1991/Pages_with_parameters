@@ -7,11 +7,7 @@
     </listeners>
     <test name="All test cases - pro-trader-steps landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.pro_trader_steps">
-                <methods>
-                    <include name="demoAccountRegistration"/>
-                    <include name="userIsReturnedTo1stWidget"/>
-                </methods>
+            <class name="TestsFortradeR.dayTradingRegularBright">
             </class>
         </classes>
     </test>

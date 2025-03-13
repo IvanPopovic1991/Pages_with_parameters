@@ -244,7 +244,7 @@ public class FortradePage extends BasePage {
             }
             break;
             case ("iiroc"): {
-                text = "IIROC/Relationship_Disclosure.pdf";
+                text = /*"IIROC/Relationship_Disclosure.pdf"*/"IIROC/Risk_Disclosure.pdf";
             }
             break;
             case ("cysec"): {
@@ -330,13 +330,13 @@ public class FortradePage extends BasePage {
     public String iirocLink = "https://www.ciro.ca/investors/choosing-investment-advisor/dealers-we-regulate/fortrade-canada-limited";
 
     // Australian Securities and Investments Commission (ASIC) link
-    public String asicLink = "https://asic.gov.au/online-services/service-availability/";
+    public String asicLink = /*"https://asic.gov.au/online-services/service-availability/"*/"https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?";
 
     // Cyprus Securities and Exchange Commission (CySEC) link
     public String cysecLink = "https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/86639/";
 
     // Financial Services Commission, Mauritius (FSC) link
-    public String fscLink = "https://www.fscmauritius.org/en/supervision/register-of-licensees/register-of-licensees-details?licence_no=GB21026472&key=&cat=_GB&code=";
+    public String fscLink = "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr";
 
     // Asic regulation - financial service guide document link
     public String fsgDocumentLink = "https://www.fortrade.com/wp-content/uploads/legal/ASIC/Fort_Securities_AU_Financial_Services_Guide-ASIC.pdf";
@@ -757,6 +757,7 @@ public class FortradePage extends BasePage {
         }
         List<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
+        driverWait.until(ExpectedConditions.urlContains(url));
         assertURL(url);
         Thread.sleep(2000);
         takeScreenshot(document + " document - " + regulation + " regulation");

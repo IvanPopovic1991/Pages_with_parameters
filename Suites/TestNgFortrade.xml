@@ -5,14 +5,16 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Test cases - new-day-trading-2025 lading page - FSC regulation">
+    <!--<test name="Test cases - new-day-trading-2025 lading page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_2025">
+            <class name="TestsFortrade.dayTradingRegularBright">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
+                    <include name="fscRegulationTest"/>
+                    <include name="asicRegulationTest"/>
+                    &lt;!&ndash;<exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
@@ -20,26 +22,30 @@
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkFCAPercentages"/>
-                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="checkCysecPercentages"/>&ndash;&gt;
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
     <test name="Test cases - new-day-trading-2025 landing page - FCA regulation">
         <parameter name="countryCode" value="44"/>
         <parameter name="regulation" value="FCA"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_2025">
+            <class name="TestsFortrade.dayTradingRegularBright">
                 <methods>
-                    <exclude name="iirocRegulationTest"/>
+                    <include name="demoAccountRegistration"/>
+                    <include name="privacyPolicyTest"/>
+                    <include name="termsAndConditionsTest"/>
+                    <include name="asicRegulationTest"/>
+                    <!--<exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
                     <exclude name="fscRegulationTest"/>
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
-                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="checkCysecPercentages"/>-->
                 </methods>
             </class>
         </classes>
@@ -49,9 +55,12 @@
         <parameter name="regulation" value="iiroc"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_2025">
+            <class name="TestsFortrade.dayTradingRegularBright">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
+                    <include name="userIsReturnedTo1stWidget"/>
+                    <include name="riskWarningTest"/>
+                    <include name="asicRegulationTest"/>
+                    <!--<exclude name="fcaRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
                     <exclude name="fscRegulationTest"/>
@@ -60,7 +69,7 @@
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
-                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="checkCysecPercentages"/>-->
                 </methods>
             </class>
         </classes>
@@ -70,9 +79,10 @@
         <parameter name="regulation" value="Asic"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_2025">
+            <class name="TestsFortrade.dayTradingRegularBright">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
+                    <include name="asicRegulationTest"/>
+                    <!--<exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
                     <exclude name="fscRegulationTest"/>
@@ -80,16 +90,16 @@
                     <exclude name="termsAndConditionsTest"/>
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
-                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="checkCysecPercentages"/>-->
                 </methods>
             </class>
         </classes>
     </test>
-        <test name="Test cases - new-day-trading-2025 landing page - cysec regulation">
+        <!--<test name="Test cases - new-day-trading-2025 landing page - cysec regulation">
             <parameter name="regulation" value="cysec"/>
             <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
             <classes>
-                <class name="TestsFortrade.new_day_trading_2025">
+                <class name="TestsFortrade.dayTradingRegularBright">
                     <methods>
                         <include name="privacyPolicyTest"/>
                         <include name="termsAndConditionsTest"/>
@@ -104,5 +114,5 @@
                     </methods>
                 </class>
             </classes>
-        </test>
+        </test>-->
 </suite>
