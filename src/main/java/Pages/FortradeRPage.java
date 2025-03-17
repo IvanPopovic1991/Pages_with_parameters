@@ -45,7 +45,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//div[contains(@class,'svglogo')]")
+    @FindBy(xpath = "(//div[contains(@class,'logo')])[2]")
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
@@ -117,7 +117,7 @@ public class FortradeRPage extends BasePage {
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='LoginLink']//a[contains(text(), 'Already have an account?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
 
     public By contactUsLinkBy = By.xpath("//a[contains(text(), 'Contact Us')]");
 
