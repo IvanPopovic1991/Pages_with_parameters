@@ -10,7 +10,7 @@
         <parameter name="regulation" value="FSC"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_oldman_2025">
+            <class name="TestsFortrade.newDayTradingWoman">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
@@ -30,7 +30,7 @@
         <parameter name="regulation" value="FCA"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_oldman_2025">
+            <class name="TestsFortrade.newDayTradingWoman">
                 <methods>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
@@ -49,7 +49,7 @@
         <parameter name="regulation" value="iiroc"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_oldman_2025">
+            <class name="TestsFortrade.newDayTradingWoman">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
@@ -70,7 +70,7 @@
         <parameter name="regulation" value="Asic"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>
         <classes>
-            <class name="TestsFortrade.new_day_trading_oldman_2025">
+            <class name="TestsFortrade.newDayTradingWoman">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
@@ -89,7 +89,7 @@
             <parameter name="regulation" value="cysec"/>
             <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
             <classes>
-                <class name="TestsFortrade.new_day_trading_oldman_2025">
+                <class name="TestsFortrade.newDayTradingWoman">
                     <methods>
                         <include name="privacyPolicyTest"/>
                         <include name="termsAndConditionsTest"/>
