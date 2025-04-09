@@ -7,7 +7,7 @@
     </listeners>
     <test name="All test cases - pro-trader-steps landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.new_Day_Trading_Woman_2"/>
+            <class name="TestsFortradeR.litecoin1dlp"/>
         </classes>
     </test>
 </suite>
