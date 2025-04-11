@@ -45,7 +45,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "(//div[contains(@class,'logo')])[2]")
+    @FindBy(xpath = "//div[contains(@class,'logo')]")
     public WebElement fortradeLogo;
 
     @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
@@ -110,6 +110,9 @@ public class FortradeRPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='exitButton']")
     public WebElement iAmNotSerbianRes;
+
+    @FindBy(xpath = "//div[@class='startTradingButton']")
+    protected WebElement usePasswordBtn;
 
     public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
 
@@ -233,6 +236,9 @@ public class FortradeRPage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
+        clickDenyBtn();
+        clickNotSerbResBtn();
+        clickUsePassBtn();
         clickMenuBtn();
     }
 
@@ -574,5 +580,9 @@ public class FortradeRPage extends BasePage {
 
     public void clickNotSerbResBtn(){
         clickElement(iAmNotSerbianRes,"I am not Serbian resident button");
+    }
+
+    public void clickUsePassBtn() {
+        clickElement(usePasswordBtn, "Use Password button");
     }
 }
