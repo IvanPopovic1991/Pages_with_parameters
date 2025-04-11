@@ -21,7 +21,7 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[contains(@class,'logo')]")
+    @FindBy(xpath = "//div[contains(@class,'logo fcaClass belarosClass asicClass fscClass')]")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -137,6 +137,12 @@ public class FortradePage extends BasePage {
 
     @FindBy(xpath = "//div[@class='cysecClass']/b[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')]")
     public WebElement staticCysecPercentages;
+
+    @FindBy(xpath = "//div[@class='webSpriteIcon cross']")
+    public WebElement closeBtnPyc;
+
+    @FindBy(xpath = "//div[@class='startTradingButton']")
+    public WebElement usePasswordBtn;
 
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Privacy Policy']");
 
@@ -421,6 +427,8 @@ public class FortradePage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
+        clickDenyBtn();
+        clickUsePassBtn();
     }
     public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData, String annualData, String savingData, String knowledgeData, String ageDataSelect, String annualDataSelect, String savingDataSelect, String knowledgeDataSelect) {
@@ -781,6 +789,7 @@ public class FortradePage extends BasePage {
         }
         Assert.assertTrue(isOutlookRunning());
     }
+
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
         Thread.sleep(2000);
         for (int i = 1; i <= numberOfParameters; i++) {
@@ -788,6 +797,7 @@ public class FortradePage extends BasePage {
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
     }
+
     public void clickRegisterHere(){
         clickElement(registerHereBtn,"Register Here button");
     }
@@ -802,5 +812,19 @@ public class FortradePage extends BasePage {
         Assert.assertEquals(getText(dynamicCysecPercentages, "get Cysec dynamic percentage"), textForPercentages);
         scrollToAnElement(staticCysecPercentages);
         Assert.assertEquals(getText(staticCysecPercentages, "get Cysec static percentage"), textForPercentages);
+    }
+
+    public void closePersonalizeYourContent(){
+        driver.switchTo().frame(iFrameIConsent);
+        try {
+            clickElement(closeBtnPyc,"- close personalize your content pop-up button");
+        } catch (Exception e) {
+            System.out.println("Could not switch to frame - " + e);
+        }
+        driver.switchTo().defaultContent();
+    }
+
+    public void clickUsePassBtn() {
+        clickElement(usePasswordBtn, "Use Password button");
     }
 }
