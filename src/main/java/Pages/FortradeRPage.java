@@ -48,7 +48,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'logo')]")
     public WebElement fortradeLogo;
 
-    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
+    @FindBy(xpath = "//div[@class='needHelpDiv']//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
     public WebElement loginToFortrade;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
@@ -120,9 +120,9 @@ public class FortradeRPage extends BasePage {
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
 
-    public By contactUsLinkBy = By.xpath("//a[contains(text(), 'Contact Us')]");
+    public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
 

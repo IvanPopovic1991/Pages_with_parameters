@@ -353,6 +353,11 @@ public class BasePage {
         }
         return false;  // Outlook is not running*/
         try {
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e){
+                System.out.println(e);
+            }
             // Use ProcessBuilder to run the "tasklist" command
             ProcessBuilder processBuilder = new ProcessBuilder(List.of("tasklist"));
             Process process = processBuilder.start();
@@ -360,9 +365,10 @@ public class BasePage {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
             String line;
+            printAllRunningTasks();
             while ((line = reader.readLine()) != null) {
                 // Ensure case-insensitive check and trim whitespace
-                if (line.trim().toUpperCase().contains("OUTLOOK.EXE")) {
+                if (line.trim().toUpperCase().contains("OLK.EXE"/*"OUTLOOK.EXE"*/)) {
                     return true;  // Outlook process is running
                 }
             }
@@ -376,7 +382,7 @@ public class BasePage {
         if (isOutlookRunning()) {
             try {
                 // Use ProcessBuilder to run the "taskkill" command to close Outlook
-                ProcessBuilder processBuilder = new ProcessBuilder(List.of("taskkill", "/F", "/IM", "OUTLOOK.EXE"));
+                ProcessBuilder processBuilder = new ProcessBuilder(List.of("taskkill", "/F", "/IM", "OLK.EXE"/*"OUTLOOK.EXE"*/));
                 processBuilder.start();
                 System.out.println("Outlook has been closed.");
             } catch (Exception e) {
@@ -384,6 +390,26 @@ public class BasePage {
             }
         } else {
             System.out.println("Outlook is not running.");
+        }
+    }
+    public static void printAllRunningTasks() {
+        try {
+            // Run the 'tasklist' command
+            Process process = Runtime.getRuntime().exec("tasklist");
+
+            // Read the output
+            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+
+            System.out.println("Running tasks:\n");
+
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            reader.close();
+        } catch (Exception e) {
+            System.err.println("Error while retrieving task list: " + e.getMessage());
         }
     }
 }
