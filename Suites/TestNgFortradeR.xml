@@ -5,9 +5,13 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - oil-dlp landing page - FortradeR">
+    <test name="All test cases - world map graph dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.oil_dlp"/>
+            <class name="TestsFortradeR.WorldMapGraphDlp">
+            <methods>
+                <include name="userIsReturnedTo1stWidget"/>
+            </methods>
+            </class>
         </classes>
     </test>
 </suite>

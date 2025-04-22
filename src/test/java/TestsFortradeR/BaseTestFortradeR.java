@@ -20,7 +20,7 @@ public class BaseTestFortradeR {
     public void baseSetup(String browser, String version) {
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver = driverManager.getWebDriver(version);
-        driver.get("https://www.fortrader.com/minilps/en/oil-dlp/?fts=age-annual-saving-knowledge");
+        driver.get("https://www.fortrader.com/minilps/en/worldmap-graph-dlp/?fts=age-annual-saving-knowledge");
     }
 
     public void baseTearDown(){

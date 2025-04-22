@@ -150,9 +150,9 @@ public class FortradePage extends BasePage {
 
     public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
 
-    public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Contact Us')]");
+    public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//img[@alt='facebook']");
 
@@ -561,7 +561,7 @@ public class FortradePage extends BasePage {
 
     public void checkRegulation(String regulation) throws IOException, AWTException {
         String actualText = getText(regulationMsg, "regulation text");
-        clickDenyBtn();
+        //clickDenyBtn();
         switch (regulation) {
             case "FCA": {
                 Assert.assertEquals(actualText, "Broker: Fortrade Ltd. (FCA)");
