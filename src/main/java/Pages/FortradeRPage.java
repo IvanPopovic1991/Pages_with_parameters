@@ -36,7 +36,11 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[@name='Send']")
+    /*@FindBy(xpath = "//input[@name='Send']")
+    public WebElement submitButton;*/
+
+    //This is only for Door page
+    @FindBy(xpath = "//button[@class='button2']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -114,7 +118,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='startTradingButton']")
     protected WebElement usePasswordBtn;
 
-    public By privacyPolicyLinkBy = By.xpath("//div[@class='MarketingMaterials2']//a[text()='Privacy Policy']");
+    public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Privacy Policy')]");
 
     public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
 

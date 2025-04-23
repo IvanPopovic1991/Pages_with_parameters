@@ -45,10 +45,18 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    /*@FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    public WebElement submitBtn;*/
+
+    //It's only for Door dlp page
+    @FindBy(xpath = "//button[@class='button2']")
     public WebElement submitBtn;
 
-    @FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
+    /*@FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
+    public WebElement submitBtnAsic;*/
+
+    //It's only for Door dlp page
+    @FindBy(xpath = "//button[@class='button2']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
