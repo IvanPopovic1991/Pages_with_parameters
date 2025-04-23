@@ -7,10 +7,10 @@
     </listeners>
     <test name="All test cases - world map graph dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.WorldMapGraphDlp">
-            <methods>
-                <include name="userIsReturnedTo1stWidget"/>
-            </methods>
+            <class name="TestsFortradeR.DoorDlp">
+                <methods>
+                    <include name="privacyPolicyTest"/>
+                </methods>
             </class>
         </classes>
     </test>
