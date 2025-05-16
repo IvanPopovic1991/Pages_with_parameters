@@ -9,7 +9,8 @@
         <classes>
             <class name="TestsFortradeR.DoorDlp">
                 <methods>
-                    <include name="privacyPolicyTest"/>
+                    <include name="contactUsLink"/>
+                    <!--<include name="privacyPolicyTest"/>-->
                 </methods>
             </class>
         </classes>

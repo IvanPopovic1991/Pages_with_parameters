@@ -67,7 +67,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//button[@class='button6']"/*"//input[@class='ContinueBtn-Submit']"*/)
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")

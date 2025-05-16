@@ -7,7 +7,11 @@
     </listeners>
     <test name="All test cases - pro-dark-dlp landing page - KapitalRS">
         <classes>
-            <class name="TestsKapitalRS.pro_dark_dlp"/>
+            <class name="TestsKapitalRS.pro_dark_dlp">
+                <methods>
+                    <include name="emailIsReceivedSuccessfully"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

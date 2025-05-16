@@ -3,6 +3,7 @@ package TestsFortrade;
 import Pages.CrmPage;
 import Pages.FortradePage;
 import Pages.Mailinator;
+import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -241,7 +242,8 @@ public class WorldMapGraphDlp extends BaseTestFortrade{
         fortradePage.takeScreenshot("Country code error message - " + regulation + " regulation");
     }
 
-    @Test
+    //Mailinator is not working (we use YopMail)
+    /*@Test
     @Parameters({"regulation", "countryCode"})
     public void emailIsReceivedSuccessfully(String regulation, String countryCode) throws IOException, AWTException {
         String email = TestData.emailGenerator();
@@ -253,6 +255,20 @@ public class WorldMapGraphDlp extends BaseTestFortrade{
         mailinator.findEmail(email);
         mailinator.zoomOutMethod();
         mailinator.takeScreenshot("Email is received successfully - " + regulation + " regulation", mailinator.emailTitle);
+    }*/
+
+    @Test
+    @Parameters({"regulation", "countryCode"})
+    public void emailIsReceivedSuccessfully(String regulation, String countryCode) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        FortradePage fortradePage = new FortradePage(driver);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
+                "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+        driver.get("https://yopmail.com/en/");
+        YopMail yopMail = new YopMail(driver);
+        yopMail.findEmail(email);
+        yopMail.zoomOutMethod();
+        yopMail.takeScreenshot("Email is received successfully - " + regulation + " regulation", yopMail.emailTitle);
     }
 
     @Test
