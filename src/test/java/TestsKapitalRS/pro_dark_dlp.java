@@ -3,6 +3,7 @@ package TestsKapitalRS;
 import Pages.CrmPage;
 import Pages.KapitalRsPage;
 import Pages.Mailinator;
+import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -18,7 +19,7 @@ public class pro_dark_dlp extends BaseTestKapitalRS {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "132");
+        baseSetup("Chrome", "135");
     }
 
     @AfterMethod
@@ -217,7 +218,8 @@ public class pro_dark_dlp extends BaseTestKapitalRS {
         kapitalRsPage.takeScreenshot("Country code error message - KapitlaRs");
     }
 
-    @Test
+    //Mailinator is not working (we will use YopMail)
+    /*@Test
     public void emailIsReceivedSuccessfully() throws IOException, AWTException {
         String email = TestData.emailGenerator();
         kapitalRsPage = new KapitalRsPage(driver);
@@ -229,6 +231,20 @@ public class pro_dark_dlp extends BaseTestKapitalRS {
         mailinator.findEmailKRS(email);
         mailinator.zoomOutMethod();
         mailinator.takeScreenshot("Email is received successfully - KapitalRs", mailinator.emailTitleKRS);
+    }*/
+
+    @Test
+    public void emailIsReceivedSuccessfully() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        kapitalRsPage = new KapitalRsPage(driver);
+        kapitalRsPage.successfullyRegistration("Testq", "Testa", email,
+                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000 – $100,000", "Sve navedeno");
+        driver.get("https://yopmail.com/en/");
+        YopMail yopMail = new YopMail(driver);
+        yopMail.findEmailKRS(email);
+        yopMail.zoomOutMethod();
+        yopMail.takeScreenshot("Email is received successfully - KapitalRs", yopMail.emailTitleKRS);
     }
 
     @Test

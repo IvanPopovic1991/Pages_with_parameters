@@ -3,6 +3,7 @@ package TestsFortradeR;
 import Pages.CrmPage;
 import Pages.FortradeRPage;
 import Pages.Mailinator;
+import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -223,7 +224,8 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
         fortradeRPage.takeScreenshot("Country code error message - FortradeR");
     }
 
-    @Test
+    //Mailinator is not working (we use YopMail)
+    /*@Test
     public void emailIsReceivedSuccessfully() throws IOException, AWTException {
         String email = TestData.emailGenerator();
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
@@ -235,6 +237,20 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
         mailinator.findEmail(email);
         mailinator.zoomOutMethod();
         mailinator.takeScreenshot("Email is received successfully - FortradeR", mailinator.emailTitle);
+    }*/
+
+    @Test
+    public void emailIsReceivedSuccessfully() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        FortradeRPage fortradeRPage = new FortradeRPage(driver);
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email,
+                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000 – $100,000", "All the above");
+        driver.get("https://yopmail.com/en/");
+        YopMail yopMail = new YopMail(driver);
+        yopMail.findEmail(email);
+        yopMail.zoomOutMethod();
+        yopMail.takeScreenshot("Email is received successfully - FortradeR", yopMail.emailTitle);
     }
 
     @Test

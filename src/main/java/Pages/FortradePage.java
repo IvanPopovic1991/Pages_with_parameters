@@ -56,7 +56,7 @@ public class FortradePage extends BasePage {
     public WebElement submitBtnAsic;*/
 
     //It's only for Door dlp page
-    @FindBy(xpath = "//button[@class='button2']")
+    @FindBy(xpath = "//button[@class='button3']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
@@ -98,7 +98,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//button[@class='button6']"/*"//input[@class='ContinueBtn-Submit']"*/)
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")

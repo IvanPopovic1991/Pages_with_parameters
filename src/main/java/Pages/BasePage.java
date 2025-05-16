@@ -365,7 +365,8 @@ public class BasePage {
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 
             String line;
-            printAllRunningTasks();
+            //This method printAllRunningTasks() prints all active processes
+            /*printAllRunningTasks();*/
             while ((line = reader.readLine()) != null) {
                 // Ensure case-insensitive check and trim whitespace
                 if (line.trim().toUpperCase().contains("OLK.EXE"/*"OUTLOOK.EXE"*/)) {
