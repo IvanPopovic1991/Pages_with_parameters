@@ -5,14 +5,9 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - world map graph dlp landing page - FortradeR">
+    <test name="All test cases - crypto black dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.DoorDlp">
-                <methods>
-                    <include name="contactUsLink"/>
-                    <!--<include name="privacyPolicyTest"/>-->
-                </methods>
-            </class>
+            <class name="TestsFortradeR.cryptoBlackDlp"/>
         </classes>
     </test>
 </suite>

@@ -335,23 +335,6 @@ public class BasePage {
     }
 
     public boolean isOutlookRunning() {
-        /*try {
-            // Use ProcessBuilder to run the "tasklist" command
-            ProcessBuilder processBuilder = new ProcessBuilder(List.of("tasklist"));
-            Process process = processBuilder.start();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (line.contains("OUTLOOK.EXE")) {
-                    return true;  // Outlook process is running
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;  // Outlook is not running*/
         try {
             try {
                 Thread.sleep(2000);
@@ -393,6 +376,7 @@ public class BasePage {
             System.out.println("Outlook is not running.");
         }
     }
+
     public static void printAllRunningTasks() {
         try {
             // Run the 'tasklist' command
