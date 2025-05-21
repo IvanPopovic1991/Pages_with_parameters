@@ -497,6 +497,7 @@ public class WorldMapGraphDlp extends BaseTestFortrade{
         fortradePage.takeScreenshot("Fortrade " + regulation + " - support redirection");
         fortradePage.closeOutlook();
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageAgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
@@ -521,6 +522,7 @@ public class WorldMapGraphDlp extends BaseTestFortrade{
         fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Annual parameter error message - Fortrade - " + regulation + " regulation");
     }
+
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageSavingParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {

@@ -36,11 +36,8 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
     public WebElement phoneNumber;
 
-    /*@FindBy(xpath = "//input[@name='Send']")
-    public WebElement submitButton;*/
-
     //This is only for Door page
-    @FindBy(xpath = "//button[@class='button2']")
+    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -118,13 +115,14 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='startTradingButton']")
     protected WebElement usePasswordBtn;
 
+    @FindBy(xpath = "//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
+    public WebElement alreadyHaveAnAccountLink;
+
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Privacy Policy')]");
 
     public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
-
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
 
     public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
 
@@ -468,7 +466,6 @@ public class FortradeRPage extends BasePage {
     }
 
     public void checkLogoClickability(String url) {
-        WebDriverWait driverWait = new WebDriverWait(driver, 10);
         driverWait.until(ExpectedConditions.visibilityOf(fortradeLogo));
         try {
             fortradeLogo.click();
@@ -552,7 +549,7 @@ public class FortradeRPage extends BasePage {
     }
 
     public void loginRedirection() {
-        clickElement(driver.findElement(alreadyHaveAnAccountLinkBy), "An already have account?");
+        clickElement(alreadyHaveAnAccountLink, "An already have account?");
     }
 
     public void incorrectToken(String token0, String token1, String token2, String token3) {
@@ -588,5 +585,16 @@ public class FortradeRPage extends BasePage {
 
     public void clickUsePassBtn() {
         clickElement(usePasswordBtn, "Use Password button");
+    }
+
+    public void returnToThe1stWidget(String firstNameData, String lastNameData, String emailData, String countryCodeData
+            , String phoneNumberData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickSubmitButton();
+        clickEditTokenBtn();
     }
 }
