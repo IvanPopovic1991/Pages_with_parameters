@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -37,7 +38,7 @@ public class FortradeRPage extends BasePage {
     public WebElement phoneNumber;
 
     //This is only for Door page
-    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    @FindBy(xpath = "//div[@name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -64,7 +65,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//button[@class='button6']"/*"//input[@class='ContinueBtn-Submit']"*/)
+    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -238,7 +239,7 @@ public class FortradeRPage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickNotSerbResBtn();
         clickUsePassBtn();
         clickMenuBtn();
@@ -596,5 +597,36 @@ public class FortradeRPage extends BasePage {
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         clickEditTokenBtn();
+    }
+
+    public void newUrl(String url) {
+        driver.get(url);
+
+        if (url.contains("www.fortrade.com")){
+            if (url.contains("sms")){
+                try {
+                    Thread.sleep(3000);
+                    System.out.println("Waited 3 seconds.");
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+            } else {
+                driverWait.until(webDriver -> {
+                    String value = webDriver.findElement(By.xpath("//input[@class='lcField FlavorRegistration']")).getAttribute("value");
+                    return "quick".equals(value) || "hasStages".equals(value);
+                });
+                System.out.println("Waited value to contains either quick or hasStages.");
+            }
+        }
+        WebDriverWait shortWait = new WebDriverWait(driver, 2); // fixed syntax
+
+        try {
+            WebElement element = shortWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='CybotCookiebotDialogBodyButtonDecline']")));
+            element.click();
+        } catch (TimeoutException e) {
+            System.out.println("Element not visible within 2 seconds: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
     }
 }
