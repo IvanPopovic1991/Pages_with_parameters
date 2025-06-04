@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,14 +50,14 @@ public class FortradePage extends BasePage {
     public WebElement submitBtn;*/
 
     //It's only for Door dlp page
-    @FindBy(xpath = "//button[@class='button2']")
+    @FindBy(xpath = "//div[@name='Send']")
     public WebElement submitBtn;
 
     /*@FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
     public WebElement submitBtnAsic;*/
 
     //It's only for Door dlp page
-    @FindBy(xpath = "//button[@class='button2']")
+    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
@@ -98,7 +99,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//div[@name='ContinueBtn']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")
@@ -388,6 +389,11 @@ public class FortradePage extends BasePage {
     public void clickOnSubmitButton() {
         if (submitBtn.isDisplayed()) {
             clickElement(submitBtn, "Get Started button");
+            /*try {
+                clickElement(submitBtn, "Get Started button");
+            } catch (Exception e){
+                System.out.println("Element is not clicked second time!");
+            }*/
         } else {
             clickElement(submitBtnAsic, "Get Started button - Asic regulation");
         }
@@ -428,14 +434,14 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickUsePassBtn();
     }
     public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
@@ -445,7 +451,7 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAge(ageDataSelect);
@@ -464,8 +470,8 @@ public class FortradePage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        enterPhoneNumber(phoneNumberData);/*
+        clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         clickContinueBtn();
@@ -477,8 +483,8 @@ public class FortradePage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        enterPhoneNumber(phoneNumberData);/*
+        clickDenyBtn();*/
         clickOnSubmitButton();
         selectAnnual(annualData);
         clickContinueBtn();
@@ -490,8 +496,8 @@ public class FortradePage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        enterPhoneNumber(phoneNumberData);/*
+        clickDenyBtn();*/
         clickOnSubmitButton();
         selectSaving(savingData);
         clickContinueBtn();
@@ -503,8 +509,8 @@ public class FortradePage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        enterPhoneNumber(phoneNumberData);/*
+        clickDenyBtn();*/
         clickOnSubmitButton();
         selectKnowledge(knowledgeData);
         clickContinueBtn();
@@ -521,8 +527,8 @@ public class FortradePage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        enterPhoneNumber(phoneNumberData);/*
+        clickDenyBtn();*/
         clickOnSubmitButton();
         selectLanguage(languageData);
         clickContinueBtn();
@@ -536,7 +542,7 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
@@ -569,7 +575,7 @@ public class FortradePage extends BasePage {
 
     public void checkRegulation(String regulation) throws IOException, AWTException {
         String actualText = getText(regulationMsg, "regulation text");
-        //clickDenyBtn();
+        ///*clickDenyBtn();*/
         switch (regulation) {
             case "FCA": {
                 Assert.assertEquals(actualText, "Broker: Fortrade Ltd. (FCA)");
@@ -649,7 +655,7 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickDenyBtn();
+        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
@@ -756,7 +762,7 @@ public class FortradePage extends BasePage {
             driverWait.until(ExpectedConditions.visibilityOf(popUpNotification));
         }
         else{
-            clickDenyBtn();
+            /*clickDenyBtn();*/
         }
         enterCountryCode(wrongCountryCodeDataText);
         clickElement(phoneNumber, "phone number field");
@@ -835,4 +841,47 @@ public class FortradePage extends BasePage {
     public void clickUsePassBtn() {
         clickElement(usePasswordBtn, "Use Password button");
     }
+
+    public void returnToThe1stWidget(String firstNameData, String lastNameData, String emailData, String countryCodeData
+            , String phoneNumberData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickOnSubmitButton();
+        clickEditTokenBtn();
+    }
+
+    public void newUrl(String url) {
+        driver.get(url);
+
+        if (url.contains("www.fortrade.com")){
+            if (url.contains("sms")){
+                try {
+                    Thread.sleep(3000);
+                    System.out.println("Waited 3 seconds.");
+                } catch (Exception e){
+                    System.out.println(e);
+                }
+            } else {
+                driverWait.until(webDriver -> {
+                    String value = webDriver.findElement(By.xpath("//input[@class='lcField FlavorRegistration']")).getAttribute("value");
+                    return "quick".equals(value) || "hasStages".equals(value);
+                });
+                System.out.println("Waited value to contains either quick or hasStages.");
+            }
+        }
+        WebDriverWait shortWait = new WebDriverWait(driver, 2); // fixed syntax
+
+        try {
+            WebElement element = shortWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//button[@id='CybotCookiebotDialogBodyButtonDecline']")));
+            element.click();
+        } catch (TimeoutException e) {
+            System.out.println("Element not visible within 2 seconds: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Unexpected error: " + e.getMessage());
+        }
+    }
+
 }
