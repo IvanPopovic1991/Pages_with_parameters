@@ -7,7 +7,11 @@
     </listeners>
     <test name="All test cases - euro dollar trading dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.euroDollarTradingDlp"/>
+            <class name="TestsFortradeR.GoldenBullDlp">
+                <methods>
+                    <include name="anAlreadyRegisteredPhone"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
