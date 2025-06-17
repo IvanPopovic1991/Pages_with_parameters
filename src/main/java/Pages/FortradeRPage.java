@@ -38,7 +38,10 @@ public class FortradeRPage extends BasePage {
     public WebElement phoneNumber;
 
     //This is only for Door page
-    @FindBy(xpath = "//div[@name='Send']")
+    /*@FindBy(xpath = "//div[@name='Send']")
+    public WebElement submitButton;*/
+
+    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -65,7 +68,10 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
+    /*@FindBy(xpath = "//div[@name='ContinueBtn']"*//*"//input[@class='ContinueBtn-Submit']"*//*)
+    public WebElement continueBtn;*/
+
+    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -116,7 +122,10 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='startTradingButton']")
     protected WebElement usePasswordBtn;
 
-    @FindBy(xpath = "//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
+    /*@FindBy(xpath = "//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
+    public WebElement alreadyHaveAnAccountLink;*/
+
+    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
     public WebElement alreadyHaveAnAccountLink;
 
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Privacy Policy')]");
@@ -125,7 +134,11 @@ public class FortradeRPage extends BasePage {
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
+/*
     public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
+*/
+
+    public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
 
