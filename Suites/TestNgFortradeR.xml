@@ -7,9 +7,9 @@
     </listeners>
     <test name="All test cases - euro dollar trading dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.GoldenBullDlp">
+            <class name="TestsFortradeR.ProDark2024Dlp">
                 <methods>
-                    <include name="anAlreadyRegisteredPhone"/>
+                    <include name="userIsReturnedTo1stWidget"/>
                 </methods>
             </class>
         </classes>

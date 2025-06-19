@@ -22,7 +22,10 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[contains(@class,'logo fcaClass  asicClass fscClass')]")
+    /*@FindBy(xpath = "//div[contains(@class,'logo fcaClass  asicClass fscClass')]")
+    public WebElement logo;*/
+
+    @FindBy(xpath = "//div[@class='logo fcaClass belarosClass asicClass fscClass']")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -46,19 +49,19 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    /*@FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
-    public WebElement submitBtn;*/
-
-    //It's only for Door dlp page
-    @FindBy(xpath = "//div[@name='Send']")
+    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
     public WebElement submitBtn;
 
-    /*@FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
-    public WebElement submitBtnAsic;*/
+    //It's only for Door dlp page
+    /*@FindBy(xpath = "//div[@name='Send']")
+    public WebElement submitBtn;*/
+
+    @FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
+    public WebElement submitBtnAsic;
 
     //It's only for Door dlp page
-    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']")
-    public WebElement submitBtnAsic;
+    /*@FindBy(xpath = "//div[@name='SendTermsAgreementAsic']")
+    public WebElement submitBtnAsic;*/
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
     public WebElement denyBtn;
@@ -99,8 +102,12 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//div[@name='ContinueBtn']")
+    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
+
+    //Only for dlp
+    /*@FindBy(xpath = "//div[@name='ContinueBtn']")
+    public WebElement continueBtn;*/
 
     @FindBy(xpath = "//input[@name='Token0']")
     public WebElement tokenField0;
@@ -159,9 +166,17 @@ public class FortradePage extends BasePage {
 
     public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
+/*
     public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+*/
 
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]");
+
+/*
     public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
+*/
+
+    public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//img[@alt='facebook']");
 
