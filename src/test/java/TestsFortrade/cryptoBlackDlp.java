@@ -163,7 +163,7 @@ public class cryptoBlackDlp extends BaseTestFortrade{
     @Parameters({"tag","countryCode","regulation"})
     public void userIsReturnedTo1stWidget(String tag,String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         driver.get("https://www.fortrade.com/minilps/en/crypto-black-form-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
-        fortradePage.returnToThe1stWidget("Testq","Testa",TestData.emailGenerator(),countryCode,TestData.phoneNumberGenerator());
+        //fortradePage.returnToThe1stWidget("Testq","Testa",TestData.emailGenerator(),countryCode,TestData.phoneNumberGenerator());
         Thread.sleep(1000);
         fortradePage.takeScreenshot("The user is returned to the 1st form widget " + regulation,fortradePage.loginToFotrade);
     }
@@ -509,5 +509,19 @@ public class cryptoBlackDlp extends BaseTestFortrade{
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+    }
+
+    @Test
+    @Parameters({"countryCode","regulation","tag"})
+    public void dummyLeadRegistration(String countryCode,String regulation,String tag) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/crypto-black-form-dlp/?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]"+tag);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
+                "All the above");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCustomTag("Dummy");
+        fortradePage.takeScreenshot("Custom Tag - Dummy "+regulation+" regulation",crmPage.customTag);
     }
 }
