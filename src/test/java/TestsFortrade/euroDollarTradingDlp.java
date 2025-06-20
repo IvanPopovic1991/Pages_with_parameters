@@ -25,8 +25,8 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         baseSetup("Chrome", "136");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge" + tag);
-        /*fortradePage.clickDenyBtn();*/
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge" + tag);
+        fortradePage.clickDenyBtn();
     }
 
     @AfterMethod
@@ -53,7 +53,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingTagsInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
@@ -71,7 +71,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age" + tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age" + tag);
         fortradePage.ageParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "25-34");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
@@ -86,7 +86,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=annual" + tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=annual" + tag);
         fortradePage.annualParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
@@ -101,7 +101,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=saving" + tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=saving" + tag);
         fortradePage.savingParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "$50,000 – $100,000");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
@@ -116,7 +116,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=knowledge" + tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=knowledge" + tag);
         fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "All the above");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
@@ -139,7 +139,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void assertInvalidTokenMsg(String tag, String countryCode, String regulation) throws IOException, AWTException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
         fortradePage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
                 "1","1","1","1");
@@ -150,7 +150,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void didNotGetToken(String tag,String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
         fortradePage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
         Assert.assertEquals(fortradePage.codeIsSent.getText(),"We sent you the code again");
@@ -163,8 +163,8 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void userIsReturnedTo1stWidget(String tag,String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
-        fortradePage.returnToThe1stWidget("Testq","Testa",TestData.emailGenerator(),countryCode,TestData.phoneNumberGenerator());
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=sms-age-annual-saving-knowledge"+tag);
+        //fortradePage.("Testq","Testa",TestData.emailGenerator(),countryCode,TestData.phoneNumberGenerator());
         Thread.sleep(1000);
         fortradePage.takeScreenshot("The user is returned to the 1st form widget " + regulation,fortradePage.loginToFotrade);
     }
@@ -190,7 +190,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
         fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
@@ -414,7 +414,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageAgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age"+tag);
         fortradePage.ageParameter("Testq", "Testa", TestData.emailGenerator(), countryCode, TestData.phoneNumberGenerator(),
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -424,7 +424,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageAnnualParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=annual"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=annual"+tag);
         fortradePage.annualParameter("Testq", "Testa", TestData.emailGenerator(), countryCode, TestData.phoneNumberGenerator(),
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -434,7 +434,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageSavingParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=saving"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=saving"+tag);
         fortradePage.savingParameter("Testq", "Testa", TestData.emailGenerator(), countryCode, TestData.phoneNumberGenerator(),
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -444,7 +444,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorMessageKnowledgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=knowledge"+tag);
         fortradePage.knowledgeParameter("Testq", "Testa", TestData.emailGenerator(), countryCode, TestData.phoneNumberGenerator(),
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -465,7 +465,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Parameters({"tag","countryCode","regulation"})
     public void checkLanguageParameter(String tag, String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=plang:srcs,all"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=plang:srcs,all"+tag);
         fortradePage.languageParameter("Testq", "Testa", email, countryCode,
                 TestData.phoneNumberGenerator(),"English");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
@@ -477,7 +477,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag","countryCode","regulation"})
     public void errorLanguageParameter(String tag, String countryCode,String regulation) throws IOException, AWTException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=plang:srcs,all"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=plang:srcs,all"+tag);
         fortradePage.languageParameter("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 TestData.phoneNumberGenerator(),"-- Select --");
         fortradePage.assertBorderColor(fortradePage.languageField);
@@ -487,7 +487,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag", "regulation"})
     public void checkFCAPercentages(String tag, String regulation) throws IOException, AWTException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?tg=skip&G_GEO=1006453&regulation=FCA");
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?tg=skip&G_GEO=1006453&regulation=FCA");
         fortradePage.checkFCAPercentages("71% of retail investor accounts lose money when trading CFDs with this provider.");
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
     }
@@ -495,7 +495,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
     @Test
     @Parameters({"tag", "regulation"})
     public void checkCysecPercentages(String tag, String regulation) throws IOException, AWTException {
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?tg=skip&G_GEO=1000997&regulation=CYSEC");
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?tg=skip&G_GEO=1000997&regulation=CYSEC");
         fortradePage.checkCysecPercentages("70.91% of retail investor accounts lose money when trading CFDs with this provider.");
         System.out.println(fortradePage.getClass().getSimpleName());
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
@@ -508,7 +508,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         fortradePage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
         fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
@@ -522,7 +522,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
-        fortradePage.newUrl("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);

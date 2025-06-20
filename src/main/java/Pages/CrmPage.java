@@ -74,6 +74,9 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//div[@id='lv_linkid']//div//span")
     public WebElement linkId;
 
+    @FindBy(xpath = "//div[@id='lv_custom_tag']")
+    public WebElement customTag;
+
     public void logInCrm(String username, String password) {
         typeText(usernameCrm, username, "username for CRM");
         typeText(passwordCrm, password, "password for CRM");
@@ -179,5 +182,13 @@ public class CrmPage extends BasePage {
                 return String.format("value of CSS property '%s' to be '%s'", cssProperty, expectedValue);
             }
         };
+    }
+
+    public void checkCustomTag(String expectedValue){
+        clickElement(menuBtn, "menu button");
+        clickElement(envAndMarSec, "environment and marketing section button");
+        String actualValue = readAttribute(customTag,"title","The value of custom tag");
+        System.out.println(actualValue);
+        Assert.assertEquals(actualValue,expectedValue);
     }
 }
