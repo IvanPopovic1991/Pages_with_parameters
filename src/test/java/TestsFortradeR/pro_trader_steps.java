@@ -31,7 +31,7 @@ public class pro_trader_steps extends BaseTestFortradeR {
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000 – $100,000", "All the above");
-        fortradeRPage.clickDenyBtn();
+        //fortradeRPage.clickDenyBtn();
         fortradeRPage.clickNotSerbResBtn();
         fortradeRPage.checkRegulation();
         fortradeRPage.takeScreenshot("Successfully demo account registration - FortradeR", fortradeRPage.regulationMsg);

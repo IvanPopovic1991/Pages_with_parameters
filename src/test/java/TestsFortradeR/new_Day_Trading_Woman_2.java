@@ -33,7 +33,7 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000 – $100,000", "All the above");
-        fortradeRPage.clickDenyBtn();
+        //fortradeRPage.clickDenyBtn();
         fortradeRPage.clickNotSerbResBtn();
         try {
             Thread.sleep(500);
