@@ -69,6 +69,57 @@ public class ProDark2024Dlp extends BaseTestFortrade{
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingDummyFtsQueryInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge-plang:all&" +
+                "ftsquery=age-equals(1,2)-and-[[annual-notequals(2,3)-or-saving-equals(3)]-and-[knowledge-equals(1,2)-or-plang-notequals(1)]]&" +
+                "tg=ivanA1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
+                "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
+        String url = driver.getCurrentUrl();
+        fortradePage.ftsQueryParameter(url, "Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "18-24", "Less than $15,000", "Less than $5,000",
+                "Yes, from a relevant role in financial services", "Albanian");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCrmFtsQuery("Dummy");
+        crmPage.takeScreenshot("Dummy custom tag - Fortrade page " + regulation, crmPage.accFullNameCrm);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingEmptyFtsQueryInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge-plang:all&" +
+                "ftsquery=age-equals(1,2)-and-[[annual-notequals(2,3)-or-saving-equals(3)]-and-[knowledge-equals(1,2)-or-plang-notequals(1)]]&" +
+                "tg=ivanA1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
+                "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
+        String url = driver.getCurrentUrl();
+        fortradePage.ftsQueryParameter(url, "Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "18-24", "Less than $15,000", "$25,000 – $50,000",
+                "Yes, from previous trading experience", "Albanian");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCrmFtsQuery("");
+        crmPage.takeScreenshot("Empty custom tag - Fortrade page " + regulation, crmPage.accFullNameCrm);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkingInvalidFtsQueryInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge&" +
+                "ftsquery=age-equals(1,2)-and-[[annual-notequals(2,3)-or-saving-equals(3)]-and-[knowledge-equals(1,2)-or-plang-notequals(1)]]&" +
+                "tg=ivanA1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
+                "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
+        String url = driver.getCurrentUrl();
+        fortradePage.ftsQueryParameter(url, "Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "18-24", "Less than $15,000", "$25,000 – $50,000",
+                "Yes, from a relevant role in financial services", "Arabic");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCrmFtsQuery("Invalid");
+        crmPage.takeScreenshot("Invalid custom tag - Fortrade page " + regulation, crmPage.accFullNameCrm);
+    }
+
+    @Test
+    @Parameters({"tag", "countryCode", "regulation"})
     public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age" + tag);

@@ -7,7 +7,7 @@
     </listeners>
     <test name="All test cases -new day trading 2025 dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.new_day_trading_2025_dlp"/>
+            <class name="TestsFortradeR.ProDark2024Dlp"/>
         </classes>
     </test>
 </suite>
