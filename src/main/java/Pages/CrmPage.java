@@ -74,6 +74,9 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//div[@id='lv_linkid']//div//span")
     public WebElement linkId;
 
+    @FindBy(xpath = "//div[@id='lv_custom_tag']")
+    WebElement customTag;
+
     public void logInCrm(String username, String password) {
         typeText(usernameCrm, username, "username for CRM");
         typeText(passwordCrm, password, "password for CRM");
@@ -91,6 +94,7 @@ public class CrmPage extends BasePage {
             tagsInTheCrm(tags[i], valueOfTags[i]);
         }
     }
+
     public void loopForAccDetailsCrm(String email) {
         String[] tags = {"lv_firstname", "lv_lastname", "emailaddress1"};
         String[] valueOfTags = {"Testq", "Testa", email};
@@ -130,6 +134,20 @@ public class CrmPage extends BasePage {
         clickElement(menuBtn, "menu button");
         clickElement(envAndMarSec, "environment and marketing section button");
         loopForTagsCrm();
+    }
+
+    public void checkCrmFtsQuery(String value){
+        clickElement(menuBtn, "menu button");
+        clickElement(envAndMarSec, "environment and marketing section button");
+        String customTagText = readAttribute(customTag, "title", "tag");
+        System.out.println("This is the value of the " + customTag + ": " + customTagText);
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        scrollToAnElement(customTag);
+        Assert.assertEquals(customTagText, value);
     }
 
     public void checkSMSVerification(String smsVerificationValue) {

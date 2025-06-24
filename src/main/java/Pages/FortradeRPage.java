@@ -107,7 +107,10 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='nav-button' and text()='Get Started']")
     public WebElement getStartedBtn;
 
-    @FindBy(xpath = "//select[@name='LinkId']")
+    /*@FindBy(xpath = "//select[@name='LinkId']")
+    public WebElement languageField;*/
+
+    @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
     @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
@@ -251,6 +254,29 @@ public class FortradeRPage extends BasePage {
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
+        clickContinueBtn();
+        /*clickDenyBtn();*/
+        clickNotSerbResBtn();
+        clickUsePassBtn();
+        clickMenuBtn();
+    }
+
+    public void ftsQueryParameter(String url, String firstNameData, String lastNameData, String emailData, String countryCodeData,
+                                  String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData, String languageData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        /*clickDenyBtn();*/
+        clickSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        if (url.contains("plang:all")){
+            selectLanguage(languageData);
+        }
         clickContinueBtn();
         /*clickDenyBtn();*/
         clickNotSerbResBtn();

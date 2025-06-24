@@ -11,7 +11,7 @@
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
         <classes>
             <class name="TestsFortrade.ProDark2024Dlp">
-                <!--<methods>
+                <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
@@ -21,11 +21,6 @@
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
-                </methods>-->
-                <methods>
-                    <include name="contactUsLink"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="checkingLogoClickability"/>
                 </methods>
             </class>
         </classes>
@@ -36,7 +31,7 @@
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
             <class name="TestsFortrade.ProDark2024Dlp">
-                <!--<methods>
+                <methods>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
@@ -45,11 +40,6 @@
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkCysecPercentages"/>
-                </methods>-->
-                <methods>
-                    <include name="contactUsLink"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="checkingLogoClickability"/>
                 </methods>
             </class>
         </classes>
@@ -60,7 +50,7 @@
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
         <classes>
             <class name="TestsFortrade.ProDark2024Dlp">
-                <!--<methods>
+                <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
@@ -71,11 +61,6 @@
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
-                </methods>-->
-                <methods>
-                    <include name="contactUsLink"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="checkingLogoClickability"/>
                 </methods>
             </class>
         </classes>
@@ -86,7 +71,7 @@
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>
         <classes>
             <class name="TestsFortrade.ProDark2024Dlp">
-                <!--<methods>
+                <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="cysecRegulationTest"/>
@@ -96,11 +81,6 @@
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
-                </methods>-->
-                <methods>
-                    <include name="contactUsLink"/>
-                    <include name="loginRedirectionTest"/>
-                    <include name="checkingLogoClickability"/>
                 </methods>
             </class>
         </classes>

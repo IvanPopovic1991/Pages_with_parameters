@@ -102,6 +102,12 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
+    /*@FindBy(xpath = "//select[@name='LinkId']")
+    public WebElement languageField;*/
+
+    @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
+    public WebElement languageField;
+
     @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
@@ -135,9 +141,6 @@ public class FortradePage extends BasePage {
 
     @FindBy(xpath = "//span[text()='Fortrade']")
     public WebElement fortradeLogo;
-
-    @FindBy(xpath = "//select[@name='LinkId']")
-    public WebElement languageField;
 
     @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
     public WebElement registerHereBtn;
@@ -458,6 +461,26 @@ public class FortradePage extends BasePage {
         clickContinueBtn();
         /*clickDenyBtn();*/
         clickUsePassBtn();
+    }
+    public void ftsQueryParameter(String url, String firstNameData, String lastNameData, String emailData, String countryCodeData,
+                                         String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData, String languageData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        /*clickDenyBtn();*/
+        clickOnSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        if (url.contains("plang:all")){
+            selectLanguage(languageData);
+        }
+        clickContinueBtn();
+//        /*clickDenyBtn();*/
+//        clickUsePassBtn();
     }
     public void unsuccessfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
             , String ageData, String annualData, String savingData, String knowledgeData, String ageDataSelect, String annualDataSelect, String savingDataSelect, String knowledgeDataSelect) {
