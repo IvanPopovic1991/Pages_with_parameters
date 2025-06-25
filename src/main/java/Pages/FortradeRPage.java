@@ -53,7 +53,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[contains(@class,'logo')]")
     public WebElement fortradeLogo;
 
-    @FindBy(xpath = "//div[@class='needHelpDiv']//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
+    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
     public WebElement loginToFortrade;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
