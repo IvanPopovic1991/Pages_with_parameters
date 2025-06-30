@@ -113,7 +113,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
+    @FindBy(xpath = "//div[@class='nav-button']")
     public WebElement registerHereBtn;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")

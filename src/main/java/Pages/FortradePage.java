@@ -142,7 +142,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[text()='Fortrade']")
     public WebElement fortradeLogo;
 
-    @FindBy(xpath = "//div[@class='nav-button' and contains(text(),'Register Here')]")
+    @FindBy(xpath = "//div[@class='nav-button']")
     public WebElement registerHereBtn;
 
     @FindBy(xpath = "(//div[@class='fcaClass']/strong[contains(text(), '% of retail investor accounts lose money when trading CFDs with this provider.')])[2]")
@@ -162,6 +162,9 @@ public class FortradePage extends BasePage {
 
     @FindBy(xpath = "//div[@class='startTradingButton']")
     public WebElement usePasswordBtn;
+
+    @FindBy(xpath = "//button[contains(@class,'pushcrew-btn-close')]")
+    public WebElement doNotAllowNtf;
 
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Privacy Policy']");
 
@@ -363,7 +366,8 @@ public class FortradePage extends BasePage {
     public String iirocLink = "https://www.ciro.ca/investors/choosing-investment-advisor/dealers-we-regulate/fortrade-canada-limited";
 
     // Australian Securities and Investments Commission (ASIC) link
-    public String asicLink = "https://asic.gov.au/online-services/service-availability/";
+    public String asicLink ="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchText=614683831&searchType=OrgAndBusNm&_adf.ctrl-state=1cbmeylzw8_15";
+    //"https://asic.gov.au/online-services/service-availability/";
 
     // Cyprus Securities and Exchange Commission (CySEC) link
     public String cysecLink = "https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/86639/";
@@ -922,4 +926,10 @@ public class FortradePage extends BasePage {
         }
     }
 
+    public void clickDoNotAllowNtfBtn(){
+        List<WebElement> doNotAllowBtn = driver.findElements(By.xpath("//button[contains(@class,'pushcrew-btn-close')]"));
+        if(!doNotAllowBtn.isEmpty()){
+            doNotAllowBtn.get(0).click();
+        }
+    }
 }
