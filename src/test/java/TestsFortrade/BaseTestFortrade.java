@@ -3,7 +3,6 @@ package TestsFortrade;
 import Selenium_Core.DriverManager;
 import Selenium_Core.DriverManagerFactory;
 import org.openqa.selenium.WebDriver;
-
 import java.util.concurrent.TimeUnit;
 
 public class BaseTestFortrade {
