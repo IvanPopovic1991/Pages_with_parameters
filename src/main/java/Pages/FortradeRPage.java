@@ -47,7 +47,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
     public WebElement alrdRegEmailPopUp;
 
-    @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
+    @FindBy(xpath = "//div[@class='errorValidationIn']")
     public WebElement countryCodeErrorMessage;
 
     @FindBy(xpath = "//div[contains(@class,'logo')]")
@@ -537,7 +537,8 @@ public class FortradeRPage extends BasePage {
         clickElement(countryCode, "country code field");
         try {
             Robot robot = new Robot();
-            typeString(robot, wrongCountryCodeDataText);
+            //typeString(robot, wrongCountryCodeDataText);
+            typeText(countryCode,"01312148","country code field");
             clickElement(phoneNumber, "phone number field");
             Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
                     , "Please enter a valid country code");
