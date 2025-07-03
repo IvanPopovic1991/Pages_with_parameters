@@ -2,7 +2,6 @@ package TestsFortrade;
 
 import Pages.CrmPage;
 import Pages.FortradePage;
-import Pages.Mailinator;
 import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
@@ -15,14 +14,23 @@ import org.testng.annotations.Test;
 import java.awt.*;
 import java.io.IOException;
 
-public class newDayTradingWoman extends BaseTestFortrade {
+public class dayTradingWoman2025Dlp extends BaseTestFortrade {
+
+    FortradePage fortradePage;
+    CrmPage crmPage;
+
     @BeforeMethod
-    @Parameters({"tag"})
-    public void setUp(String tag) {
-        baseSetup("Chrome", "134");
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age-annual-saving-knowledge" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
+    @Parameters({"tag","regulation"})
+    public void setUp(String tag,String regulation) {
+        baseSetup("Chrome", "137");
+        fortradePage = new FortradePage(driver);
+        crmPage = new CrmPage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge" + tag);
+       if(!regulation.equalsIgnoreCase("Iiroc")){
+            fortradePage.clickDoNotAllowNtfBtn();
+        }
         fortradePage.clickRegisterHere();
+        //fortradePage.clickDenyBtn();
     }
 
     @AfterMethod
@@ -32,11 +40,18 @@ public class newDayTradingWoman extends BaseTestFortrade {
 
     @Test
     @Parameters({"countryCode", "regulation"})
-    public void demoAccountRegistration(String countryCode, String regulation) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
+    public void demoAccountRegistration(String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         fortradePage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), countryCode, TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
-        fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
+        if(regulation.equalsIgnoreCase("Asic")){
+            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
+            fortradePage.clickConsentBtn();
+        } else if (regulation.equalsIgnoreCase("Iiroc")) {
+            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
+        }else {
+            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
+        }
+        //fortradePage.clickConsentBtn();
         fortradePage.clickMenuBtn();
         fortradePage.checkRegulation(regulation);
     }
@@ -45,16 +60,14 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingTagsInTheCrm(String tag, String countryCode, String regulation) throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
-        CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.takeScreenshot("Account details Fortrade page " + regulation, crmPage.accFullNameCrm);
-        crmPage.takeScreenshot("SMS Verification field - no value" + regulation, crmPage.smsVerification);
+        crmPage.takeScreenshot("SMS Verification field - no value " + regulation, crmPage.smsVerification);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field without sms parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkCrmTags();
@@ -65,74 +78,65 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age" + tag);
         fortradePage.ageParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "25-34");
-        CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("25_34_age,PC-windows");
         Thread.sleep(1000);
-        crmPage.takeScreenshot( "Age parameter value "+regulation, crmPage.linkId);
+        crmPage.takeScreenshot("Age parameter value " + regulation, crmPage.linkId);
     }
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=annual" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=annual" + tag);
         fortradePage.annualParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
-        CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("15000_50000_annual,PC-windows");
         Thread.sleep(1000);
-        crmPage.takeScreenshot( "Annual parameter value "+regulation, crmPage.linkId);
+        crmPage.takeScreenshot("Annual parameter value " + regulation, crmPage.linkId);
     }
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=saving" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=saving" + tag);
         fortradePage.savingParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "$50,000 – $100,000");
-        CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("50000_100000_savings,PC-windows");
         Thread.sleep(1000);
-        crmPage.takeScreenshot( "Saving parameter value " + regulation, crmPage.linkId);
+        crmPage.takeScreenshot("Saving parameter value " + regulation, crmPage.linkId);
     }
 
     @Test
     @Parameters({"tag", "countryCode", "regulation"})
     public void checkingKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=knowledge" + tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=knowledge" + tag);
         fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "All the above");
-        CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
         crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-windows");
         Thread.sleep(1000);
-        crmPage.takeScreenshot( "Knowledge parameter value "+regulation, crmPage.linkId);
+        crmPage.takeScreenshot("Knowledge parameter value " + regulation, crmPage.linkId);
     }
 
     @Test
     @Parameters({"regulation"})
     public void unsuccessfullyDemoAccountRegistration(String regulation) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.unsuccessfullyRegistrationWrongData("12/*", "+-*5", "test#123", "123456", "/*-+");
         fortradePage.assertErrorMessages();
         fortradePage.assertColor("red");
@@ -140,73 +144,68 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
+    @Parameters({"tag", "countryCode", "regulation"})
     public void assertInvalidTokenMsg(String tag, String countryCode, String regulation) throws IOException, AWTException {
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=sms-age-annual-saving-knowledge"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=sms-age-annual-saving-knowledge" + tag);
         fortradePage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
-                "1","1","1","1");
-        Assert.assertEquals(fortradePage.incorrectTokenMsg.getText(),"Incorrect Code. Please check and try again.");
-        fortradePage.takeScreenshot("Incorrect code - Please check and try again - "+regulation);
+                "1", "1", "1", "1");
+        Assert.assertEquals(fortradePage.incorrectTokenMsg.getText(), "Incorrect Code. Please check and try again.");
+        fortradePage.takeScreenshot("Incorrect code - Please check and try again - " + regulation);
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void didNotGetToken(String tag,String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=sms-age-annual-saving-knowledge"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void didNotGetToken(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=sms-age-annual-saving-knowledge" + tag);
         fortradePage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
-        Assert.assertEquals(fortradePage.codeIsSent.getText(),"We sent you the code again");
+        Assert.assertEquals(fortradePage.codeIsSent.getText(), "We sent you the code again");
         Thread.sleep(1500);
-        if (fortradePage.codeIsSent.isDisplayed()){
-            fortradePage.takeScreenshot("We sent you the code again "+regulation,fortradePage.codeIsSent);
+        if (fortradePage.codeIsSent.isDisplayed()) {
+            fortradePage.takeScreenshot("We sent you the code again " + regulation, fortradePage.codeIsSent);
         }
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void userIsReturnedTo1stWidget(String tag,String countryCode, String regulation) throws IOException, AWTException {
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=sms-age-annual-saving-knowledge"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void userIsReturnedTo1stWidget(String tag, String countryCode, String regulation) throws IOException, AWTException {
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=sms-age-annual-saving-knowledge" + tag);
         fortradePage.enterFirstName("Testq");
         fortradePage.enterLastName("Testa");
         fortradePage.enterEmail(TestData.emailGenerator());
         fortradePage.enterCountryCode(countryCode);
         fortradePage.enterPhoneNumber(TestData.phoneNumberGenerator());
         fortradePage.clickOnSubmitButton();
-        fortradePage.clickDenyBtn();
+        //fortradePage.clickDenyBtn();
         fortradePage.clickEditTokenBtn();
-        if(fortradePage.loginToFotrade.isDisplayed()){
-            fortradePage.takeScreenshot("The user is returned to the 1st form widget " + regulation,fortradePage.loginToFotrade);
+        if (fortradePage.loginToFotrade.isDisplayed()) {
+            fortradePage.takeScreenshot("The user is returned to the 1st form widget " + regulation, fortradePage.loginToFotrade);
         }
     }
 
     @Test
     @Parameters({"regulation"})
     public void emptyDemoAccountRegistration(String regulation) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "", "");
         fortradePage.assertErrorMessages();
         fortradePage.assertColor("red");
-        if(regulation.equalsIgnoreCase("Asic")){
+        if (regulation.equalsIgnoreCase("Asic")) {
             fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtnAsic);
-        }else{
+        } else {
             fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtn);
         }
     }
 
     @Test
-    @Parameters({"countryCode", "regulation","tag"})
-    public void alreadyRegisteredAccountTest(String countryCode, String regulation,String tag) throws IOException, AWTException {
+    @Parameters({"countryCode", "regulation", "tag"})
+    public void alreadyRegisteredAccountTest(String countryCode, String regulation, String tag) throws IOException, AWTException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age-annual-saving-knowledge"+tag);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
         fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
@@ -214,7 +213,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void sameFNameAndLName(String regulation) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.enterFirstName("Test");
         fortradePage.enterLastName("Test");
         fortradePage.clickElement(fortradePage.firstName, "on the first name field");
@@ -226,16 +224,14 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation", "tag"})
     public void checkingLogoClickability(String regulation, String tag) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.checkLogoClickability(regulation, "https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age-annual-saving-knowledge" + tag);
+        fortradePage.checkLogoClickability(regulation, "https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.takeScreenshot("Logo is not clickable - " + regulation + " regulation");
     }
 
     @Test
     @Parameters({"regulation"})
     public void checkForCountryCodeErrorMessage(String regulation) throws IOException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.checkCountryCodeErrorMessage("01852833kdkd",regulation);
+        fortradePage.checkCountryCodeErrorMessage("01852833kdkd", regulation);
         fortradePage.takeScreenshot("Country code error message - " + regulation + " regulation");
     }
 
@@ -258,7 +254,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation", "countryCode"})
     public void emailIsReceivedSuccessfully(String regulation, String countryCode) throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
         driver.get("https://yopmail.com/en/");
@@ -272,8 +267,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void privacyPolicyTest(String regulation) throws IOException, AWTException, InterruptedException {
         Thread.sleep(2000);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.privacyPolicyLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.privacyPolicyLinkBy, fortradePage.setRegulation(regulation),
                 "Privacy policy", regulation);
@@ -285,8 +278,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void termsAndConditionsTest(String regulation) throws IOException, AWTException, InterruptedException {
         Thread.sleep(2000);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.termsAndConditionsLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.termsAndConditionsLinkBy, fortradePage.termsAndCondition(regulation),
                 "Terms and conditions", regulation);
@@ -298,8 +289,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void howToUnsubscribeTest(String regulation) throws IOException, InterruptedException, AWTException {
         Thread.sleep(2000);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.clickHereLink);
         fortradePage.clickOnSelectedLink(fortradePage.clickHereLink, fortradePage.howToUnsubscribeURL, "How to unsubscribe", regulation);
         fortradePage.scrollToAnElementBy(fortradePage.clickHereLink);
@@ -310,8 +299,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void loginRedirectionTest(String regulation) throws IOException, AWTException, InterruptedException {
         Thread.sleep(2000);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.alreadyHaveAnAccountLinkBy);
         fortradePage.loginRedirection(regulation);
         if (driver.getCurrentUrl().contains(fortradePage.alrHaveAccount) && fortradePage.fortradeLogo.isDisplayed()) {
@@ -325,8 +312,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void riskWarningTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.footerRiskWarningLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.footerRiskWarningLinkBy, fortradePage.riskWarning(regulation),
                 "Risk warning", regulation);
@@ -336,8 +321,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void footerPrivacyPolicy(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.footerPrivacyPolicyLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.footerPrivacyPolicyLinkBy, fortradePage.footerPrivacyPolicy(regulation),
                 "Privacy policy - footer", regulation);
@@ -347,8 +330,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void fcaRegulationTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.fcaRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.fcaRegulationLinkBy, fortradePage.fcaLink,
                 "Financial conduct authority page", regulation);
@@ -359,8 +340,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void iirocRegulationTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.ciroRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.ciroRegulationLinkBy, fortradePage.iirocLink,
                 "Canadian Investment Regulatory Organization page", regulation);
@@ -371,8 +350,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void asicRegulationTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.asicRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.asicRegulationLinkBy, fortradePage.asicLink,
                 "Australian Securities and Investments Commission page", regulation);
@@ -383,8 +360,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void cysecRegulationTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.cysecRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.cysecRegulationLinkBy, fortradePage.cysecLink,
                 "Cyprus Securities and Exchange Commission page", regulation);
@@ -395,8 +370,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void fscRegulationTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.fscRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.fscRegulationLinkBy, fortradePage.fscLink,
                 "Financial Services Commission page", regulation);
@@ -407,8 +380,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void fsgDocumentTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.fsgDocument);
         fortradePage.clickOnSelectedLink(fortradePage.fsgDocument, fortradePage.fsgDocumentLink,
                 "Financial Service Guide ", regulation);
@@ -419,8 +390,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void pdsDocumentTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.pdsDocument);
         fortradePage.clickOnSelectedLink(fortradePage.pdsDocument, fortradePage.pdsDocumentLink,
                 "Product Disclosure Statement document", regulation);
@@ -431,8 +400,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void tmdDocumentTest(String regulation) throws IOException, InterruptedException, AWTException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.scrollToAnElementBy(fortradePage.tmdDocument);
         fortradePage.clickOnSelectedLink(fortradePage.tmdDocument, fortradePage.tmdDeterminationLink,
                 "Target Market Determination ", regulation);
@@ -444,7 +411,7 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void fbLinkRedirection(String regulation) throws IOException, InterruptedException, AWTException {
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
+        fortradePage.;
         fortradePage.scrollToAnElementBy(fortradePage.facebookLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.facebookLinkBy, fortradePage.fbPage(regulation), "Facebook page", regulation);
         fortradePage.scrollToAnElementBy(fortradePage.facebookLinkBy);
@@ -455,7 +422,7 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void insLinkRedirection(String regulation) throws IOException, InterruptedException, AWTException {
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
+        fortradePage.;
         fortradePage.scrollToAnElementBy(fortradePage.instagramLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.instagramLinkBy, fortradePage.insURL, "Instagram page", regulation);
         fortradePage.scrollToAnElementBy(fortradePage.instagramLinkBy);
@@ -466,7 +433,7 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Parameters({"regulation"})
     public void ytLinkRedirection(String regulation) throws IOException, InterruptedException, AWTException {
         FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
+        fortradePage.;
         fortradePage.scrollToAnElementBy(fortradePage.youtubeLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.youtubeLinkBy, fortradePage.ytURL, "Youtube page", regulation);
         fortradePage.scrollToAnElementBy(fortradePage.youtubeLinkBy);
@@ -476,8 +443,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void contactUsLink(String regulation) throws IOException, AWTException, InterruptedException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         fortradePage.clickOnMailLink("contactUs");
         Thread.sleep(1500);
         fortradePage.takeScreenshot("Fortrade " + regulation + " - contact us redirection");
@@ -487,8 +452,6 @@ public class newDayTradingWoman extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void supportLink(String regulation) throws IOException, AWTException, InterruptedException {
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.clickDenyBtn();
         if (!regulation.equalsIgnoreCase("cysec")) {
             fortradePage.clickOnMailLink("support");
         } else {
@@ -500,12 +463,11 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void errorMessageAgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void errorMessageAgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=age"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age" + tag);
         fortradePage.ageParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -513,12 +475,11 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void errorMessageAnnualParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void errorMessageAnnualParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=annual"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=annual" + tag);
         fortradePage.annualParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -526,12 +487,11 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void errorMessageSavingParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void errorMessageSavingParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=saving"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=saving" + tag);
         fortradePage.savingParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -539,12 +499,11 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void errorMessageKnowledgeParameter(String tag,String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void errorMessageKnowledgeParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=knowledge"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=knowledge" + tag);
         fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, phoneNumber,
                 "-- Select --");
         fortradePage.secondStepErrorMessage(1);
@@ -552,11 +511,10 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"countryCode","regulation"})
-    public void errorMessagesAllParameters(String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"countryCode", "regulation"})
+    public void errorMessagesAllParameters(String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        FortradePage fortradePage = new FortradePage(driver);
         fortradePage.unsuccessfullyRegistration("Testq", "Testa", email, countryCode, phoneNumber,
                 "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above",
                 "-- Select --", "-- Select --", "-- Select --", "-- Select --");
@@ -565,49 +523,110 @@ public class newDayTradingWoman extends BaseTestFortrade {
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void checkLanguageParameter(String tag, String countryCode ,String regulation) throws IOException, AWTException, InterruptedException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void checkLanguageParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=plang:srcs,all"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=plang:srcs,all" + tag);
         fortradePage.languageParameter("Testq", "Testa", email, countryCode,
-                TestData.phoneNumberGenerator(),"English");
-        CrmPage crmPage = new CrmPage(driver);
+                TestData.phoneNumberGenerator(), "English");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkLinkIdValue("lang_EN,PC-windows");
         Thread.sleep(1000);
-        crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation",crmPage.linkId);
+        crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation", crmPage.linkId);
     }
 
     @Test
-    @Parameters({"tag","countryCode","regulation"})
-    public void errorLanguageParameter(String tag, String countryCode,String regulation) throws IOException, AWTException {
+    @Parameters({"tag", "countryCode", "regulation"})
+    public void errorLanguageParameter(String tag, String countryCode, String regulation) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=plang:srcs,all"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=plang:srcs,all" + tag);
         fortradePage.languageParameter("Testq", "Testa", email, countryCode,
-                TestData.phoneNumberGenerator(),"-- Select --");
+                TestData.phoneNumberGenerator(), "-- Select --");
         fortradePage.assertBorderColor(fortradePage.languageField);
+        fortradePage.secondStepErrorMessage(1);
         fortradePage.takeScreenshot("Desired communication language - error " + regulation + " regulation", fortradePage.languageField);
     }
 
     @Test
     @Parameters({"tag", "regulation"})
     public void checkFCAPercentages(String tag, String regulation) throws IOException, AWTException {
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=plang:srcs,all"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.checkFCAPercentages("66% of retail investor accounts lose money when trading CFDs with this provider.");
-        fortradePage.clickDenyBtn();
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=plang:srcs,all" + tag);
+        fortradePage.checkFCAPercentages("71% of retail investor accounts lose money when trading CFDs with this provider.");
+        //fortradePage.clickDenyBtn();
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
     }
 
     @Test
     @Parameters({"tag", "regulation"})
     public void checkCysecPercentages(String tag, String regulation) throws IOException, AWTException {
-        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025/?fts=plang:srcs,all"+tag);
-        FortradePage fortradePage = new FortradePage(driver);
-        fortradePage.checkCysecPercentages("73.43% of retail investor accounts lose money when trading CFDs with this provider.");
-        fortradePage.clickDenyBtn();
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=plang:srcs,all" + tag);
+        fortradePage.checkCysecPercentages("70.91% of retail investor accounts lose money when trading CFDs with this provider.");
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
+    }
+
+    @Test
+    @Parameters({"countryCode", "regulation", "tag"})
+    public void dummyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
+                "All the above");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCustomTag("Dummy");
+        fortradePage.takeScreenshot("Custom Tag - Dummy " + regulation + " regulation", crmPage.customTag);
+    }
+    @Test
+    @Parameters({"countryCode", "tag", "regulation"})
+    public void anAlreadyRegisteredPhone(String countryCode, String tag, String regulation) throws IOException, AWTException {
+        String phoneNumber = TestData.phoneNumberGenerator();
+        fortradePage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), countryCode,
+                phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
+                "All the above");
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge"+tag);
+        fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
+                countryCode, phoneNumber);
+        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+    }
+
+    @Test
+    @Parameters({"countryCode", "tag", "regulation"})
+    public void anAlreadyRegisteredEmailAndPhone(String countryCode, String tag, String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
+                "All the above");
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge"+tag);
+        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
+                countryCode, phoneNumber);
+        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+    }
+
+    @Test
+    @Parameters({"countryCode", "regulation", "tag"})
+    public void invalidLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age(1)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000 – $250,000",
+                "None");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCustomTag("Invalid");
+        fortradePage.takeScreenshot("Custom Tag - Invalid " + regulation + " regulation", crmPage.customTag);
+    }
+
+    @Test
+    @Parameters({"countryCode", "regulation", "tag"})
+    public void emptyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://www.fortrade.com/minilps/en/day-trading-woman-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
+        fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000 – $250,000",
+                "All the above");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkCustomTag("");
+        fortradePage.takeScreenshot("Custom Tag - Empty " + regulation + " regulation", crmPage.customTag);
     }
 }

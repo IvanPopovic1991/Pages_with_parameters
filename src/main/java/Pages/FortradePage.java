@@ -367,7 +367,6 @@ public class FortradePage extends BasePage {
 
     // Australian Securities and Investments Commission (ASIC) link
     public String asicLink ="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchText=614683831&searchType=OrgAndBusNm&_adf.ctrl-state=1cbmeylzw8_15";
-    //"https://asic.gov.au/online-services/service-availability/";
 
     // Cyprus Securities and Exchange Commission (CySEC) link
     public String cysecLink = "https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/86639/";
