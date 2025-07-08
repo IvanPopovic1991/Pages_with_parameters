@@ -46,7 +46,7 @@ public class YopMail extends BasePage{
     @FindBy(xpath = "//span[contains(text(), 'Fortrade <ftadmin@fortrade.com>')]")
     public WebElement fortradeEmail;
 
-    @FindBy(xpath = "//div[contains(text(),'Welcome to Fortrade')]")
+    @FindBy(xpath = "//body//header//div[contains(text(),'Your Fortrade Demo Account Is Ready – Let’s GetStarted')]")
     public WebElement emailTitle;
 
     @FindBy(xpath = "//tr/td/b[contains(text(), 'Testq')]")
