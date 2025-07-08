@@ -357,7 +357,7 @@ public class FortradePage extends BasePage {
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 
     // Already have an account
-    public String alrHaveAccount = "https://ready.fortrade.com/";
+    public String alrHaveAccount = "https://authfe.fortrade.com/oauth/account/login?appId=41fedbf7-2f03-4aac-8d1d-e11cdbb22bf8";
 
     // Financial Conduct Authority (FCA) link
     public String fcaLink = "https://register.fca.org.uk/s/firm?id=001b000000NMdUwAAL";
