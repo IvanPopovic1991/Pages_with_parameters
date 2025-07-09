@@ -839,8 +839,15 @@ public class FortradePage extends BasePage {
     public void clickOnMailLink(String mailLink) {
         if (mailLink.equalsIgnoreCase("contactUs")) {
             clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");
+            clickElement(returnDisplayedElement(contactUsLinkBy), "contact us link");
         } else if (mailLink.equalsIgnoreCase("support")) {
             clickElement(returnDisplayedElement(supportLinkBy), "support link");
+            clickElement(returnDisplayedElement(supportLinkBy), "support link");
+        }
+        try {
+            Thread.sleep(10000);
+        } catch (Exception e){
+            System.out.println(e);
         }
         Assert.assertTrue(isOutlookRunning());
     }
