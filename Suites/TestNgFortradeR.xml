@@ -5,13 +5,9 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - day trading regular bright dlp landing page - FortradeR">
+    <test name="All test cases - commodities dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.DayTradingRegularBrightDlp">
-                <methods>
-                    <include name="checkingForLogoClickability"/>
-                </methods>
-            </class>
+            <class name="TestsFortradeR.CommoditiesDlp"/>
         </classes>
     </test>
 </suite>

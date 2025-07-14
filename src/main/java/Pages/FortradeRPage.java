@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -41,7 +38,7 @@ public class FortradeRPage extends BasePage {
     /*@FindBy(xpath = "//div[@name='Send']")
     public WebElement submitButton;*/
 
-    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    @FindBy(xpath = "//div[@name='Send']"/*"//input[contains(@class,'Send-Button') and @name='Send']"*/)
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -71,7 +68,7 @@ public class FortradeRPage extends BasePage {
     /*@FindBy(xpath = "//div[@name='ContinueBtn']"*//*"//input[@class='ContinueBtn-Submit']"*//*)
     public WebElement continueBtn;*/
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -669,4 +666,69 @@ public class FortradeRPage extends BasePage {
             System.out.println("Unexpected error: " + e.getMessage());
         }
     }
+
+    /*public boolean isTextVisibleAnywhereIgnoreCase(String text) {
+        String lower = text.toLowerCase();
+        List<WebElement> elements = driver.findElements(
+                By.xpath("//*[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lower + "')]")
+        );
+        for (WebElement el : elements) {
+            *//*if (el.isDisplayed()) {
+                System.out.println("This is the element that contains CFDs text" + el);
+                return true;
+            }*//*
+
+            String visibility = el.getCssValue("visibility");
+            String display = el.getCssValue("display");
+            String opacity = el.getCssValue("opacity");
+
+            if (el.isDisplayed()
+                    && !"hidden".equals(visibility)
+                    && !"none".equals(display)
+                    && !opacity.equals("0")) {
+                return true;
+                // It's likely truly visible
+            }
+
+
+        }
+        return false;
+    }*/
+
+    public boolean isTextVisibleAnywhereIgnoreCase(String text) {
+        String lower = text.toLowerCase();
+
+        // Find all elements that contain the text (case-insensitive)
+        List<WebElement> elements = driver.findElements(
+                By.xpath("//*[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), '" + lower + "')]")
+        );
+
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        for (WebElement el : elements) {
+            try {
+                // Make sure the element really contains the text (not just a partial DOM match)
+                if (!el.getText().toLowerCase().contains(lower)) continue;
+
+                // Check visibility of element and all its parent elements
+                boolean visible = (Boolean) js.executeScript(
+                        "while (arguments[0]) {" +
+                                "  const s = window.getComputedStyle(arguments[0]);" +
+                                "  if (s.display === 'none' || s.visibility === 'hidden' || s.opacity === '0') return false;" +
+                                "  arguments[0] = arguments[0].parentElement;" +
+                                "} return true;", el
+                );
+
+                // Also make sure the element has size and is displayed
+                if (visible && el.isDisplayed() && el.getSize().height > 0 && el.getSize().width > 0) {
+                    return true;
+                }
+            } catch (StaleElementReferenceException e) {
+                // Element became detached, skip it
+            }
+        }
+
+        return false;
+    }
+
 }
