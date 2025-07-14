@@ -25,7 +25,7 @@ public class FortradePage extends BasePage {
     /*@FindBy(xpath = "//div[contains(@class,'logo fcaClass  asicClass fscClass')]")
     public WebElement logo;*/
 
-    @FindBy(xpath = "//div[@class='logo fcaClass belarosClass asicClass fscClass']")
+    @FindBy(xpath = "//div[@class='logo fcaClass  asicClass fscClass']")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -49,14 +49,14 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    @FindBy(xpath = "//div[@name='Send']"/*"//input[contains(@class,'Send-Button') and @name='Send']"*/)
     public WebElement submitBtn;
 
     //It's only for Door dlp page
     /*@FindBy(xpath = "//div[@name='Send']")
     public WebElement submitBtn;*/
 
-    @FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
+    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']"/*"//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']"*/)
     public WebElement submitBtnAsic;
 
     //It's only for Door dlp page
@@ -108,7 +108,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
     public WebElement continueBtn;
 
     //Only for dlp
@@ -446,6 +446,11 @@ public class FortradePage extends BasePage {
 
     public void clickContinueBtn() {
         clickElement(continueBtn, "continue btn on 2nd widget");
+        try {
+            clickElement(continueBtn, "continue btn on 2nd widget");
+        }catch (Exception e){
+            System.out.println(e);
+        }
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
