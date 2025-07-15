@@ -49,14 +49,14 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//div[@name='Send']"/*"//input[contains(@class,'Send-Button') and @name='Send']"*/)
+    @FindBy(xpath = /*"//div[@name='Send']"*/"//input[contains(@class,'Send-Button') and @name='Send']")
     public WebElement submitBtn;
 
     //It's only for Door dlp page
     /*@FindBy(xpath = "//div[@name='Send']")
     public WebElement submitBtn;*/
 
-    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']"/*"//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']"*/)
+    @FindBy(xpath = /*"//div[@name='SendTermsAgreementAsic']"*/"//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
     public WebElement submitBtnAsic;
 
     //It's only for Door dlp page
@@ -108,7 +108,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
+    @FindBy(xpath = /*"//div[@name='ContinueBtn']"*/"//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
     //Only for dlp
