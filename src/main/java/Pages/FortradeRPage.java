@@ -25,7 +25,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(id = "LastName")
     public WebElement lastName;
 
-    @FindBy(xpath = "(//div[@class='LcWidgetTopWrapper ClField-Email lcFieldWrapper']//input[@name='Email'])[position()=2]")
+    @FindBy(xpath = "//input[@name='Email']")
     public WebElement email;
 
     @FindBy(xpath = "//input[@name='PhoneCountryCode']")
@@ -38,7 +38,7 @@ public class FortradeRPage extends BasePage {
     /*@FindBy(xpath = "//div[@name='Send']")
     public WebElement submitButton;*/
 
-    @FindBy(xpath = "//div[@name='Send']"/*"//input[contains(@class,'Send-Button') and @name='Send']"*/)
+    @FindBy(xpath =/* "//div[@name='Send']"*/"//input[contains(@class,'Send-Button') and @name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -65,10 +65,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    /*@FindBy(xpath = "//div[@name='ContinueBtn']"*//*"//input[@class='ContinueBtn-Submit']"*//*)
-    public WebElement continueBtn;*/
-
-    @FindBy(xpath = "//div[@name='ContinueBtn']"/*"//input[@class='ContinueBtn-Submit']"*/)
+    @FindBy(xpath = /*"//div[@name='ContinueBtn']"*/"//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
