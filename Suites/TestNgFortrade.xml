@@ -5,12 +5,12 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-<!--    <test name="Test cases - new day trading oldman 2025 dlp landing page - FSC regulation">
+    <test name="Test cases - bitcoin 1 dlp landing page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>
         <classes>
-            <class name="TestsFortrade.newDayTradingOldman2025Dlp">
+            <class name="TestsFortrade.bitcoin1Dlp">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
@@ -25,12 +25,12 @@
             </class>
         </classes>
     </test>
-    <test name="Test cases - new day trading oldman 2025 dlp landing page - FCA regulation">
+    <test name="Test cases - bitcoin 1 dlp landing page - FCA regulation">
         <parameter name="countryCode" value="44"/>
         <parameter name="regulation" value="FCA"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1006453&amp;regulation=FCA"/>
         <classes>
-            <class name="TestsFortrade.newDayTradingOldman2025Dlp">
+            <class name="TestsFortrade.bitcoin1Dlp">
                 <methods>
                     <exclude name="iirocRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
@@ -44,12 +44,12 @@
             </class>
         </classes>
     </test>
-    <test name="Test cases - new day trading oldman 2025 dlp landing page - iiroc regulation">
+    <test name="Test cases - bitcoin 1 dlp landing page - iiroc regulation">
         <parameter name="countryCode" value="1"/>
         <parameter name="regulation" value="iiroc"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>
         <classes>
-            <class name="TestsFortrade.newDayTradingOldman2025Dlp">
+            <class name="TestsFortrade.bitcoin1Dlp">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="asicRegulationTest"/>
@@ -61,16 +61,16 @@
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
-                 </methods>
+                </methods>
             </class>
         </classes>
-    </test>-->
-    <test name="Test cases - new day trading oldman 2025 dlp landing page - Asic regulation">
+    </test>
+    <test name="Test cases - bitcoin 1 dlp landing page - Asic regulation">
         <parameter name="countryCode" value="61"/>
         <parameter name="regulation" value="Asic"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>
         <classes>
-            <class name="TestsFortrade.newDayTradingOldman2025Dlp">
+            <class name="TestsFortrade.bitcoin1Dlp">
                 <methods>
                     <exclude name="fcaRegulationTest"/>
                     <exclude name="iirocRegulationTest"/>
@@ -85,11 +85,11 @@
             </class>
         </classes>
     </test>
-    <test name="Test cases - new day trading oldman 2025 dlp landing page - cysec regulation">
+    <test name="Test cases - bitcoin 1 dlp landing page - cysec regulation">
         <parameter name="regulation" value="cysec"/>
         <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>
         <classes>
-            <class name="TestsFortrade.newDayTradingOldman2025Dlp">
+            <class name="TestsFortrade.bitcoin1Dlp">
                 <methods>
                     <include name="contactUsLink"/>
                     <include name="loginRedirectionTest"/>
