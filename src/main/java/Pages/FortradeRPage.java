@@ -34,11 +34,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
     public WebElement phoneNumber;
 
-    //This is only for Door page
-    /*@FindBy(xpath = "//div[@name='Send']")
-    public WebElement submitButton;*/
-
-    @FindBy(xpath =/* "//div[@name='Send']"*/"//input[contains(@class,'Send-Button') and @name='Send']")
+    @FindBy(xpath ="//input[@name='Send']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -65,7 +61,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = /*"//div[@name='ContinueBtn']"*/"//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -101,9 +97,6 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='nav-button' and text()='Get Started']")
     public WebElement getStartedBtn;
 
-    /*@FindBy(xpath = "//select[@name='LinkId']")
-    public WebElement languageField;*/
-
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
@@ -119,9 +112,6 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='startTradingButton']")
     protected WebElement usePasswordBtn;
 
-    /*@FindBy(xpath = "//div[@class='needHelpDiv']/div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
-    public WebElement alreadyHaveAnAccountLink;*/
-
     @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
     public WebElement alreadyHaveAnAccountLink;
 
@@ -130,10 +120,6 @@ public class FortradeRPage extends BasePage {
     public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
 
     public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
-
-/*
-    public By contactUsLinkBy = By.xpath("//div[@class='needHelpDiv']/div/a[contains(text(), 'Contact Us')]");
-*/
 
     public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
@@ -150,7 +136,6 @@ public class FortradeRPage extends BasePage {
     public By footerPrivacyPolicyLinkBy = By.xpath("//div[@class='fscClass']//a[contains(text(),'Privacy policy')]");
 
     public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
-
 
     String[] errorMessages = {"Please enter all your given first name(s)",
             "Please enter your last name in alphabetic characters",
