@@ -258,6 +258,7 @@ public class BasePage {
             wait.until(ExpectedConditions.visibilityOf(element));
             wait.until(ExpectedConditions.elementToBeClickable(element));
             String linkUrl = readAttribute(element, "href", "attribute url");
+            System.out.println("This is the url from the right click element - href: " + linkUrl);
             JavascriptExecutor js = (JavascriptExecutor) driver;
             js.executeScript("window.open(arguments[0], '_blank');", linkUrl);
             List<String> tabs = new ArrayList<>(driver.getWindowHandles());
