@@ -5,9 +5,9 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - gold regular dlp landing page - FortradeR">
+    <test name="All test cases - commodities dark dlp landing page - FortradeR">
         <classes>
-            <class name="TestsFortradeR.GoldRegularDlp"/>
+            <class name="TestsFortradeR.CommoditiesDarkDlp"/>
         </classes>
     </test>
 </suite>
