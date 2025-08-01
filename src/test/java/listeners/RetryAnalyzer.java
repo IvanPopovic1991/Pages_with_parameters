@@ -20,7 +20,16 @@ public class RetryAnalyzer implements IRetryAnalyzer {
         if (!result.isSuccess()) {
             if (count < maxCount) {
                 count++;
+
+                // Log the first failure reason
+                Throwable cause = result.getThrowable();
+                if (cause != null) {
+                    System.out.println("🔁 RETRYING: Test failed on first attempt with error: " + cause.getMessage());
+                    cause.printStackTrace(); // Optional: to print the full stack trace
+                }
+
                 return true;
+
             } else {
                 return false;
             }

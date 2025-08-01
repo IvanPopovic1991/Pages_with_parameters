@@ -22,7 +22,7 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='logo fcaClass asicClass fscClass']")
+    @FindBy(xpath = "//div[@class='logo fcaClass  asicClass fscClass']")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -46,10 +46,10 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[@name='Send']")
+    @FindBy(xpath = "//div[@name='Send']")
     public WebElement submitBtn;
 
-    @FindBy(xpath = "//input[@name='SendTermsAgreementAsic']")
+    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
@@ -94,7 +94,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//div[@name='ContinueBtn']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")
@@ -154,11 +154,11 @@ public class FortradePage extends BasePage {
 
     public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//a[@class='stockLPTag' and @href='https://ready.fortrade.com/?language=en#login']");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//a[@class='stockLPTag' and contains(@href, 'https://ready.fortrade.com/?lang')]");
 
     public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
-    public By facebookLinkBy = By.xpath("//img[@alt='facebook']");
+    public By facebookLinkBy = By.xpath("//a[@class='facebook-links']");
 
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
 
@@ -420,11 +420,6 @@ public class FortradePage extends BasePage {
 
     public void clickContinueBtn() {
         clickElement(continueBtn, "continue btn on 2nd widget");
-        try {
-            clickElement(continueBtn, "continue btn on 2nd widget");
-        }catch (Exception e){
-            System.out.println(e);
-        }
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
@@ -569,6 +564,7 @@ public class FortradePage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         incorrectToken(tokenField0Value,tokenField1Value,tokenField2Value,tokenField3Value);
+        scrollToAnElement(continueBtn);
         clickContinueBtn();
     }
 
