@@ -426,7 +426,7 @@ public class newDayTradingOldman2025Dlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void invalidLeadRegistration() throws IOException, AWTException {
+    public void invalidLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrader.com/minilps/en/new-day-trading-oldman-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age(1)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
@@ -438,7 +438,7 @@ public class newDayTradingOldman2025Dlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void emptyLeadRegistration() throws IOException, AWTException {
+    public void emptyLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrader.com/minilps/en/new-day-trading-oldman-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,"381",

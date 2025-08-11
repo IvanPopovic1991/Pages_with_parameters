@@ -567,7 +567,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
 
     @Test
     @Parameters({"countryCode", "regulation", "tag"})
-    public void dummyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+    public void dummyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=annual-saving-knowledge-age&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
@@ -607,7 +607,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
 
     @Test
     @Parameters({"countryCode", "regulation", "tag"})
-    public void invalidLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+    public void invalidLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age(1)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
@@ -620,7 +620,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
 
     @Test
     @Parameters({"countryCode", "regulation", "tag"})
-    public void emptyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+    public void emptyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=age-annual-saving-knowledge&ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,

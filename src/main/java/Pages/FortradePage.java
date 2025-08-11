@@ -22,7 +22,7 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='logo fcaClass  asicClass fscClass']")
+    @FindBy(xpath = "//div[@class='logo fcaClass asicClass fscClass']")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -46,10 +46,10 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//div[@name='Send']")
+    @FindBy(xpath = "//div[@class='button2']")
     public WebElement submitBtn;
 
-    @FindBy(xpath = "//div[@name='SendTermsAgreementAsic']")
+    @FindBy(xpath = "//div[@class='button3']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
@@ -94,7 +94,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//div[@name='ContinueBtn']")
+    @FindBy(xpath = "//div[@class='button6']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")
@@ -154,11 +154,11 @@ public class FortradePage extends BasePage {
 
     public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//a[@class='stockLPTag' and contains(@href, 'https://ready.fortrade.com/?lang')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("(//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')])[1]");
 
     public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
-    public By facebookLinkBy = By.xpath("//a[@class='facebook-links']");
+    public By facebookLinkBy = By.xpath(/*"//a[@class='facebook-links']*/"//div[@class='socials-div']//div[1]");
 
     public By instagramLinkBy = By.xpath("//a[@href='https://www.instagram.com/fortrade_online_trading/?hl=en']");
 
@@ -430,6 +430,7 @@ public class FortradePage extends BasePage {
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         /*clickDenyBtn();*/
+        scrollToAnElementBy(By.xpath("//div[@class='button6']"));
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);

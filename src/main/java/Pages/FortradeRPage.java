@@ -34,7 +34,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath ="//div[@name='Send']")
+    @FindBy(xpath ="//div[@class='button2']")
     public WebElement submitButton;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
@@ -61,7 +61,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//div[@name='ContinueBtn']")
+    @FindBy(xpath = "//div[@class='button6']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -112,7 +112,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='startTradingButton']")
     protected WebElement usePasswordBtn;
 
-    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')]")
+    @FindBy(xpath = "(//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')])[1]")
     public WebElement alreadyHaveAnAccountLink;
 
     public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Privacy Policy')]");
@@ -155,7 +155,7 @@ public class FortradeRPage extends BasePage {
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 
     // Already have an account link
-    public String alrHaveAccount = "https://pro.fortrade.com/";
+    public String alrHaveAccount = "https://authfe.fortrade.com/oauth/account/login?appId=41fedbf7-2f03-4aac-8d1d-e11cdbb22bf8";
 
     // Privacy policy document Footer link
     public String privacyPolicyFSCFooter = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
