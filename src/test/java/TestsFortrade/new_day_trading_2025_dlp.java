@@ -562,7 +562,7 @@ public class new_day_trading_2025_dlp extends BaseTestFortrade {
 
     @Test
     @Parameters({"countryCode", "regulation", "tag"})
-    public void dummyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException {
+    public void dummyLeadRegistration(String countryCode, String regulation, String tag) throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://www.fortrade.com/minilps/en/new-day-trading-2025-dlp/?fts=annual-saving-knowledge-age&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]" + tag);

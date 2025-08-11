@@ -199,9 +199,12 @@ public class CrmPage extends BasePage {
         };
     }
 
-    public void checkCustomTag(String expectedValue){
+    public void checkCustomTag(String expectedValue) throws InterruptedException {
         clickElement(menuBtn, "menu button");
         clickElement(envAndMarSec, "environment and marketing section button");
+        Thread.sleep(1500);
+        scrollToAnElement(customTag);
+        Thread.sleep(1500);
         String actualValue = readAttribute(customTag,"title","The value of custom tag");
         System.out.println(actualValue);
         Assert.assertEquals(actualValue,expectedValue);
