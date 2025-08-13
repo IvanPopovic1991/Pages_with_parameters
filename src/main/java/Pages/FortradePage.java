@@ -22,7 +22,7 @@ public class FortradePage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @FindBy(xpath = "//div[@class='logo fcaClass asicClass fscClass']")
+    @FindBy(xpath = "//div[@class='logo fcaClass belarosClass asicClass fscClass']")
     public WebElement logo;
 
     @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
@@ -46,10 +46,10 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Phone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//div[@class='button2']")
+    @FindBy(xpath = "//input[@class='Send-Button Send-Button-Step1']")
     public WebElement submitBtn;
 
-    @FindBy(xpath = "//div[@class='button3']")
+    @FindBy(xpath = "//input[@class='SendTermsAgreementAsic-Submit Send-Button-Step1']")
     public WebElement submitBtnAsic;
 
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
@@ -94,7 +94,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
     public WebElement languageField;
 
-    @FindBy(xpath = "//div[@class='button6']")
+    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")
@@ -430,7 +430,7 @@ public class FortradePage extends BasePage {
         enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         /*clickDenyBtn();*/
-        scrollToAnElementBy(By.xpath("//div[@class='button6']"));
+        //scrollToAnElementBy(By.xpath("//div[@class='button6']"));
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
@@ -565,7 +565,7 @@ public class FortradePage extends BasePage {
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         incorrectToken(tokenField0Value,tokenField1Value,tokenField2Value,tokenField3Value);
-        scrollToAnElement(continueBtn);
+        //scrollToAnElement(continueBtn);
         clickContinueBtn();
     }
 
