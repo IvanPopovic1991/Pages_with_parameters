@@ -206,7 +206,7 @@ public class litecoin1dlp extends BaseTestFortrade{
                 "All the above");
         driver.get("https://www.fortrade.com/minilps/en/litecoin1-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
     @Test

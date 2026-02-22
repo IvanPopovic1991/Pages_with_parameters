@@ -206,7 +206,7 @@ public class EducationDlp extends BaseTestFortrade {
                 "All the above");
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/education-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
     @Test
@@ -585,7 +585,7 @@ public class EducationDlp extends BaseTestFortrade {
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/education-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
     }
 
     @Test
@@ -599,7 +599,7 @@ public class EducationDlp extends BaseTestFortrade {
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/education-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
     }
 
     @Test

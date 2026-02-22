@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Penny Stocks Pages">
+    <listeners>
+        <listener class-name="listeners.ScreenshotListener"/>
+        <listener class-name="listeners.Transform"/>
+    </listeners>
+    <test name="All test cases - dlp-pro-dark-en landing page - PennyStocks">
+        <classes>
+            <class name="TestsPenny.ProDarkEn"/>
+        </classes>
+    </test>
+</suite>

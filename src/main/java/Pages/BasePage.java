@@ -79,6 +79,11 @@ public class BasePage {
 
             Select select = new Select(element);
             select.selectByVisibleText(text);
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript(
+                    "arguments[0].dispatchEvent(new Event('change', { bubbles: true }));",
+                    element
+            );
             System.out.println("Selected " + text + " from " + log + " field");
         } catch (StaleElementReferenceException e) {
             Select select = new Select(element);
@@ -339,7 +344,7 @@ public class BasePage {
         try {
             try {
                 Thread.sleep(2000);
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e);
             }
             // Use ProcessBuilder to run the "tasklist" command
@@ -398,5 +403,4 @@ public class BasePage {
             System.err.println("Error while retrieving task list: " + e.getMessage());
         }
     }
-
 }

@@ -192,7 +192,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
                 "All the above");
         driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
     @Test
@@ -511,7 +511,7 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
     }
 
     @Test
@@ -525,6 +525,6 @@ public class euroDollarTradingDlp extends BaseTestFortrade{
         driver.get("https://www.fortrade.com/minilps/en/euro-dollar-trading-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
     }
 }

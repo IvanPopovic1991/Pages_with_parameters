@@ -207,7 +207,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
                 "All the above");
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
     @Test
@@ -588,7 +588,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
     }
 
     @Test
@@ -602,7 +602,7 @@ public class dayTradingWoman2_2025Dlp extends BaseTestFortrade {
         driver.get("https://www.fortrade.com/minilps/en/day-trading-woman2-2025-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
     }
 
     @Test

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="FortradeR Pages">
+<suite name="KapitalRs Pages">
     <listeners>
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="All test cases - pro-dark-dlp landing page - KapitalRS">
+    <test name="All test cases - pro-dark-dlp-sr landing page - KapitalRS">
         <classes>
-            <class name="TestsKapitalRS.pro_dark_dlp">
-                <methods>
-                    <include name="emailIsReceivedSuccessfully"/>
-                </methods>
-            </class>
+            <class name="TestsKapitalRS.proDarkSrDlp"/>
         </classes>
     </test>
 </suite>
