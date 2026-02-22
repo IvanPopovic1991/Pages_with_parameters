@@ -25,32 +25,39 @@ public class FortradeRPage extends BasePage {
     @FindBy(id = "LastName")
     public WebElement lastName;
 
-    @FindBy(xpath = "//input[@name='Email']")
+    @FindBy(xpath = "//input[@id='EmailAddress']")
     public WebElement email;
 
-    @FindBy(xpath = "//input[@name='PhoneCountryCode']")
+    @FindBy(xpath = "//input[@id='Prephone']")
     public WebElement countryCode;
 
-    @FindBy(xpath = "//div[@class='phoneWrapper']//input[@placeholder='Phone']")
+    @FindBy(xpath = "//input[@id='Telephone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath ="//input[@class='Send-Button Send-Button-Step1']")
+    @FindBy(xpath ="//button[@id='next-stage-btn']")
     public WebElement submitButton;
+
+    @FindBy(xpath = "//button[@id='main-submit-btn']//span[contains(text(),'GET STARTED')]")
+    public WebElement btnSubmit1stStep;
 
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
     public WebElement alrdRegEmailPopUp;
 
-    @FindBy(xpath = "//div[@class='errorValidationIn']")
+    @FindBy(xpath="//span[text()='Email or phone already exists. Please use a different email address or phone number.']")
+    WebElement alrRegisteredEmail;
+
+    @FindBy(xpath = "//span[text()='Must be a valid international phone number']")
     public WebElement countryCodeErrorMessage;
 
-    @FindBy(xpath = "//div[contains(@class,'logo')]")
+    @FindBy(xpath = "//div[contains(@class,'logo-fortrade')]")
     public WebElement fortradeLogo;
 
-    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Already have an account?')]")
+    @FindBy(xpath = "//a[contains(text(),'Already have an account?')]")
     public WebElement loginToFortrade;
 
-    @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select")
+    @FindBy(xpath = "//select[@name='AgeSelect']")
     public WebElement age;
+    // //div[@class='LcWidgetTopWrapper ClField-Age lcFieldWrapper']//select
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-EstimatedAnnualIncome lcFieldWrapper']//select")
     public WebElement annual;
@@ -61,8 +68,11 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//button[@id='main-submit-btn']")
     public WebElement continueBtn;
+
+    @FindBy(xpath = "//div[@class='exitButton']")
+    WebElement btnNotSerbianRes;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
     public WebElement menuBtn;
@@ -88,13 +98,13 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//label[@name='SentAgainLabel']")
     public WebElement codeIsSent;
 
-    @FindBy(xpath = "//div[@class='formErrorMessage']")
+    @FindBy(xpath = "//span[@class='smsErrorMessage']")
     public WebElement incorrectTokenMsg;
 
     @FindBy(xpath="//input[@id='Details-Edit-Btn']")
     public WebElement editTokenBtn;
 
-    @FindBy(xpath = "//div[@class='nav-button' and text()='Get Started']")
+    @FindBy(xpath = "//button[@id='main-submit-btn']")
     public WebElement getStartedBtn;
 
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-PreferredLanguage lcFieldWrapper']//select")
@@ -109,17 +119,17 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='exitButton']")
     public WebElement iAmNotSerbianRes;
 
-    @FindBy(xpath = "//div[@class='startTradingButton']")
+    @FindBy(xpath = "//div[@id='startTradingButton' and text()='Use Password']")
     protected WebElement usePasswordBtn;
 
-    @FindBy(xpath = "(//div[@class='alreadyHaveAcc']//a[contains(text(), 'Already have an account?')])[1]")
+    @FindBy(xpath = "//a[contains(text(), 'Already have an account?')]")
     public WebElement alreadyHaveAnAccountLink;
 
-    public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Privacy Policy')]");
+    public By privacyPolicyLinkBy = By.xpath("//a[contains(text(), 'Privacy Policy')]");
 
-    public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Terms and Conditions')]");
+    public By termsAndConditionsLinkBy = By.xpath("//a[contains(text(), 'Terms and Conditions')]");
 
-    public By clickHereLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='click here']");
+    public By clickHereLinkBy = By.xpath("//a[text()='click here']");
 
     public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
 
@@ -137,16 +147,16 @@ public class FortradeRPage extends BasePage {
 
     public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
 
-    String[] errorMessages = {"Please enter all your given first name(s)",
-            "Please enter your last name in alphabetic characters",
-            "Invalid email format.",
-            "Invalid phone format."};
+    String[] errorMessages = {"Please enter all your given first name(s).",
+            "Please enter your last name.",
+            "Must be a valid email address.",
+            "Must be a valid international phone number"};
 
-    String[] sameNamesErrorMessages = {"Your first name must be different from your last name",
-            "Your first name must be different from your last name"};
+    String[] sameNamesErrorMessages = {"First Name and Last Name cannot be equal.",
+            "First Name and Last Name cannot be equal."};
 
     // Privacy Policy document link
-    public String privacyPolicyFSC = "https://www.fortrade.com/fortrade-ma-privacy-policy/";
+    public String privacyPolicyFSC = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
 
     // Terms and conditions document link
     public String termsAndConditionsFSC = "https://www.fortrade.com/fortrade-mauritius-client-agreement/";
@@ -189,6 +199,10 @@ public class FortradeRPage extends BasePage {
         typeText(phoneNumber, phoneNumberData, "phone number");
     }
 
+    public void clickFirstStepBtn(){
+        clickElement(btnSubmit1stStep,"submit button on the first step");
+    }
+
     public void clickSubmitButton() {
         clickElement(submitButton, "get started button");
     }
@@ -222,7 +236,7 @@ public class FortradeRPage extends BasePage {
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
-            , String ageData, String annualData, String savingData, String knowledgeData) {
+            , String ageData, String annualData, String savingData, String knowledgeData, String language) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -233,11 +247,8 @@ public class FortradeRPage extends BasePage {
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
+        selectLanguage(language);
         clickContinueBtn();
-        /*clickDenyBtn();*/
-        clickNotSerbResBtn();
-        clickUsePassBtn();
-        clickMenuBtn();
     }
 
     public void ftsQueryParameter(String url, String firstNameData, String lastNameData, String emailData, String countryCodeData,
@@ -331,7 +342,7 @@ public class FortradeRPage extends BasePage {
     }
 
     public void selectLanguage(String languageData){
-        clickElement(languageField,"Desired communication language");
+        //clickElement(languageField,"Desired communication language");
         selectFromDropdown(languageField,languageData,"Desired communication language");
     }
 
@@ -397,14 +408,14 @@ public class FortradeRPage extends BasePage {
      */
     public void assertErrorMessages() {
         for (int i = 1; i <= 4; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidationIn'])[position()=number]".replace("number", String.valueOf(i))),
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))),
                     "error message " + errorMessages[i - 1]), errorMessages[i - 1]);
         }
     }
 
     public void assertSameNameErrorMsgs() {
         for (int i = 1; i <= 2; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidationIn'])[position()=number]".replace("number", String.valueOf(i))),
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))),
                     "error message " + sameNamesErrorMessages[i - 1]), sameNamesErrorMessages[i - 1]);
         }
     }
@@ -461,7 +472,11 @@ public class FortradeRPage extends BasePage {
         Assert.assertTrue(driver.getCurrentUrl().contains(url));
     }
 
-    public void checkRegulation() throws IOException, AWTException {
+    public void checkRegulation() throws IOException, AWTException, InterruptedException {
+        clickNotSerbianRes();
+        Thread.sleep(2000);
+        clickUsePassBtn();
+        clickMenuBtn();
         String actualText = getText(regulationMsg, "regulation text");
         Assert.assertEquals(actualText, "Broker: Fortrade (Mauritius) Ltd (FSC)");
         new BasePage(driver).takeScreenshot("Broker Fortrade Mauritius Ltd FSC - successfully registered demo account - FortradeR", regulationMsg);
@@ -476,12 +491,20 @@ public class FortradeRPage extends BasePage {
         clickSubmitButton();
     }
 
-    private String expTextForPopUp = "Invalid email. Please try another or proceed to log in. If needed, reset your " +
-            "password in case it's forgotten.";
+    public void registerAccount1Step(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickFirstStepBtn();
+    }
+
+    private String expTextForPopUp = "Email or phone already exists. Please use a different email address or phone number.";
 
     public void assertPopUpForAlreadyRegisteredAccount(String fileName) throws IOException, AWTException {
-        Assert.assertEquals(getTextBy(alrdRegEmailPopUp, "alrdRegEmailPopUp"), expTextForPopUp);
-        new BasePage(driver).takeScreenshot(fileName, alrdRegEmailPopUp);
+        Assert.assertEquals(getTextBy(alrRegisteredEmail, "alrdRegEmailPopUp"), expTextForPopUp);
+        new BasePage(driver).takeScreenshot(fileName, alrRegisteredEmail);
     }
 
     public void checkLogoClickability(String url) {
@@ -520,7 +543,7 @@ public class FortradeRPage extends BasePage {
             typeText(countryCode,"01312148","country code field");
             clickElement(phoneNumber, "phone number field");
             Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-                    , "Please enter a valid country code");
+                    , "Must be a valid international phone number");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -586,7 +609,7 @@ public class FortradeRPage extends BasePage {
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
         Thread.sleep(2000);
         for (int i = 1; i <= numberOfParameters; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidationIn'])[position()=number]".replace("number", String.valueOf(i))),
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='selectErrorMessage'])[position()=number]".replace("number", String.valueOf(i))),
                     "error message " + "Please select an option from the dropdown list."), "Please select an option from the dropdown list.");
         }
     }
@@ -712,5 +735,7 @@ public class FortradeRPage extends BasePage {
 
         return false;
     }
-
+    public void clickNotSerbianRes(){
+        clickElement(btnNotSerbianRes,"I am not Serbian resident");
+    }
 }

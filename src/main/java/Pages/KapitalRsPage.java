@@ -18,7 +18,7 @@ public class KapitalRsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//div[contains(@class,'logo')]")
+    @FindBy(xpath = "//div[contains(@class,'logo-img-kapitalrs')]")
     public WebElement logo;
 
     @FindBy(xpath = "//input[@name='FirstName']")
@@ -27,19 +27,19 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//input[@name='LastName']")
     public WebElement lastName;
 
-    @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-Email lcFieldWrapper']//input[@name='Email']")
+    @FindBy(xpath = "//input[@name='EmailAddress']")
     public WebElement email;
 
-    @FindBy(xpath = "//input[@name='PhoneCountryCode']")
+    @FindBy(xpath = "//input[@name='Prephone']")
     public WebElement countryCode;
 
-    @FindBy(xpath = "//input[@name='Phone']")
+    @FindBy(xpath = "//input[@name='Telephone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//input[contains(@class,'Send-Button') and @name='Send']")
+    @FindBy(xpath = "//[@id='main-submit-btn']")
     public WebElement submitBtn;
 
-    @FindBy(xpath = "//div[@class='alreadyHaveAcc']//a[contains(text(),'Već imate nalog?')]")
+    @FindBy(xpath = "//a[contains(text(),'Već imate nalog?')]")
     public WebElement login;
 
     @FindBy(xpath = "//div[@data-cmd='menu']")
@@ -66,7 +66,7 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//div[@class='LcWidgetTopWrapper ClField-KnowledgeOfTrading lcFieldWrapper']//select")
     public WebElement knowledge;
 
-    @FindBy(xpath = "//input[@class='ContinueBtn-Submit']")
+    @FindBy(xpath = "//button[@id='main-submit-btn']")
     public WebElement continueBtn;
 
     @FindBy(xpath = "//input[@name='Token0']")
@@ -81,7 +81,7 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//input[@name='Token3']")
     public WebElement tokenField3;
 
-    @FindBy(xpath = "//div[@class='formErrorMessage']")
+    @FindBy(xpath = "//span[@class='smsErrorMessage']")
     public WebElement incorrectTokenMsg;
 
     @FindBy(xpath = "//input[@class='TokenBack-Button']")
@@ -93,21 +93,21 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//input[@id='Details-Edit-Btn']")
     public WebElement editTokenBtn;
 
-    @FindBy(xpath = "//select[@name='LinkId']")
+    @FindBy(xpath = "//select[@name='PreferredLanguage']")
     public WebElement languageField;
 
-    @FindBy(xpath = "(//div[@class='errorValidationIn'])[last()]")
+    @FindBy(xpath = "//span[@class='errorMessage' and contains(text(),'Nevažeći format telefona.')]")
     public WebElement countryCodeErrorMessage;
 
-    public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Politiku privatnosti']");
+    public By privacyPolicyLinkBy = By.xpath("//a[text()='Politiku privatnosti']");
 
-    public By termsAndConditionsLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[contains(text(), 'Uslove i odredbe')]");
+    public By termsAndConditionsLinkBy = By.xpath("//a[contains(text(), 'Uslove i odredbe')]");
 
-    public By clickHereLink = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='kliknite ovde']");
+    public By clickHereLink = By.xpath("//a[text()='kliknite ovde']");
 
     public By fcaRegulationLinkBy = By.xpath("//a[text()='609970']");
 
-    public By asicRegulationLinkBy = By.xpath("//a[text()='493520']");
+    public By asicRegulationLinkBy = By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520.']");
 
     public By fscRegulationLinkBy = By.xpath("//a[text()='GB21026472']");
 
@@ -115,9 +115,9 @@ public class KapitalRsPage extends BasePage {
 
     public By footerPrivacyPolicyLinkBy = By.xpath("//a[contains(text(), 'Politika o zaštiti privatnosti')]");
 
-    public By alreadyHaveAnAccountLinkBy = By.xpath("//*[@class='alreadyHaveAcc']//a[contains(text(), 'Već imate nalog?')]");
+    public By alreadyHaveAnAccountLinkBy = By.xpath("//a[contains(text(), 'Već imate nalog?')]");
 
-    public By contactUsLinkBy = By.xpath("//*[@class='needHelp']//a[contains(text(), 'Kontakt')]");
+    public By contactUsLinkBy = By.xpath("//a[contains(text(), 'Kontakt')]");
 
     // Privacy Policy document link
     public String privacyPolicyFSC = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
@@ -145,7 +145,7 @@ public class KapitalRsPage extends BasePage {
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 
     // Already have an account
-    public String alrHaveAccount = "https://ready.fortrade.com/";
+    public String alrHaveAccount = "https://authfe.kapitalrs.com/oauth/account/login?appId=37d39cd7-9cd9-4aaa-b43d-e78bdad000ab";
 
     // Financial Conduct Authority (FCA) link
     public String fcaLink = "https://register.fca.org.uk/s/firm?id=001b000000NMdUwAAL";
@@ -157,27 +157,27 @@ public class KapitalRsPage extends BasePage {
     public String fscLink = "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr";
 
     public void enterFirstName(String firstNameData) {
-        typeText(firstName, firstNameData, "first name");
+        typeText(firstName, firstNameData, "ime");
     }
 
     public void enterLastName(String lastNameData) {
-        typeText(lastName, lastNameData, "last name");
+        typeText(lastName, lastNameData, "prezime");
     }
 
     public void enterEmail(String emailData) {
-        typeText(email, emailData, "email name");
+        typeText(email, emailData, "imejl");
     }
 
     public void enterCountryCode(String countryCodeData) {
-        typeText(countryCode, countryCodeData, "country code");
+        typeText(countryCode, countryCodeData, "pozivni broj");
     }
 
     public void enterPhoneNumber(String phoneNumberData) {
-        typeText(phoneNumber, phoneNumberData, "phone number");
+        typeText(phoneNumber, phoneNumberData, "broj telefona");
     }
 
     public void clickOnSubmitButton() {
-            clickElement(submitBtn, "Get Started button");
+            clickElement(submitBtn, "Započnite button");
         }
 
     public void selectAge(String ageData) {
@@ -382,7 +382,7 @@ public class KapitalRsPage extends BasePage {
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
         Thread.sleep(2000);
         for (int i = 1; i <= numberOfParameters; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidation'])[position()=number]".replace("number", String.valueOf(i))),
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))),
                     "error message " + "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste"), "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste");
         }
     }
@@ -469,7 +469,7 @@ public class KapitalRsPage extends BasePage {
             typeString(robot, wrongCountryCodeDataText);
             clickElement(phoneNumber, "phone number field");
             Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-                    , "Please enter a valid country code");
+                    , "Nevažeći format telefona.");
         } catch (Exception e) {
             System.out.println(e);
         }

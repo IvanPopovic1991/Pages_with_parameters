@@ -28,11 +28,11 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
     }
 
     @Test
-    public void demoAccountRegistration() throws IOException, AWTException {
+    public void demoAccountRegistration() throws IOException, AWTException, InterruptedException {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         //fortradeRPage.clickDenyBtn();
         fortradeRPage.clickNotSerbResBtn();
         try {
@@ -48,12 +48,12 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
     @Test
     public void checkingTagsInTheCrm() throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/day-trading-woman2-2025/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrader.com/minilps/en/day-trading-woman2-2025/?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above","English");
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details Fortrader page", crmPage.accFullNameCrm);
@@ -193,8 +193,8 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/day-trading-woman2-2025/?fts=age-annual-saving-knowledge");
+                "$50,000 – $100,000", "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/day-trading-woman2-2025/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
     }
@@ -245,7 +245,7 @@ public class new_Day_Trading_Woman_2 extends BaseTestFortradeR {
         FortradeRPage fortradeRPage = new FortradeRPage(driver);
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         driver.get("https://yopmail.com/en/");
         YopMail yopMail = new YopMail(driver);
         yopMail.findEmail(email);

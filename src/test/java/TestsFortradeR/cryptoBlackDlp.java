@@ -31,10 +31,10 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void demoAccountRegistration() throws IOException, AWTException {
+    public void demoAccountRegistration() throws IOException, AWTException, InterruptedException {
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         fortradeRPage.checkRegulation();
         fortradeRPage.takeScreenshot("Broker Fortrade Mauritius Ltd FSC - successfully registered demo account - FortradeR", fortradeRPage.regulationMsg);
     }
@@ -42,11 +42,11 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
     @Test
     public void checkingTagsInTheCrm() throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above","English");
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details Fortrader page", crmPage.accFullNameCrm);
         crmPage.checkCrmTags();
@@ -163,8 +163,8 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
         String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge");
+                "$50,000 – $100,000", "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
     }
@@ -196,7 +196,7 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         driver.get("https://www.mailinator.com/");
         Mailinator mailinator = new Mailinator(driver);
         mailinator.findEmail(email);
@@ -365,8 +365,8 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
         String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "381",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
-                "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge");
+                "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up");
@@ -378,8 +378,8 @@ public class cryptoBlackDlp extends BaseTestFortradeR {
         String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
-                "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge");
+                "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/crypto-black-form-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email,
                 "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up");

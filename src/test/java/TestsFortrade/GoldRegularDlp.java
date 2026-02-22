@@ -206,7 +206,7 @@ public class GoldRegularDlp extends BaseTestFortrade {
                 "All the above");
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/gold-regular-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
     @Test
@@ -555,7 +555,7 @@ public class GoldRegularDlp extends BaseTestFortrade {
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/gold-regular-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
     }
 
     @Test
@@ -569,7 +569,7 @@ public class GoldRegularDlp extends BaseTestFortrade {
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/gold-regular-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
     }
 
     @Test

@@ -207,7 +207,7 @@ public class Commodities2DarkNewLongAiDlp extends BaseTestFortrade {
                 "All the above");
         driver.get("https://www.fortrade.com/minilps/en/commodities2-dark-new-long-ai-dlp/?fts=age-annual-saving-knowledge" + tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - error message " + regulation);
     }
 
     @Test
@@ -560,7 +560,7 @@ public class Commodities2DarkNewLongAiDlp extends BaseTestFortrade {
     @Parameters({"tag", "regulation"})
     public void checkCysecPercentages(String tag, String regulation) throws IOException, AWTException {
         driver.get("https://www.fortrade.com/minilps/en/commodities2-dark-new-long-ai-dlp/?fts=plang:srcs,all" + tag);
-        fortradePage.checkCysecPercentages("70.41% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.checkCysecPercentages("70.88% % of retail investor accounts lose money when trading CFDs with this provider.");
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
     }
 
@@ -587,7 +587,7 @@ public class Commodities2DarkNewLongAiDlp extends BaseTestFortrade {
         driver.get("https://www.fortrade.com/minilps/en/commodities2-dark-new-long-ai-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - error message " + regulation);
     }
 
     @Test
@@ -601,6 +601,6 @@ public class Commodities2DarkNewLongAiDlp extends BaseTestFortrade {
         driver.get("https://www.fortrade.com/minilps/en/commodities2-dark-new-long-ai-dlp/?fts=age-annual-saving-knowledge"+tag);
         fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
                 countryCode, phoneNumber);
-        fortradePage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
+        fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - error message " + regulation);
     }
 }

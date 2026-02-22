@@ -32,10 +32,10 @@ public class allBlueDlp extends BaseTestFortradeR {
     }
 
     @Test
-    public void demoAccountRegistration() throws IOException, AWTException {
+    public void demoAccountRegistration() throws IOException, AWTException, InterruptedException {
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         fortradeRPage.checkRegulation();
         fortradeRPage.takeScreenshot("Successfully demo account registration - FortradeR", fortradeRPage.regulationMsg);
     }
@@ -43,11 +43,11 @@ public class allBlueDlp extends BaseTestFortradeR {
     @Test
     public void checkingTagsInTheCrm() throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge&tg=ivanA" +
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above","English");
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details Fortrader page", crmPage.accFullNameCrm);
         crmPage.checkCrmTags();
@@ -172,8 +172,8 @@ public class allBlueDlp extends BaseTestFortradeR {
         String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge");
+                "$50,000 – $100,000", "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
     }
@@ -205,7 +205,7 @@ public class allBlueDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
                 "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "All the above");
+                "$50,000 – $100,000", "All the above","English");
         driver.get("https://yopmail.com/en/");
         YopMail yopMail = new YopMail(driver);
         yopMail.findEmail(email);
@@ -388,8 +388,8 @@ public class allBlueDlp extends BaseTestFortradeR {
         String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "381",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
-                "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge");
+                "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up - FortradeR");
@@ -399,8 +399,8 @@ public class allBlueDlp extends BaseTestFortradeR {
     public void anAlreadyRegisteredEmailAndPhone() throws IOException, AWTException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381", phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above");
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge");
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381", phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000", "All the above","English");
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email,
                 "381", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up - FortradeR");
@@ -414,11 +414,11 @@ public class allBlueDlp extends BaseTestFortradeR {
     @Test
     public void dummyLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=annual-saving-knowledge-age&" +
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
-                "All the above");
+                "All the above","English");
         crmPage.checkCrmData(email, "Testq Testa", "FortradeR");
         crmPage.checkCustomTag("Dummy");
         fortradeRPage.takeScreenshot("Custom Tag - Dummy - FortradeR", crmPage.customTag);
@@ -427,11 +427,11 @@ public class allBlueDlp extends BaseTestFortradeR {
     @Test
     public void invalidLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge&ftsquery=age(1)-" +
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000 – $250,000",
-                "None");
+                "None","English");
         crmPage.checkCrmData(email, "Testq Testa", "FortradeR");
         crmPage.checkCustomTag("Invalid");
         fortradeRPage.takeScreenshot("Custom Tag - Invalid - FortradeR", crmPage.customTag);
@@ -440,11 +440,11 @@ public class allBlueDlp extends BaseTestFortradeR {
     @Test
     public void emptyLeadRegistration() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge&ftsquery=age-" +
+        driver.get("https://www.fortrader.com/minilps/en/all-blue-dlp/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000 – $250,000",
-                "All the above");
+                "All the above","English");
         crmPage.checkCrmData(email, "Testq Testa", "FortradeR");
         crmPage.checkCustomTag("");
         Thread.sleep(2500);

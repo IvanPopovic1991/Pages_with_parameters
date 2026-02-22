@@ -39,7 +39,7 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//input[@id='crmGrid_findCriteria']")
     public WebElement searchInCrm;
 
-    ////div[@style='height:100%']//input[@id='crmGrid_findCriteria']
+    /// /div[@style='height:100%']//input[@id='crmGrid_findCriteria']
 
     @FindBy(xpath = "//a[@id='crmGrid_findCriteriaButton']//img[@id='crmGrid_findCriteriaImg']")
     public WebElement searchBtnCrm;
@@ -77,6 +77,15 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//div[@id='lv_custom_tag']")
     public WebElement customTag;
 
+    @FindBy(xpath = "//div[@id='lv_utmcontent']")
+    public WebElement utmContent;
+
+    @FindBy(xpath = "//iframe[@id='InlineDialog1_Iframe']")
+    public WebElement frameForMailPanding;
+
+    @FindBy(xpath = "//button[@id='butBegin']")
+    public WebElement closeMailPending;
+
     public void logInCrm(String username, String password) {
         typeText(usernameCrm, username, "username for CRM");
         typeText(passwordCrm, password, "password for CRM");
@@ -109,9 +118,21 @@ public class CrmPage extends BasePage {
         Assert.assertEquals(valueOfTag, value);
     }
 
-    public void checkCrmData(String email, String fullName, String regulation){
+    public void checkCrmData(String email, String fullName, String regulation) {
         driver.get(System.getenv("URLForCrm"));
         logInCrm(System.getenv("UsernameForCrm"), System.getenv("PasswordForCrm"));
+        try {
+            driver.switchTo().frame(frameForMailPanding);
+            try {
+                clickElement(closeMailPending, "close Pending Email window");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            driver.switchTo().defaultContent();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
         driver.switchTo().frame(iFrameMicrosoftCrm);
         try {
             clickElement(closeMicrosoftCrm, "close Microsoft window");
@@ -122,7 +143,7 @@ public class CrmPage extends BasePage {
         driver.switchTo().frame(iFrameSearch);
         typeText(searchInCrm, email, "search bar for email in CRM");
         clickElement(searchBtnCrm, "search button in CRM");
-        doubleClick(accountCrm,"account row");
+        doubleClick(accountCrm, "account row");
         driver.switchTo().defaultContent();
         driver.switchTo().frame(iFrameAccDetails);
         assertBorderColorInCRM(regulation);
@@ -130,20 +151,21 @@ public class CrmPage extends BasePage {
         Assert.assertEquals(getText(accDemoField, "demo account field"), "Demo Registered");
         loopForAccDetailsCrm(email);
     }
-    public void checkCrmTags(){
+
+    public void checkCrmTags() {
         clickElement(menuBtn, "menu button");
         clickElement(envAndMarSec, "environment and marketing section button");
         loopForTagsCrm();
     }
 
-    public void checkCrmFtsQuery(String value){
+    public void checkCrmFtsQuery(String value) {
         clickElement(menuBtn, "menu button");
         clickElement(envAndMarSec, "environment and marketing section button");
         String customTagText = readAttribute(customTag, "title", "tag");
         System.out.println("This is the value of the " + customTag + ": " + customTagText);
         try {
             Thread.sleep(1000);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         scrollToAnElement(customTag);
@@ -151,21 +173,22 @@ public class CrmPage extends BasePage {
     }
 
     public void checkSMSVerification(String smsVerificationValue) {
-        String smsVerificationVal = getText(smsVerification,"SMS Verification field from the CRM");
-        Assert.assertEquals(smsVerificationVal,smsVerificationValue);
+        String smsVerificationVal = getText(smsVerification, "SMS Verification field from the CRM");
+        Assert.assertEquals(smsVerificationVal, smsVerificationValue);
     }
 
-    public void checkLinkIdValue(String linkIdValue){
+    public void checkLinkIdValue(String linkIdValue) {
         CrmPage crmPage = new CrmPage(driver);
         crmPage.clickElement(menuBtn, "menu button");
         crmPage.clickElement(envAndMarSec, "environment and marketing section button");
-        String linkIdVal = getText(linkId,"Link ID field from the CRM");
-        System.out.println("Link ID field value from the CRM "+linkIdVal);
-        Assert.assertEquals(linkIdVal,linkIdValue);
+        String linkIdVal = getText(linkId, "Link ID field from the CRM");
+        System.out.println("Link ID field value from the CRM " + linkIdVal);
+        Assert.assertEquals(linkIdVal, linkIdValue);
     }
-    public void assertBorderColorInCRM (String regulation){
+
+    public void assertBorderColorInCRM(String regulation) {
         String borderColor = "rgb(255, 192, 203)";
-        switch (regulation.toLowerCase()){
+        switch (regulation.toLowerCase()) {
             case "fca":
                 borderColor = "rgb(128, 0, 128)";
                 break;
@@ -184,6 +207,7 @@ public class CrmPage extends BasePage {
         System.out.println("This is the border color: " + borderTopColorForRegulation.getCssValue("border-color"));
         Assert.assertEquals(borderTopColorForRegulation.getCssValue("border-color"), borderColor);
     }
+
     public ExpectedCondition<Boolean> cssValueToBe(final WebElement locator, final String cssProperty, final String expectedValue) {
         return new ExpectedCondition<>() {
             @Override
@@ -205,8 +229,18 @@ public class CrmPage extends BasePage {
         Thread.sleep(1500);
         scrollToAnElement(customTag);
         Thread.sleep(1500);
-        String actualValue = readAttribute(customTag,"title","The value of custom tag");
+        String actualValue = readAttribute(customTag, "title", "The value of custom tag");
         System.out.println(actualValue);
-        Assert.assertEquals(actualValue,expectedValue);
+        Assert.assertEquals(actualValue, expectedValue);
+    }
+
+    public void checkUtmContent(String expectedValue) throws InterruptedException {
+        clickElement(menuBtn, "menu button");
+        clickElement(envAndMarSec, "environment and marketing section button");
+        Thread.sleep(1500);
+        scrollToAnElement(utmContent);
+        String actualValue = readAttribute(utmContent, "title", "The value of Utm content field");
+        System.out.println(actualValue);
+        Assert.assertEquals(actualValue, expectedValue);
     }
 }
