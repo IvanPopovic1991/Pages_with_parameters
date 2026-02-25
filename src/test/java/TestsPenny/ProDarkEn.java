@@ -19,7 +19,7 @@ public class ProDarkEn extends BaseTestPenny{
 
     @BeforeMethod
     public void setUp(){
-        baseSetUp("Chrome","143");
+        baseSetUp("Chrome","145");
         pennyStocks = new PennyStocks(driver);
         crmPage = new CrmPage(driver);
     }
@@ -455,5 +455,15 @@ public class ProDarkEn extends BaseTestPenny{
         crmPage.checkCustomTag("");
         Thread.sleep(2500);
         pennyStocks.takeScreenshot("Custom Tag - Empty with - mark - Penny Stocks", crmPage.customTag);
+    }
+
+    @Test(description = "Verify an error message for check box")
+    public void checkBoxErrorMessage () throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en");
+        pennyStocks.uncheckCheckBox("Testq","Testa",email,
+                "381",TestData.phoneNumberGenerator());
+        Assert.assertEquals(pennyStocks.getText(pennyStocks.errorMessageCheckBox, "check box error message"), "Please check this box to proceed.");
+        pennyStocks.takeScreenshot("Check box - error message - Penny Stocks", pennyStocks.errorMessageCheckBox);
     }
 }

@@ -48,6 +48,12 @@ public class PennyStocks extends BasePage{
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
     public WebElement denyBtn;
 
+    @FindBy(xpath = "//input[@id='terms']")
+    public WebElement checkBox;
+
+    @FindBy(xpath = "//span[@class='errorMessage' and text()='Please check this box to proceed.']")
+    public WebElement errorMessageCheckBox;
+
     @FindBy(xpath = "//div[@data-cmd='menu']")
     public WebElement menuBtn;
 
@@ -214,6 +220,25 @@ public class PennyStocks extends BasePage{
 
     public void clickUsePassBtn() {
         clickElement(usePasswordBtn, "Use Password button");
+    }
+
+    public void clickOnCheckBox (){
+        clickElement(checkBox, "check box");
+    }
+
+    public void verifyErrorMessageForCheckBox(){
+        clickOnCheckBox();
+        Assert.assertEquals(getText(errorMessageCheckBox, "check box error message"), "Please check this box to proceed.");
+    }
+
+    public void uncheckCheckBox (String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData){
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
+        clickOnCheckBox();
+        clickFirstStepBtn();
     }
 
     public void registerAccount1Step(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData){
@@ -479,7 +504,7 @@ public class PennyStocks extends BasePage{
         enterCountryCode(wrongCountryCodeDataText);
         clickElement(phoneNumber, "phone number field");
         Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-        , "Must be a valid international phone number");
+                , "Must be a valid international phone number");
     }
 
     public void clickOnSelectedLink(By element, String url, String document) throws IOException, AWTException, InterruptedException {
@@ -539,3 +564,4 @@ public class PennyStocks extends BasePage{
         Assert.assertEquals(tabs.size(), 1);
     }
 }
+
