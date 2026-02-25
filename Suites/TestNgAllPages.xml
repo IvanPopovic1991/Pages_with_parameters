@@ -10,5 +10,6 @@
         <suite-file path="TestNgFortrade.xml"/>
         <suite-file path="TestNgPennyStocks.xml"/>
         <suite-file path="TestNgKapitalRs.xml"/>
+        <suite-file path="TestNgBrokerViews.xml"/>
     </suite-files>
 </suite>
