@@ -25,7 +25,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@class='logo-fortrade']")  /* //div[@class='logo fcaClass belarosClass asicClass fscClass */
     public WebElement logo;
 
-    @FindBy(xpath = "//div[contains(@class,'logo iirocClass')]")
+    @FindBy(xpath = "div[contains(@class,'logo iirocClass')]")
     public WebElement logoIiroc;
 
     @FindBy(xpath = "//div[contains(@class,'logo cysecClass')]")
@@ -43,7 +43,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//input[@name='Prephone']")
     public WebElement countryCode;
 
-    @FindBy(xpath = "//input[@id='Telephone']")
+    @FindBy(xpath = "//input[@id='TelephoneMask']")
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//button[@id='next-stage-btn']")
@@ -61,7 +61,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//div[@id='platformRegulation']")
     public WebElement regulationMsg;
 
-    @FindBy(xpath = "//span[text()='Email already exists. Please use a different email address.']")
+    @FindBy(xpath = "//span[text()='Email or phone already exists. Please use a different email address or phone number.']")
     public WebElement alrdRegEmailMsg;
 
     @FindBy(xpath = "//iframe[@id='myWidgetIframe']")
@@ -112,13 +112,13 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[@class='smsErrorMessage']")
     public WebElement incorrectTokenMsg;
 
-    @FindBy(xpath="//input[@class='TokenBack-Button']")
+    @FindBy(xpath = "//input[@class='TokenBack-Button']")
     public WebElement didNotGetToken;
 
     @FindBy(xpath = "//label[@name='SentAgainLabel']")
     public WebElement codeIsSent;
 
-    @FindBy(xpath="//input[@id='Details-Edit-Btn']")
+    @FindBy(xpath = "//input[@id='Details-Edit-Btn']")
     public WebElement editTokenBtn;
 
     @FindBy(xpath = "//span[text()='Fortrade']")
@@ -157,7 +157,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//p[contains(.,' By providing')]")
     public WebElement iirocDisclaimer;
 
-    public By privacyPolicyLinkBy = By.xpath("//*[contains(@class, 'MarketingMaterials')]//a[text()='Privacy Policy']");
+    public By privacyPolicyLinkBy = By.xpath("//a[text()='Privacy Policy']");
 
     public By termsAndConditionsLinkBy = By.xpath("//a[contains(text(),'Terms and Conditions')]");
 
@@ -198,7 +198,8 @@ public class FortradePage extends BasePage {
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
             "Must be a valid email address.",
-            "Must be a valid international phone number"};
+            "Phone number is required"};
+    //Old page - Must be a valid international phone number error message text; For new pages non-valid text cannot be insert
 
     String[] sameNamesErrorMessages = {"First Name and Last Name cannot be equal.",
             "First Name and Last Name cannot be equal."};
@@ -348,7 +349,7 @@ public class FortradePage extends BasePage {
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 
     // Already have an account
-    public String alrHaveAccount = "https://authfe.fortrade.com/oauth/account/login?appId=41fedbf7-2f03-4aac-8d1d-e11cdbb22bf8";
+    public String alrHaveAccount = "https://authfe.fortrade.com/oauth/account/login?appId";
 
     // Financial Conduct Authority (FCA) link
     public String fcaLink = "https://register.fca.org.uk/s/firm?id=001b000000NMdUwAAL";
@@ -357,7 +358,7 @@ public class FortradePage extends BasePage {
     public String iirocLink = "https://www.ciro.ca/investors/choosing-investment-advisor/dealers-we-regulate/fortrade-canada-limited";
 
     // Australian Securities and Investments Commission (ASIC) link
-    public String asicLink ="https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchText=614683831&searchType=OrgAndBusNm&_adf.ctrl-state=1cbmeylzw8_15";
+    public String asicLink = "https://connectonline.asic.gov.au/RegistrySearch/faces/landing/panelSearch.jspx?searchText=614683831&searchType=OrgAndBusNm&_adf.ctrl-state=1cbmeylzw8_15";
 
     // Cyprus Securities and Exchange Commission (CySEC) link
     public String cysecLink = "https://www.cysec.gov.cy/en-GB/entities/investment-firms/cypriot/86639/";
@@ -390,8 +391,51 @@ public class FortradePage extends BasePage {
         typeText(email, emailData, "email name");
     }
 
+    /**
+     * country code type field detection
+     */
+    public enum FieldType {
+        TEXT,
+        HIDDEN,
+        UNKNOWN
+    }
+
+    /**
+     * Country code method detection
+     */
+
+    private FieldType detectCountryCodeType() {
+        if (driver.findElements(By.id("Prephone")).size() > 0) {
+            return FieldType.HIDDEN;
+        }
+        if (countryCode.getAttribute("type").equalsIgnoreCase("text")) {
+            return FieldType.TEXT;
+        }
+        return FieldType.UNKNOWN;
+    }
+
+    private void validateHiddenCountryCode(String expectedValue) {
+        String actualValue = countryCode.getAttribute("value");
+        Assert.assertEquals(actualValue, expectedValue);
+        System.out.println("Expected country code number");
+    }
+
     public void enterCountryCode(String countryCodeData) {
         typeText(countryCode, countryCodeData, "country code");
+    }
+
+    public void handleCountryCode(String countryCodeData) {
+        FieldType fieldType = detectCountryCodeType();
+        switch (fieldType) {
+            case HIDDEN:
+                validateHiddenCountryCode(countryCodeData);
+                break;
+            case TEXT:
+                enterCountryCode(countryCodeData);
+                break;
+            default:
+                throw new RuntimeException("Country code type is not supported");
+        }
     }
 
     public void enterPhoneNumber(String phoneNumberData) {
@@ -440,27 +484,23 @@ public class FortradePage extends BasePage {
     }
 
     public void successfullyRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData,
-                String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
+                                         String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        /*clickDenyBtn();*/
-        //scrollToAnElementBy(By.xpath("//div[@class='button6']"));
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
         clickContinueBtn();
-        /*clickDenyBtn();*/
-        clickNotSerbianRes();
-        clickUsePassBtn();
     }
 
     public void ftsQueryParameter(String url, String firstNameData, String lastNameData, String emailData, String countryCodeData,
-                                         String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData, String languageData) {
+                                  String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData, String languageData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
@@ -472,7 +512,7 @@ public class FortradePage extends BasePage {
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
-        if (url.contains("plang:all")){
+        if (url.contains("plang:all")) {
             selectLanguage(languageData);
         }
         clickContinueBtn();
@@ -485,9 +525,8 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAge(ageDataSelect);
@@ -505,9 +544,8 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);/*
-        clickDenyBtn();*/
+        handleCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
         clickContinueBtn();
@@ -518,9 +556,8 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);/*
-        clickDenyBtn();*/
+        handleCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAnnual(annualData);
         clickContinueBtn();
@@ -531,9 +568,8 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);/*
-        clickDenyBtn();*/
+        handleCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectSaving(savingData);
         clickContinueBtn();
@@ -544,47 +580,44 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);/*
-        clickDenyBtn();*/
+        handleCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectKnowledge(knowledgeData);
         clickContinueBtn();
     }
 
-    public void selectLanguage(String languageData){
-        clickElement(languageField,"Desired communication language");
-        selectFromDropdown(languageField,languageData,"Desired communication language");
+    public void selectLanguage(String languageData) {
+        clickElement(languageField, "Desired communication language");
+        selectFromDropdown(languageField, languageData, "Desired communication language");
     }
 
     public void languageParameter(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
-            , String languageData){
+            , String languageData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
-        enterPhoneNumber(phoneNumberData);/*
-        clickDenyBtn();*/
+        handleCountryCode(countryCodeData);
+        enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectLanguage(languageData);
         clickContinueBtn();
     }
 
     public void unsuccessfullyRegistrationWrongSMS(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
-            , String ageData, String annualData, String savingData, String knowledgeData,String tokenField0Value
-            , String tokenField1Value, String tokenField2Value,String tokenField3Value) {
+            , String ageData, String annualData, String savingData, String knowledgeData, String tokenField0Value
+            , String tokenField1Value, String tokenField2Value, String tokenField3Value) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
         selectSaving(savingData);
         selectKnowledge(knowledgeData);
-        incorrectToken(tokenField0Value,tokenField1Value,tokenField2Value,tokenField3Value);
+        incorrectToken(tokenField0Value, tokenField1Value, tokenField2Value, tokenField3Value);
         //scrollToAnElement(continueBtn);
         clickContinueBtn();
     }
@@ -596,8 +629,8 @@ public class FortradePage extends BasePage {
         typeText(tokenField3, token3, "fourth token input field");
     }
 
-    public void clickEditTokenBtn(){
-        clickElement(editTokenBtn,"edit token button");
+    public void clickEditTokenBtn() {
+        clickElement(editTokenBtn, "edit token button");
     }
 
     public void assertURL(String url) {
@@ -647,16 +680,16 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
     }
 
-    private String expErrMsgEmail = "Email already exists. Please use a different email address.";
+    private String expErrMsgEmail = "Email or phone already exists. Please use a different email address or phone number.";
 
     public void assertErrMsgForAlreadyRegisteredAccount(String fileName) throws IOException, AWTException {
         Assert.assertEquals(getTextBy(alrdRegEmailMsg, "alrdRegEmailMsg"), expErrMsgEmail);
-        new BasePage(driver).takeScreenshot(fileName, alrdRegEmailMsg);
+        new BasePage(driver).takeScreenshot(fileName,alrdRegEmailMsg);
     }
 
     public void clickConsentBtn() throws InterruptedException {
@@ -674,7 +707,7 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCode);
+        /*handleCountryCode(countryCode);*/
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
     }
@@ -686,13 +719,12 @@ public class FortradePage extends BasePage {
     }
 
     public void tokenIsNotReceived(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData
-            , String ageData, String annualData, String savingData, String knowledgeData){
+            , String ageData, String annualData, String savingData, String knowledgeData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        /*clickDenyBtn();*/
         clickOnSubmitButton();
         selectAge(ageData);
         selectAnnual(annualData);
@@ -700,7 +732,7 @@ public class FortradePage extends BasePage {
         selectKnowledge(knowledgeData);
         clickElement(didNotGetToken, "I didn't get the code button");
         driverWait.until(ExpectedConditions.visibilityOf(codeIsSent));
-     }
+    }
 
     public void assertSameNameErrorMsgs() {
         for (int i = 1; i <= 2; i++) {
@@ -746,10 +778,10 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void assertBorderColor(WebElement element){
+    public void assertBorderColor(WebElement element) {
         String borderColor = element.getCssValue("border-color");
         System.out.println("The field border color is " + borderColor);
-        Assert.assertEquals(borderColor,"rgb(255, 0, 0)");
+        Assert.assertEquals(borderColor, "rgb(255, 0, 0)");
     }
 
     public void checkLogoClickability(String regulation, String url) {
@@ -793,12 +825,11 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void checkCountryCodeErrorMessage( String wrongCountryCodeDataText,String regulation) {
-        if(!regulation.equalsIgnoreCase("iiroc")){
+    public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText, String regulation) {
+        if (!regulation.equalsIgnoreCase("iiroc")) {
             WebDriverWait driverWait = new WebDriverWait(driver, 10);
             driverWait.until(ExpectedConditions.visibilityOf(popUpNotification));
-        }
-        else{
+        } else {
             /*clickDenyBtn();*/
         }
         enterCountryCode(wrongCountryCodeDataText);
@@ -828,9 +859,9 @@ public class FortradePage extends BasePage {
         performRightClick(returnDisplayedElement(element), url, "link " + returnDisplayedElement(element).getText());
     }
 
-    public void loginRedirection(String regulation){
+    public void loginRedirection(String regulation) {
         clickElementBy(alreadyHaveAnAccountLinkBy, "Already have an account?");
-        }
+    }
 
     public void clickOnMailLink(String mailLink) {
         if (mailLink.equalsIgnoreCase("contactUs")) {
@@ -842,7 +873,7 @@ public class FortradePage extends BasePage {
         }
         try {
             Thread.sleep(10000);
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         Assert.assertTrue(isOutlookRunning());
@@ -856,26 +887,26 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void clickRegisterHere(){
-        clickElement(registerHereBtn,"Register Here button");
+    public void clickRegisterHere() {
+        clickElement(registerHereBtn, "Register Here button");
     }
 
-    public void checkFCAPercentages (String textForPercentages) {
+    public void checkFCAPercentages(String textForPercentages) {
         Assert.assertEquals(getText(dynamicFCAPercentages, "get FCA dynamic percentage"), textForPercentages);
         scrollToAnElement(staticFCAPercentages);
         Assert.assertEquals(getText(staticFCAPercentages, "get FCA static percentage"), textForPercentages);
     }
 
-    public void checkCysecPercentages (String textForPercentages) {
+    public void checkCysecPercentages(String textForPercentages) {
         Assert.assertEquals(getText(dynamicCysecPercentages, "get Cysec dynamic percentage"), textForPercentages);
         scrollToAnElement(staticCysecPercentages);
         Assert.assertEquals(getText(staticCysecPercentages, "get Cysec static percentage"), textForPercentages);
     }
 
-    public void closePersonalizeYourContent(){
+    public void closePersonalizeYourContent() {
         driver.switchTo().frame(iFrameIConsent);
         try {
-            clickElement(closeBtnPyc,"- close personalize your content pop-up button");
+            clickElement(closeBtnPyc, "- close personalize your content pop-up button");
         } catch (Exception e) {
             System.out.println("Could not switch to frame - " + e);
         }
@@ -900,12 +931,12 @@ public class FortradePage extends BasePage {
     public void newUrl(String url) {
         driver.get(url);
 
-        if (url.contains("www.fortrade.com")){
-            if (url.contains("sms")){
+        if (url.contains("www.fortrade.com")) {
+            if (url.contains("sms")) {
                 try {
                     Thread.sleep(3000);
                     System.out.println("Waited 3 seconds.");
-                } catch (Exception e){
+                } catch (Exception e) {
                     System.out.println(e);
                 }
             } else {
@@ -928,22 +959,36 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void clickDoNotAllowNtfBtn(){
+    public void clickDoNotAllowNtfBtn() {
         List<WebElement> doNotAllowBtn = driver.findElements(By.xpath("//button[contains(@class,'pushcrew-btn-close')]"));
-        if(!doNotAllowBtn.isEmpty()){
+        if (!doNotAllowBtn.isEmpty()) {
             doNotAllowBtn.get(0).click();
         }
     }
 
-    public void clickNotSerbianRes(){
-        clickElement(btnNotSerbianRes,"I am not Serbian resident");
+    public void clickNotSerbianRes() {
+        clickElement(btnNotSerbianRes, "I am not Serbian resident");
     }
 
-    public void getAsicTextDisclaimer(){
-        getText(asicDisclaimer," asic disclaimer text");
+    public void getAsicTextDisclaimer() {
+        getText(asicDisclaimer, " asic disclaimer text");
     }
 
-    public void getTextFromDisclaimer(){
-        getText(iirocDisclaimer,"disclaimer text");
+    public void getTextFromDisclaimer() {
+        getText(iirocDisclaimer, "disclaimer text");
+    }
+
+    public void accountRegistrationNoCountryCode(String firstNameData, String lastNameData, String emailData,
+                                                 String phoneNumberData, String ageData, String annualData, String savingData, String knowledgeData) {
+        enterFirstName(firstNameData);
+        enterLastName(lastNameData);
+        enterEmail(emailData);
+        enterPhoneNumber(phoneNumberData);
+        clickOnSubmitButton();
+        selectAge(ageData);
+        selectAnnual(annualData);
+        selectSaving(savingData);
+        selectKnowledge(knowledgeData);
+        clickContinueBtn();
     }
 }

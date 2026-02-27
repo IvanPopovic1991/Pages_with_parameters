@@ -5,10 +5,10 @@
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
     </listeners>
-    <test name="Test cases - pro dark dfsa dlp landing page - FSC regulation">
+<!--    <test name="Test cases - pro dark dfsa dlp landing page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
-       <!-- <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>-->
+       &lt;!&ndash; <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>&ndash;&gt;
         <parameter name="tag" value="?regulation=fsc&amp;regtest=true"/>
         <classes>
             <class name="TestsFortrade.ProDarkDfsa">
@@ -25,7 +25,7 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 <!--    <test name="Test cases - commodities 2 dark new long ai dlp landing page - FCA regulation">
         <parameter name="countryCode" value="44"/>
         <parameter name="regulation" value="FCA"/>
@@ -45,30 +45,28 @@
                 </methods>
             </class>
         </classes>
-    </test>
-    <test name="Test cases - commodities 2 dark new long ai dlp landing page - iiroc regulation">
+    </test>-->
+    <test name="Test cases - Premium Forex Ephone CA landing page - iiroc regulation">
         <parameter name="countryCode" value="1"/>
         <parameter name="regulation" value="iiroc"/>
-        &lt;!&ndash;<parameter name="tag" value="&amp;tg=skip&amp;G_GEO=9077369&amp;regulation=IIROC"/>&ndash;&gt;
         <parameter name="tag" value="&amp;regulation=iiroc&amp;regtest=true"/>
         <classes>
-            <class name="TestsFortrade.ProDarkDfsa">
+            <class name="TestsFortrade.PremiumForexCA">
                 <methods>
-                    <exclude name="fcaRegulationTest"/>
-                    <exclude name="asicRegulationTest"/>
-                    <exclude name="cysecRegulationTest"/>
-                    <exclude name="fscRegulationTest"/>
+                    <exclude name="checkingLogoClickability"/>
+                    <exclude name="checkForCountryCodeErrorMessage"/>
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
+                    <exclude name="verifyAsicDisclaimerText"/>
                 </methods>
             </class>
         </classes>
     </test>
-    <test name="Test cases - commodities 2 dark new long ai dlp landing page - Asic regulation">
+<!--    <test name="Test cases - commodities 2 dark new long ai dlp landing page - Asic regulation">
         <parameter name="countryCode" value="61"/>
         <parameter name="regulation" value="Asic"/>
       &lt;!&ndash;  <parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000142&amp;regulation=ASIC"/>&ndash;&gt;
@@ -88,8 +86,8 @@
                 </methods>
             </class>
         </classes>
-    </test>
-    <test name="Test cases - commodities 2 dark new long ai dlp landing page - cysec regulation">
+    </test>-->
+<!--    <test name="Test cases - commodities 2 dark new long ai dlp landing page - cysec regulation">
         <parameter name="regulation" value="cysec"/>
         &lt;!&ndash;<parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>&ndash;&gt;
         <parameter name="tag" value="?regulation=cysec&amp;regtest=true"/>
@@ -106,10 +104,10 @@
             </class>
         </classes>
     </test>-->
-    <test name="Test cases - pro dark dfsa dlp landing page - DFSA regulation">
+<!--    <test name="Test cases - pro dark dfsa dlp landing page - DFSA regulation">
         <parameter name="countryCode" value="971"/>
         <parameter name="regulation" value="DFSA"/>
-        <!--<parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>-->
+        &lt;!&ndash;<parameter name="tag" value="&amp;tg=skip&amp;G_GEO=2051&amp;regulation=FSC"/>&ndash;&gt;
         <parameter name="tag" value="?regulation=dfsa&amp;regtest=true"/>
         <classes>
             <class name="TestsFortrade.ProDarkDfsa">
@@ -127,5 +125,5 @@
                 </methods>
             </class>
         </classes>
-    </test>
+    </test>-->
 </suite>
