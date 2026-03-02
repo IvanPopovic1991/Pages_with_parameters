@@ -24,7 +24,7 @@
 
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>Suites/TestNgAllPages.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
