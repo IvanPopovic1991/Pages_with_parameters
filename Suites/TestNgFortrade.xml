@@ -53,7 +53,8 @@
         <classes>
             <class name="TestsFortrade.PremiumForexCA">
                 <methods>
-                    <exclude name="checkingLogoClickability"/>
+                    <include name="demoAccountRegistration"/>
+<!--                    <exclude name="checkingLogoClickability"/>
                     <exclude name="checkForCountryCodeErrorMessage"/>
                     <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
@@ -61,7 +62,7 @@
                     <exclude name="howToUnsubscribeTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
-                    <exclude name="verifyAsicDisclaimerText"/>
+                    <exclude name="verifyAsicDisclaimerText"/>-->
                 </methods>
             </class>
         </classes>
