@@ -18,7 +18,15 @@ public class ChromeDriverManager extends DriverManager{
         String filePath = System.getenv("ChromeExeFilePath");
         ChromeOptions options = new ChromeOptions();
         options.setBinary(filePath);
-        options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36");
+        String headless = System.getenv("HEADLESS");
+        if("true".equalsIgnoreCase(headless)){
+            options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36");
+            options.addArguments("--headless=new");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--window-size=1920,1080");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
+        }
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
         ((JavascriptExecutor) driver).executeScript("window.focus();");
