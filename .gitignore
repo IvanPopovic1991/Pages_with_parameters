@@ -21,3 +21,4 @@ logs/
 *.iml
 *.ipr
 src/failedScreenshots
+allure-results
