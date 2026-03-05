@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
+        <listener class-name="listeners.TestExecution"/>
     </listeners>
     <suite-files>
         <suite-file path="TestNgFortrade.xml"/>
