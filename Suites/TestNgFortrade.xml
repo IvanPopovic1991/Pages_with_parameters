@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
+        <listener class-name="listeners.TestExecution"/>
     </listeners>
 <!--    <test name="Test cases - pro dark dfsa dlp landing page - FSC regulation">
         <parameter name="countryCode" value="381"/>

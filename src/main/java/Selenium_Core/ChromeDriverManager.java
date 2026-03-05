@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * ChromeDriverManager - ukazuje na to kako ce se kreirati driver - implementira apstratknu metodu createWebDriver().
  */
-public class ChromeDriverManager extends DriverManager{
+public class ChromeDriverManager extends DriverManager {
 
     @Override
     public void createWebDriver(String version) {
