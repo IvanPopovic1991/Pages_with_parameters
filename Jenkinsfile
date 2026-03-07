@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    options {
+        skipDefaultCheckout(true)
+    }
+
     tools {
         maven 'Maven'
     }
@@ -10,7 +14,7 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                checkout scm
+                git credentialsId: 'github-token', url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
             }
         }
 
@@ -33,4 +37,5 @@ pipeline {
         }
 
     }
+
 }
