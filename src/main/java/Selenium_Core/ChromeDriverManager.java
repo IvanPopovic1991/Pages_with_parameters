@@ -15,37 +15,26 @@ public class ChromeDriverManager extends DriverManager {
 
     @Override
     public void createWebDriver(String version) {
-       /* System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver" + version + ".exe");
-        String filePath = System.getenv("ChromeExeFilePath");
-        ChromeOptions options = new ChromeOptions();
-        options.setBinary(filePath);
-        System.out.println("Chrome path = " + filePath);
-        String headless = System.getenv("HEADLESS");
-        if("true".equalsIgnoreCase(headless)) {
-            //options.addArguments("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36");
-            options.addArguments("--headless=new");
-            options.addArguments("--disable-gpu");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--disable-extensions");
-            options.addArguments("--user-data-dir=C:/jenkins-chrome-profile");
-            options.addArguments("--disable-notifications");
-            options.addArguments("--disable-infobars");
-            options.addArguments("--start-maximized");
-        }
-        driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        ((JavascriptExecutor) driver).executeScript("window.focus();");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-    }*/
-        String driverPath = Paths.get(
+       /* String driverPath = Paths.get(
                 "src",
                 "main",
                 "resources",
                 "chromedriver" + version + ".exe"
         ).toAbsolutePath().toString();
 
+        System.setProperty("webdriver.chrome.driver", driverPath);*/
+
+        String os = System.getProperty("os.name").toLowerCase();
+        String driverFileName;
+
+        if (os.contains("win")) {
+            driverFileName = "chromedriver" + version + ".exe"; // Windows
+        } else {
+            driverFileName = "chromedriver" + version;         // Linux / CI runner
+        }
+
+        String driverPath = Paths.get("src", "main", "resources", driverFileName)
+                .toAbsolutePath().toString();
         System.setProperty("webdriver.chrome.driver", driverPath);
 
         // ===== OPTIONS =====
