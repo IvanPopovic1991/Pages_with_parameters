@@ -15,14 +15,6 @@ public class ChromeDriverManager extends DriverManager {
 
     @Override
     public void createWebDriver(String version) {
-       /* String driverPath = Paths.get(
-                "src",
-                "main",
-                "resources",
-                "chromedriver" + version + ".exe"
-        ).toAbsolutePath().toString();
-
-        System.setProperty("webdriver.chrome.driver", driverPath);*/
 
         String os = System.getProperty("os.name").toLowerCase();
         String driverFileName;
@@ -49,6 +41,8 @@ public class ChromeDriverManager extends DriverManager {
 
         if (filePath != null && !filePath.isEmpty()) {
             options.setBinary(filePath);
+        } else if(System.getProperty("os.name").toLowerCase().contains("linux")) {
+            options.setBinary("/usr/bin/google-chrome");
         }
 
         // ===== HEADLESS CONTROL =====
@@ -68,7 +62,9 @@ public class ChromeDriverManager extends DriverManager {
             options.addArguments("--disable-notifications");
             options.addArguments("--disable-infobars");
 
-            options.addArguments("--user-data-dir=C:/jenkins-chrome-profile");
+            if (os.contains("win")) {
+                options.addArguments("--user-data-dir=C:/jenkins-chrome-profile");
+            }
         }
 
         // ===== DRIVER CREATION =====

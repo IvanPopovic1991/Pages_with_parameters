@@ -31,3 +31,5 @@ jobs:
       # 4️⃣ Run Maven tests (quiet mode, batch mode)
       - name: Run Maven tests
         run: mvn -B -q clean test
+        env:
+          HEADLESS: true
