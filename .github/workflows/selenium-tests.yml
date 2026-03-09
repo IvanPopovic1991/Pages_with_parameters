@@ -3,12 +3,11 @@ name: Maven Test CI
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+
+    runs-on: windows-latest
 
     steps:
 
@@ -17,20 +16,12 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Set up JDK 21
+      - name: Set up JDK
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 21
           cache: maven
-
-      - name: Install Chrome
-        run: |
-          sudo apt-get update -y
-          sudo apt-get install -y google-chrome-stable
-
-      - name: Set ChromeDriver executable
-        run: chmod +x src/main/resources/chromedriver*
 
       - name: Run tests
         run: mvn -B -q --no-transfer-progress clean test
@@ -38,9 +29,11 @@ jobs:
           HEADLESS: true
 
       - name: Generate Allure report
-        run: mvn -q allure:report
+        if: always()
+        run: mvn allure:report
 
-      - name: Deploy Allure report to GitHub Pages
+      - name: Deploy Allure report
+        if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
