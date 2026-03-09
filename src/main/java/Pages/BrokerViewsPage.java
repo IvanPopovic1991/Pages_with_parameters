@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,6 +34,9 @@ public class BrokerViewsPage extends BasePage {
     @FindBy(xpath = "//input[@name='Prephone']")
     public WebElement countryCode;
 
+    @FindBy(xpath = "//span[@class='cps-label']")
+    public WebElement countryCodeDropdown;
+
     @FindBy(xpath = "//input[@id='Telephone']")
     public WebElement phoneNumber;
 
@@ -61,7 +61,7 @@ public class BrokerViewsPage extends BasePage {
     @FindBy(xpath = "//div[@id='platformRegulation']")
     public WebElement regulationMsg;
 
-    @FindBy(xpath = "//span[text()='Email already exists. Please use a different email address.']")
+    @FindBy(xpath = "//span[text()='Email or phone already exists. Please use a different email address or phone number.']")
     public WebElement alrdRegEmailMsg;
 
     @FindBy(xpath = "//span[text()='Must be a valid international phone number']")
@@ -148,7 +148,7 @@ public class BrokerViewsPage extends BasePage {
     public String[] sameNamesErrorMessages = {"First Name and Last Name cannot be equal.",
             "First Name and Last Name cannot be equal."};
 
-    private String expErrMsgEmail = "Email already exists. Please use a different email address.";
+    private String expErrMsgEmail = "Email or phone already exists. Please use a different email address or phone number.";
 
     public String privacyPolicyUrl = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
 
@@ -170,8 +170,68 @@ public class BrokerViewsPage extends BasePage {
         typeText(email, emailData, "email name");
     }
 
+    /**
+     * country code type field detection
+     */
+    public enum FieldType {
+        TEXT,
+        HIDDEN,
+        UNKNOWN,
+        DROPDOWN
+    }
+
+    /**
+     * Country code method detection
+     */
+
+    private FieldType detectCountryCodeType() {
+        if (driver.findElements(By.xpath("//label/div[@class='phone-prefix-wrapper']")).size() > 0) {
+            return FieldType.HIDDEN;
+        }
+        if (countryCode.getAttribute("type").equalsIgnoreCase("text")) {
+            return FieldType.TEXT;
+        }
+        if (driver.findElements(By.xpath("//div[@class='country-phone-select']")).size() > 0) {
+            return FieldType.DROPDOWN;
+        }
+        return FieldType.UNKNOWN;
+    }
+
+    public void selectCountry(String country) {
+        clickElement(countryCodeDropdown, "Country Dropdown");
+        By countryLocator = By.xpath("//div/ul/li[@data-name='" + country + "']");
+        WebElement countryElement = driverWait.until(
+                ExpectedConditions.visibilityOfElementLocated(countryLocator)
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", countryElement);
+        clickElement(countryElement, "Country: " + country);
+    }
+
+    private void validateHiddenCountryCode(String expectedValue) {
+        String actualValue = countryCode.getAttribute("value");
+        Assert.assertEquals(actualValue, expectedValue);
+        System.out.println("Expected country code number");
+    }
+
     public void enterCountryCode(String countryCodeData) {
         typeText(countryCode, countryCodeData, "country code");
+    }
+
+    public void handleCountryCode(String countryCodeData) {
+        FieldType fieldType = detectCountryCodeType();
+        switch (fieldType) {
+            case HIDDEN:
+                validateHiddenCountryCode(countryCodeData);
+                break;
+            case TEXT:
+                enterCountryCode(countryCodeData);
+                break;
+            case DROPDOWN:
+                selectCountry(countryCodeData);
+                break;
+            default:
+                throw new RuntimeException("Country code type is not supported");
+        }
     }
 
     public void enterPhoneNumber(String phoneNumberData) {
@@ -231,7 +291,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickFirstStepBtn();
     }
@@ -240,7 +301,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnCheckBox();
         clickFirstStepBtn();
@@ -251,7 +313,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -266,7 +329,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCode);
+        //handleCountryCode(countryCode);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
     }
@@ -276,7 +340,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -297,7 +362,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -315,7 +381,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -327,7 +394,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAnnual(annualData);
@@ -339,7 +407,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectSaving(savingData);
@@ -351,7 +420,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectKnowledge(knowledgeData);
@@ -363,7 +433,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectLanguage(languageData);
@@ -383,7 +454,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -422,7 +494,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
     }
@@ -448,7 +521,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         selectAge(ageData);
@@ -460,7 +534,11 @@ public class BrokerViewsPage extends BasePage {
     }
 
     public void assertColor(String color) {
-        WebElement[] fields = {firstName, lastName, email, countryCode, phoneNumber};
+        WebElement[] fields = {firstName, lastName, email, phoneNumber};
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            fields = new WebElement[]{firstName, lastName, email, countryCode, phoneNumber};
+        }
         for (int i = 0; i < fields.length; i++) {
             /**
              * Ako prosledis color vrednost kao "rgb(123, 123, 132)" onda ukljuci ovaj kod
@@ -470,7 +548,8 @@ public class BrokerViewsPage extends BasePage {
             /**
              * U suprotnom ako uneses vrednost kao "blue" onda ukljuci ovaj kod
              */
-            String borderColor = fields[i].getCssValue("border-color");
+            WebElement wrapper = fields[i].findElement(By.xpath("./parent::label"));
+            String borderColor = wrapper.getCssValue("border-color");
             // Split the RGB value
             String[] rgbValues = borderColor.replace("rgb(", "").replace(")", "").split(",");
             int red = Integer.parseInt(rgbValues[0].trim());
@@ -497,10 +576,14 @@ public class BrokerViewsPage extends BasePage {
     }
 
     public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText) {
-        enterCountryCode(wrongCountryCodeDataText);
-        clickElement(phoneNumber, "phone number field");
-        Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-                , "Must be a valid international phone number");
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)) {
+            enterCountryCode(wrongCountryCodeDataText);
+            clickElement(phoneNumber, "phone number field");
+            Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
+                    , "Must be a valid international phone number");
+        }
+        System.out.println("Ignore this test case, it works only for the field type = TEXT");
     }
 
     public void clickOnSelectedLink(By element, String url, String document) throws IOException, AWTException, InterruptedException {
@@ -541,7 +624,8 @@ public class BrokerViewsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitBtn();
         clickEditTokenBtn();

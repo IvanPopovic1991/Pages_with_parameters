@@ -22,7 +22,7 @@ public class PremiumForexCA extends BaseTestFortrade {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "146");
+        baseSetup("Chrome", "145");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
         driver.get("https://dlp.fortrade.com/lps/premium-forex-landing-ephone-ca/en?fts=age-annual-saving-knowledge");

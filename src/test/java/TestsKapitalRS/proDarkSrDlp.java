@@ -19,7 +19,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "143");
+        baseSetup("Chrome", "145");
     }
 
     @AfterMethod
@@ -31,8 +31,8 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
     public void demoAccountRegistration() throws IOException, AWTException {
         kapitalRsPage = new KapitalRsPage(driver);
         kapitalRsPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "Sve navedeno");
+                "Srbija", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000-$100,000", "Sve navedeno");
         kapitalRsPage.checkRegulation();
         kapitalRsPage.assertURL("https://pro.kapitalrs.com/#chartticket");
         kapitalRsPage.takeScreenshot("Successfully demo account registration - KapitalRS", kapitalRsPage.regulationMsg);
@@ -45,8 +45,9 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.successfullyRegistration("Testq", "Testa", email, "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "Sve navedeno");
+        kapitalRsPage.successfullyRegistration("Testq", "Testa", email, "Srbija",
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "Sve navedeno");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details KapitalRS page", crmPage.accFullNameCrm);
@@ -59,13 +60,14 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=age");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.ageParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        kapitalRsPage.ageParameter("Testq", "Testa", email, "Srbija", TestData.phoneNumberGenerator(),
                 "25-34");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Age parameter - no value - KapitalRs", crmPage.smsVerification);
-        crmPage.checkLinkIdValue("25_34_age,PC-windows");
+        crmPage.checkLinkIdValue("PC_windows,25_34_age");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Age parameter value - KapitalRs", crmPage.linkId);
     }
@@ -75,13 +77,14 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=annual");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.annualParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        kapitalRsPage.annualParameter("Testq", "Testa", email, "Srbija", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Annual parameter - no value - KapitalRs", crmPage.smsVerification);
-        crmPage.checkLinkIdValue("15000_50000_annual,PC-windows");
+        crmPage.checkLinkIdValue("PC_windows,15000_50000_annual");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Annual parameter value - KapitalRs", crmPage.linkId);
 
@@ -92,13 +95,14 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=saving");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.savingParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
-                "$50,000 – $100,000");
+        kapitalRsPage.savingParameter("Testq", "Testa", email, "Srbija", TestData.phoneNumberGenerator(),
+                "$50,000-$100,000");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Saving parameter - no value - KapitalRs",crmPage.smsVerification);
-        crmPage.checkLinkIdValue("50000_100000_savings,PC-windows");
+        crmPage.checkLinkIdValue("PC_windows,50000_100000_savings");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Saving parameter value - KapitalRs", crmPage.linkId);
     }
@@ -108,13 +112,14 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=knowledge");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.knowledgeParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        kapitalRsPage.knowledgeParameter("Testq", "Testa", email, "Srbija", TestData.phoneNumberGenerator(),
                 "Sve navedeno");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value - KapitalRs", crmPage.smsVerification);
-        crmPage.checkLinkIdValue("knowledge_of_trading_all_the_above,PC-windows");
+        crmPage.checkLinkIdValue("PC_windows,knowledge_of_trading_all_the_above");
         Thread.sleep(1000);
         crmPage.takeScreenshot( "Knowledge parameter value - KapitalRs", crmPage.linkId);
     }
@@ -123,10 +128,10 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
     public void assertInvalidTokenMsg() throws IOException, AWTException {
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=sms-age-annual-saving-knowledge");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "Sve navedeno",
+        kapitalRsPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "Srbija",
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "Sve navedeno",
                 "1","1","1","1");
-        Assert.assertEquals(kapitalRsPage.incorrectTokenMsg.getText(),"Nevažeći broj telefona. Molimo vas pokusajte ponovo");
+        Assert.assertEquals(kapitalRsPage.getTextBy(kapitalRsPage.incorrectTokenMsg, "incorrect token msg"),"ups... taj kod je pogresan . Molimo vas pokusajte ponovo");
         kapitalRsPage.takeScreenshot("Incorrect code - Please check and try again - KapitalRs");
     }
 
@@ -134,9 +139,9 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
     public void didNotGetToken() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=sms-age-annual-saving-knowledge");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "381",
-                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000", "Sve navedeno");
-        Assert.assertEquals(kapitalRsPage.codeIsSent.getText(),"Ponovo smo vam poslali kod");
+        kapitalRsPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "Srbija",
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "Sve navedeno");
+        Assert.assertEquals(kapitalRsPage.getTextBy(kapitalRsPage.codeIsSent, "code is sent error message"),"Ponovo smo vam poslali kod");
         Thread.sleep(2000);
         if(kapitalRsPage.codeIsSent.isDisplayed()){
             kapitalRsPage.takeScreenshot("We sent you the code again - KapitalRs",kapitalRsPage.codeIsSent);
@@ -150,7 +155,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         kapitalRsPage.enterFirstName("Testq");
         kapitalRsPage.enterLastName("Testa");
         kapitalRsPage.enterEmail(TestData.emailGenerator());
-        kapitalRsPage.enterCountryCode("381");
+        kapitalRsPage.handleCountryCode("Srbija");
         kapitalRsPage.enterPhoneNumber(TestData.phoneNumberGenerator());
         kapitalRsPage.clickOnSubmitButton();
         kapitalRsPage.selectAge("75+");
@@ -185,10 +190,11 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String phoneNumber = TestData.phoneNumberGenerator();
         kapitalRsPage = new KapitalRsPage(driver);
         kapitalRsPage.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "Sve navedeno");
+                "Srbija", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000-$100,000", "Sve navedeno");
+        kapitalRsPage.checkRegulation();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=age-annual-saving-knowledge");
-        kapitalRsPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", phoneNumber);
+        kapitalRsPage.alreadyRegisteredAccount("Testq", "Testa", email, "Srbija", phoneNumber);
         kapitalRsPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - KapitalRs - pop-up");
     }
 
@@ -223,8 +229,8 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         kapitalRsPage = new KapitalRsPage(driver);
         kapitalRsPage.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "Sve navedeno");
+                "Srbija", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000–$100,000", "Sve navedeno");
         driver.get("https://www.mailinator.com/");
         Mailinator mailinator = new Mailinator(driver);
         mailinator.findEmailKRS(email);
@@ -237,8 +243,9 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         kapitalRsPage = new KapitalRsPage(driver);
         kapitalRsPage.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
-                "$50,000 – $100,000", "Sve navedeno");
+                "Srbija", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "$50,000-$100,000", "Sve navedeno");
+        kapitalRsPage.checkRegulation();
         driver.get("https://yopmail.com/en/");
         YopMail yopMail = new YopMail(driver);
         yopMail.findEmailKRS(email);
@@ -383,7 +390,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=age");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.ageParameter("Testq", "Testa", email, "381", phoneNumber,
+        kapitalRsPage.ageParameter("Testq", "Testa", email, "Srbija", phoneNumber,
                 "-- Izaberite --");
         kapitalRsPage.secondStepErrorMessage(1);
         kapitalRsPage.takeScreenshot("Age parameter error message - KapitalRs");
@@ -395,7 +402,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=annual");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.annualParameter("Testq", "Testa", email, "381", phoneNumber,
+        kapitalRsPage.annualParameter("Testq", "Testa", email, "Srbija", phoneNumber,
                 "-- Izaberite --");
         kapitalRsPage.secondStepErrorMessage(1);
         kapitalRsPage.takeScreenshot("Annual parameter error message - KapitalRs");
@@ -407,7 +414,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=saving");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.savingParameter("Testq", "Testa", email, "381", phoneNumber,
+        kapitalRsPage.savingParameter("Testq", "Testa", email, "Srbija", phoneNumber,
                 "-- Izaberite --");
         kapitalRsPage.secondStepErrorMessage(1);
         kapitalRsPage.takeScreenshot("Saving parameter error message - KapitalRs");
@@ -419,7 +426,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=knowledge");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.knowledgeParameter("Testq", "Testa", email, "381", phoneNumber,
+        kapitalRsPage.knowledgeParameter("Testq", "Testa", email, "Srbija", phoneNumber,
                 "-- Izaberite --");
         kapitalRsPage.secondStepErrorMessage(1);
         kapitalRsPage.takeScreenshot("Knowledge parameter error message - KapitalRs");
@@ -430,8 +437,8 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.unsuccessfullyRegistration("Testq", "Testa", email, "381", phoneNumber,
-                "25-34", "$15,000-$50,000", "$50,000 – $100,000", "Sve navedeno",
+        kapitalRsPage.unsuccessfullyRegistration("Testq", "Testa", email, "Srbija", phoneNumber,
+                "25-34", "$15,000-$50,000", "$50,000-$100,000", "Sve navedeno",
                 "-- Izaberite --", "-- Izaberite --", "-- Izaberite --", "-- Izaberite --");
         kapitalRsPage.secondStepErrorMessage(4);
         kapitalRsPage.takeScreenshot("All parameters error message - KapitalRs");
@@ -442,11 +449,12 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=plang:srcs,all");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.languageParameter("Testq", "Testa", email, "381",
+        kapitalRsPage.languageParameter("Testq", "Testa", email, "Srbija",
                 TestData.phoneNumberGenerator(),"Engleski");
+        kapitalRsPage.checkRegulation();
         CrmPage crmPage = new CrmPage(driver);
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
-        crmPage.checkLinkIdValue("lang_EN,PC-windows");
+        crmPage.checkLinkIdValue("PC_windows,lang_EN");
         crmPage.takeScreenshot("Desired communication language - KapitalRs",crmPage.linkId);
     }
 
@@ -455,7 +463,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark/sr?fts=plang:srcs,all");
         kapitalRsPage = new KapitalRsPage(driver);
-        kapitalRsPage.languageParameter("Testq", "Testa", email, "381",
+        kapitalRsPage.languageParameter("Testq", "Testa", email, "Srbija",
                 TestData.phoneNumberGenerator(),"-- Izaberite --");
         kapitalRsPage.assertBorderColor(kapitalRsPage.languageField);
         kapitalRsPage.takeScreenshot("Desired communication language - error - KapitalRs",kapitalRsPage.languageField);

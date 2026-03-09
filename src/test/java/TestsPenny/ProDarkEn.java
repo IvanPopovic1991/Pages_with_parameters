@@ -32,7 +32,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify demo account registration")
     public void demoAccountRegistration() throws IOException, AWTException, InterruptedException {
         pennyStocks.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
         pennyStocks.checkRegulation();
         pennyStocks.takeScreenshot("Successfully demo account registration - Penny Stocks",pennyStocks.regulationMsg);
@@ -45,7 +45,7 @@ public class ProDarkEn extends BaseTestPenny{
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         pennyStocks.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -58,7 +58,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkingCustomTag() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
         pennyStocks.checkRegulation();
@@ -72,7 +72,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=testq-testa");
         pennyStocks.registerAccount1Step("Testq","Testa",email,
-                "381",TestData.phoneNumberGenerator());
+                "Serbia",TestData.phoneNumberGenerator());
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkUtmContent("testq-testa");
@@ -83,7 +83,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkingAgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age");
-        pennyStocks.ageParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        pennyStocks.ageParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "25-34");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -98,7 +98,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkingAnnualParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=annual");
-        pennyStocks.annualParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        pennyStocks.annualParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -113,7 +113,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkingSavingParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=saving");
-        pennyStocks.savingParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        pennyStocks.savingParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$50,000-$100,000");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -128,7 +128,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkingKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=knowledge");
-        pennyStocks.knowledgeParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        pennyStocks.knowledgeParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "All the above");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -143,7 +143,7 @@ public class ProDarkEn extends BaseTestPenny{
     public void checkLanguageParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=plang:srcs,all");
-        pennyStocks.languageParameter("Testq", "Testa", email, "381",
+        pennyStocks.languageParameter("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "English");
         pennyStocks.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -154,7 +154,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify that wrong code cannot be submitted")
     public void assertInvalidTokenMsg() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=sms-age-annual-saving-knowledge-plang:all");
-        pennyStocks.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "381",
+        pennyStocks.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above",
                 "English","1", "1", "1", "1");
         Thread.sleep(500);
@@ -165,7 +165,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify that message We sent you the code again is received")
     public void didNotGetToken() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=sms-age-annual-saving-knowledge");
-        pennyStocks.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "381",
+        pennyStocks.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         Assert.assertEquals(pennyStocks.codeIsSent.getText(), "We sent you the code again");
         Thread.sleep(2000);
@@ -180,7 +180,7 @@ public class ProDarkEn extends BaseTestPenny{
         pennyStocks.enterFirstName("Testq");
         pennyStocks.enterLastName("Testa");
         pennyStocks.enterEmail(TestData.emailGenerator());
-        pennyStocks.enterCountryCode("381");
+        pennyStocks.handleCountryCode("Serbia");
         pennyStocks.enterPhoneNumber(TestData.phoneNumberGenerator());
         pennyStocks.clickOnSubmitBtn();
         pennyStocks.selectAge("75+");
@@ -211,11 +211,11 @@ public class ProDarkEn extends BaseTestPenny{
     public void alreadyRegisteredAccountEmail() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         pennyStocks.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "All the above", "English");
         pennyStocks.checkRegulation();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all");
-        pennyStocks.alreadyRegisteredAccount("Testq", "Testa", email, "381", TestData.phoneNumberGenerator());
+        pennyStocks.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator());
         pennyStocks.assertPopUpForAlreadyRegisteredAccount();
         pennyStocks.takeScreenshot("Already registered email address - Penny Stocks",pennyStocks.alrdRegEmailMsg);
     }
@@ -223,13 +223,13 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify that the account cannot be registered with already registered phone number")
     public void anAlreadyRegisteredPhone() throws IOException, AWTException, InterruptedException {
         String phoneNumber = TestData.phoneNumberGenerator();
-        pennyStocks.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         pennyStocks.checkRegulation();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all");
         pennyStocks.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
-                "381", phoneNumber);
+                "Serbia", phoneNumber);
         pennyStocks.assertPopUpForAlreadyRegisteredAccount();
         pennyStocks.takeScreenshot("Already registered phone number - Penny Stocks");
     }
@@ -238,11 +238,11 @@ public class ProDarkEn extends BaseTestPenny{
     public void anAlreadyRegisteredEmailAndPhone() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
         pennyStocks.checkRegulation();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all");
         pennyStocks.alreadyRegisteredAccount("Testq", "Testa", email,
-                "381", phoneNumber);
+                "Serbia", phoneNumber);
         pennyStocks.assertPopUpForAlreadyRegisteredAccount();
         pennyStocks.takeScreenshot("Already registered email and phone - Penny Stocks");
     }
@@ -266,14 +266,14 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify that the invalid data for Country Code field will show valid error message with red border")
     public void checkForCountryCodeErrorMessage() throws IOException, AWTException {
         pennyStocks.checkCountryCodeErrorMessage("01852833kdkd");
-        pennyStocks.takeScreenshot("Country code error message - Penny Stocks", pennyStocks.countryCodeErrorMessage);
+        pennyStocks.takeScreenshot("Country code error message - Penny Stocks", pennyStocks.firstName);
     }
 
     @Test(description = "Verify the email is sent on the new account email")
     public void emailIsReceivedSuccessfully() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         pennyStocks.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
                 "$50,000-$100,000", "All the above", "English");
         pennyStocks.checkRegulation();
         driver.get("https://yopmail.com/en/");
@@ -319,7 +319,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify the 2nd step - age verification window cannot be submitted if it's not completed")
     public void errorMessageAgeParameter() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age");
-        pennyStocks.ageParameter("Testq", "Testa", TestData.emailGenerator(), "381", TestData.phoneNumberGenerator(),
+        pennyStocks.ageParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         pennyStocks.secondStepErrorMessage(1);
         pennyStocks.takeScreenshot("Age parameter error message - Penny Stocks");
@@ -328,7 +328,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify the 2nd step - annual income verification window cannot be submitted if it's not completed")
     public void errorMessageAnnualParameter() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=annual");
-        pennyStocks.annualParameter("Testq", "Testa", TestData.emailGenerator(), "381", TestData.phoneNumberGenerator(),
+        pennyStocks.annualParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         pennyStocks.secondStepErrorMessage(1);
         pennyStocks.takeScreenshot("Annual parameter error message - Penny Stocks");
@@ -337,7 +337,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify the 2nd step - value of saving and investments verification window cannot be submitted if it's not completed")
     public void errorMessageSavingParameter() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=saving");
-        pennyStocks.savingParameter("Testq", "Testa", TestData.emailGenerator(), "381", TestData.phoneNumberGenerator(),
+        pennyStocks.savingParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
        pennyStocks.secondStepErrorMessage(1);
        pennyStocks.takeScreenshot("Saving parameter error message - Penny Stocks");
@@ -346,7 +346,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify the 2nd step - knowledge of trading verification window cannot be submitted if it's not completed")
     public void errorMessageKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=knowledge");
-        pennyStocks.knowledgeParameter("Testq", "Testa", TestData.emailGenerator(), "381", TestData.phoneNumberGenerator(),
+        pennyStocks.knowledgeParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         pennyStocks.secondStepErrorMessage(1);
         pennyStocks.takeScreenshot("Knowledge parameter error message - Penny Stocks");
@@ -355,7 +355,7 @@ public class ProDarkEn extends BaseTestPenny{
     @Test(description = "Verify the 2nd step - desired communication language verification window cannot be submitted if it's not completed ")
     public void errorLanguageParameter() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=plang:srcs,all");
-        pennyStocks.languageParameter("Testq", "Testa", TestData.emailGenerator(), "381",
+        pennyStocks.languageParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "-- Select --");
         pennyStocks.assertBorderColor(pennyStocks.languageField);
         pennyStocks.secondStepErrorMessage(1);
@@ -364,7 +364,7 @@ public class ProDarkEn extends BaseTestPenny{
 
     @Test(description = "Verify the 2nd step cannot be submitted if all parameter values are not completed ")
     public void errorMessagesAllParameters() throws IOException, AWTException, InterruptedException {
-        pennyStocks.unsuccessfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "381", TestData.phoneNumberGenerator(),
+        pennyStocks.unsuccessfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above","English",
                 "-- Select --", "-- Select --", "-- Select --", "-- Select --","-- Select --");
         pennyStocks.secondStepErrorMessage(5);
@@ -376,7 +376,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         pennyStocks.checkRegulation();
@@ -390,7 +390,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         pennyStocks.checkRegulation();
@@ -404,7 +404,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
         pennyStocks.checkRegulation();
@@ -418,7 +418,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
         pennyStocks.checkRegulation();
@@ -432,7 +432,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
         pennyStocks.checkRegulation();
@@ -447,7 +447,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        pennyStocks.successfullyRegistration("Testq", "Testa", email, "381",
+        pennyStocks.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
         pennyStocks.checkRegulation();
@@ -462,7 +462,7 @@ public class ProDarkEn extends BaseTestPenny{
         String email = TestData.emailGenerator();
         driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark/en");
         pennyStocks.uncheckCheckBox("Testq","Testa",email,
-                "381",TestData.phoneNumberGenerator());
+                "Serbia",TestData.phoneNumberGenerator());
         Assert.assertEquals(pennyStocks.getText(pennyStocks.errorMessageCheckBox, "check box error message"), "Please check this box to proceed.");
         pennyStocks.takeScreenshot("Check box - error message - Penny Stocks", pennyStocks.errorMessageCheckBox);
     }
