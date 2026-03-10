@@ -1,0 +1,40 @@
+name: Maven Test CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Run tests
+        run: mvn -B -q --no-transfer-progress clean test
+        env:
+          HEADLESS: true
+
+      - name: Generate Allure report
+        if: always()
+        run: mvn allure:report
+
+      - name: Deploy Allure report
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: target/site/allure-maven-plugin

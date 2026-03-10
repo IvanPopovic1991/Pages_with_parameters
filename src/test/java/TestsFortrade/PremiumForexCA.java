@@ -5,6 +5,7 @@ import Pages.CrmPage;
 import Pages.FortradePage;
 import Pages.YopMail;
 import faker.TestData;
+import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -34,6 +35,7 @@ public class PremiumForexCA extends BaseTestFortrade {
     }
 
     @Test(description = "Verify demo account registration")
+    @Description("User should successfully register demo account")
     @Parameters({"countryCode","regulation"})
     public void demoAccountRegistration(String countryCode,String regulation) throws IOException, AWTException, InterruptedException {
         fortradePage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),countryCode,
