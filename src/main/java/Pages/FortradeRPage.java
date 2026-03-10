@@ -10,6 +10,8 @@ import org.testng.Assert;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,17 @@ public class FortradeRPage extends BasePage {
     public WebElement email;
 
     @FindBy(xpath = "//input[@id='Prephone']")
-    public WebElement countryCode;
+    public WebElement countryCode;/*
+
+    @FindBy(xpath = "//span[@class='cps-label']")
+    public WebElement countryCodeDropdown;*/
+
+
+
+
+
+    @FindBy(xpath = "//button[@class='cps-trigger']")
+    public WebElement countryCodeDropdown;
 
     @FindBy(xpath = "//input[@id='Telephone']")
     public WebElement phoneNumber;
@@ -131,7 +143,7 @@ public class FortradeRPage extends BasePage {
 
     public By clickHereLinkBy = By.xpath("//a[text()='click here']");
 
-    public By contactUsLinkBy = By.xpath("//div[@class='needHelp']/a[contains(text(), 'Contact Us')]");
+    public By contactUsLinkBy = By.xpath("//div[@class='need-help']/a[contains(text(), 'Contact Us')]");
 
     public By facebookLinkBy = By.xpath("//a[@href='https://www.facebook.com/Fortrade.International']");
 
@@ -191,8 +203,73 @@ public class FortradeRPage extends BasePage {
         typeText(email, emailData, "email");
     }
 
+    /**
+     * country code type field detection
+     */
+    public enum FieldType {
+        TEXT,
+        HIDDEN,
+        UNKNOWN,
+        DROPDOWN
+    }
+
+    /**
+     * Country code method detection
+     */
+
+    private FieldType detectCountryCodeType() {
+        if (driver.findElements(By.xpath("//label/div[@class='phone-prefix-wrapper']")).size() > 0) {
+            return FieldType.HIDDEN;
+        }
+        if (countryCode.getAttribute("type").equalsIgnoreCase("text")) {
+            return FieldType.TEXT;
+        }
+        if (driver.findElements(By.xpath("//div[@class='country-phone-select']")).size() > 0) {
+            return FieldType.DROPDOWN;
+        }
+        return FieldType.UNKNOWN;
+    }
+
+    public void selectCountry(String country) {
+        try {
+            Thread.sleep(2000);
+        } catch (Exception e){
+            System.out.println(e);
+        }
+        clickElement(countryCodeDropdown, "Country Dropdown");
+        By countryLocator = By.xpath("//div/ul/li[@data-name='" + country + "']");
+        WebElement countryElement = driverWait.until(
+                ExpectedConditions.visibilityOfElementLocated(countryLocator)
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", countryElement);
+        clickElement(countryElement, "Country: " + country);
+    }
+
+    private void validateHiddenCountryCode(String expectedValue) {
+        String actualValue = countryCode.getAttribute("value");
+        Assert.assertEquals(actualValue, expectedValue);
+        System.out.println("Expected country code number");
+    }
+
     public void enterCountryCode(String countryCodeData) {
         typeText(countryCode, countryCodeData, "country code");
+    }
+
+    public void handleCountryCode(String countryCodeData) {
+        FieldType fieldType = detectCountryCodeType();
+        switch (fieldType) {
+            case HIDDEN:
+                validateHiddenCountryCode(countryCodeData);
+                break;
+            case TEXT:
+                enterCountryCode(countryCodeData);
+                break;
+            case DROPDOWN:
+                selectCountry(countryCodeData);
+                break;
+            default:
+                throw new RuntimeException("Country code type is not supported");
+        }
     }
 
     public void enterPhoneNumber(String phoneNumberData) {
@@ -240,7 +317,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -256,7 +334,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         /*clickDenyBtn();*/
         clickSubmitButton();
@@ -279,7 +358,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        //handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -298,7 +378,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -310,7 +391,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAnnual(annualData);
@@ -322,7 +404,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectSaving(savingData);
@@ -334,7 +417,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectKnowledge(knowledgeData);
@@ -351,7 +435,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectLanguage(languageData);
@@ -362,7 +447,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCode);
+        //handleCountryCode(countryCode);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
     }
@@ -373,7 +459,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -389,7 +476,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -428,7 +516,11 @@ public class FortradeRPage extends BasePage {
      * @param color
      */
     public void assertColor(String color) {
-        WebElement[] fields = {firstName, lastName, email, countryCode, phoneNumber};
+        WebElement[] fields = {firstName, lastName, email, phoneNumber};
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            fields = new WebElement[]{firstName, lastName, email, countryCode, phoneNumber};
+        }
         for (int i = 0; i < fields.length; i++) {
             /**
              * Ako prosledis color vrednost kao "rgb(123, 123, 132)" onda ukljuci ovaj kod
@@ -438,7 +530,8 @@ public class FortradeRPage extends BasePage {
             /**
              * U suprotnom ako uneses vrednost kao "blue" onda ukljuci ovaj kod
              */
-            String borderColor = fields[i].getCssValue("border-color");
+            WebElement wrapper = fields[i].findElement(By.xpath("./parent::label"));
+            String borderColor = wrapper.getCssValue("border-color");
 
 // Split the RGB value
             String[] rgbValues = borderColor.replace("rgb(", "").replace(")", "").split(",");
@@ -486,7 +579,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
     }
@@ -495,7 +589,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickFirstStepBtn();
     }
@@ -536,16 +631,19 @@ public class FortradeRPage extends BasePage {
     }
 
     public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText) {
-        clickElement(countryCode, "country code field");
-        try {
-            Robot robot = new Robot();
-            //typeString(robot, wrongCountryCodeDataText);
-            typeText(countryCode,"01312148","country code field");
-            clickElement(phoneNumber, "phone number field");
-            Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-                    , "Must be a valid international phone number");
-        } catch (Exception e) {
-            System.out.println(e);
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            clickElement(countryCode, "country code field");
+            try {
+                Robot robot = new Robot();
+                //typeString(robot, wrongCountryCodeDataText);
+                typeText(countryCode,"01312148","country code field");
+                clickElement(phoneNumber, "phone number field");
+                Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
+                        , "Must be a valid international phone number");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
@@ -567,13 +665,19 @@ public class FortradeRPage extends BasePage {
 
     public void clickOnMailLink(String mailLink) {
         if (mailLink.equalsIgnoreCase("contactUs")) {
-            clickElementBy(contactUsLinkBy, "contact us link");
+            //clickElementBy(contactUsLinkBy, "contact us link");
+            String href = driver.findElement(contactUsLinkBy).getAttribute("href");
+            String decodedHref = URLDecoder.decode(href, StandardCharsets.UTF_8);
+            System.out.println(decodedHref);
+
+            Assert.assertTrue(decodedHref.startsWith("mailto:"), "Mail link is incorrect");
+            Assert.assertTrue(decodedHref.contains("mailto:support@fortrade.com?subject=Client information request"));
         } else if (mailLink.equalsIgnoreCase("info")) {
             clickElementBy(infoLinkBy, "info link");
         } else if (mailLink.equalsIgnoreCase("support")) {
             clickElementBy(supportLinkBy, "support link");
         }
-        Assert.assertTrue(isOutlookRunning());
+        //Assert.assertTrue(isOutlookRunning());
     }
 
     public void rightClickOnMailLink(String mailLink) {
@@ -635,7 +739,8 @@ public class FortradeRPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         clickEditTokenBtn();

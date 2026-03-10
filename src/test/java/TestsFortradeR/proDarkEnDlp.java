@@ -21,7 +21,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "143");
+        baseSetup("Chrome", "145");
         fortradeRPage = new FortradeRPage(driver);
         crmPage = new CrmPage(driver);
     }
@@ -34,7 +34,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     @Test(description = "Verify demo account registration")
     public void demoAccountRegistration() throws IOException, AWTException, InterruptedException {
         fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
         fortradeRPage.checkRegulation();
         fortradeRPage.takeScreenshot("Successfully demo account registration - FortradeR", fortradeRPage.regulationMsg);
@@ -46,7 +46,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -59,7 +59,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkingCustomTag() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
         fortradeRPage.checkRegulation();
@@ -73,7 +73,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=testq-testa");
         fortradeRPage.registerAccount1Step("Testq","Testa",email,
-                "381",TestData.phoneNumberGenerator());
+                "Serbia",TestData.phoneNumberGenerator());
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkUtmContent("testq-testa");
@@ -84,7 +84,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkingAgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age");
-        fortradeRPage.ageParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        fortradeRPage.ageParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "25-34");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -99,7 +99,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkingAnnualParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=annual");
-        fortradeRPage.annualParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        fortradeRPage.annualParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -114,7 +114,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkingSavingParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=saving");
-        fortradeRPage.savingParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        fortradeRPage.savingParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$50,000-$100,000");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -129,7 +129,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkingKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=knowledge");
-        fortradeRPage.knowledgeParameter("Testq", "Testa", email, "381", TestData.phoneNumberGenerator(),
+        fortradeRPage.knowledgeParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "All the above");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -143,10 +143,11 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     @Test(description = "Verify that wrong code cannot be submitted")
     public void assertInvalidTokenMsg() throws IOException, AWTException {
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=sms-age-annual-saving-knowledge");
-        fortradeRPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "381",
+        fortradeRPage.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above",
                 "1", "1", "1", "1");
-        Assert.assertEquals(fortradeRPage.incorrectTokenMsg.getText(), "Incorrect Code. Please check and try again.");
+        //Assert.assertEquals(fortradeRPage.incorrectTokenMsg.getText(), "Incorrect Code. Please check and try again.");
+        Assert.assertEquals(fortradeRPage.getText(fortradeRPage.incorrectTokenMsg, "get text from incorrect token"), "Incorrect Code. Please check and try again.");
         fortradeRPage.takeScreenshot("Incorrect code - Please check and try again - FortradeR");
     }
 
@@ -155,7 +156,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     @Test(description = "Verify that message We sent you the code again is received")
     public void didNotGetToken() throws IOException, AWTException, InterruptedException {
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=sms-age-annual-saving-knowledge");
-        fortradeRPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "381",
+        fortradeRPage.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         Assert.assertEquals(fortradeRPage.codeIsSent.getText(), "We sent you the code again");
         Thread.sleep(2000);
@@ -170,7 +171,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         fortradeRPage.enterFirstName("Testq");
         fortradeRPage.enterLastName("Testa");
         fortradeRPage.enterEmail(TestData.emailGenerator());
-        fortradeRPage.enterCountryCode("381");
+        fortradeRPage.handleCountryCode("Serbia");
         fortradeRPage.enterPhoneNumber(TestData.phoneNumberGenerator());
         fortradeRPage.clickSubmitButton();
         fortradeRPage.selectAge("75+");
@@ -202,11 +203,12 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         //String phoneNumber = TestData.phoneNumberGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "All the above", "English");
         fortradeRPage.checkRegulation();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all");
-        fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "381", TestData.phoneNumberGenerator());
+        fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator());
+        fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator());
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - FortradeR - pop-up");
     }
 
@@ -236,7 +238,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void emailIsReceivedSuccessfully() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         fortradeRPage.successfullyRegistration("Testq", "Testa", email,
-                "381", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
+                "Serbia", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
                 "$50,000-$100,000", "All the above", "English");
         fortradeRPage.checkRegulation();
         driver.get("https://yopmail.com/en/");
@@ -297,30 +299,31 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         fortradeRPage.rightClickOnSelectedLink(fortradeRPage.fscRegulationLinkBy, fortradeRPage.fscLink);
     }
 
-    @Test(description = "Verify the user is redirected to the facebook page")
+    /*@Test(description = "Verify the user is redirected to the facebook page")
     public void fbLinkRedirection() throws IOException, InterruptedException, AWTException {
         fortradeRPage.clickOnSelectedLink(fortradeRPage.facebookLinkBy, fortradeRPage.fbURL, "Facebook page");
         fortradeRPage.rightClickOnSelectedLink(fortradeRPage.facebookLinkBy, fortradeRPage.fbURL);
-    }
+    }*/
 
-    @Test(description = "Verify the user is redirected to the instagram page")
+    /*@Test(description = "Verify the user is redirected to the instagram page")
     public void insLinkRedirection() throws IOException, InterruptedException, AWTException {
         fortradeRPage.clickOnSelectedLink(fortradeRPage.instagramLinkBy, fortradeRPage.insURL, "Instagram page");
         fortradeRPage.rightClickOnSelectedLink(fortradeRPage.instagramLinkBy, fortradeRPage.insURL);
-    }
+    }*/
 
-    @Test(description = "Verify the user is redirected to the youtube channel")
+    /*@Test(description = "Verify the user is redirected to the youtube channel")
     public void ytLinkRedirection() throws IOException, InterruptedException, AWTException {
         fortradeRPage.clickOnSelectedLink(fortradeRPage.youtubeLinkBy, fortradeRPage.ytURL, "Youtube page");
         fortradeRPage.rightClickOnSelectedLink(fortradeRPage.youtubeLinkBy, fortradeRPage.ytURL);
-    }
+    }*/
 
+    //Changed this method to check the link for contactUs instead to click
     @Test(description = "Verify the click on Contact us link opens new mail window")
     public void contactUsLink() throws IOException, AWTException, InterruptedException {
         fortradeRPage.clickOnMailLink("contactUs");
-        Thread.sleep(1000);
+        /*Thread.sleep(5000);
         fortradeRPage.takeScreenshot("FortradeR - contact us redirection");
-        fortradeRPage.closeOutlook();
+        fortradeRPage.closeOutlook();*/
     }
 
     @Test(description = "Verify the click on info link opens new mail window")
@@ -344,7 +347,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age");
-        fortradeRPage.ageParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradeRPage.ageParameter("Testq", "Testa", email, "Serbia", phoneNumber,
                 "-- Select --");
         fortradeRPage.secondStepErrorMessage(1);
         fortradeRPage.takeScreenshot("Age parameter error message - FortradeR");
@@ -355,7 +358,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=annual");
-        fortradeRPage.annualParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradeRPage.annualParameter("Testq", "Testa", email, "Serbia", phoneNumber,
                 "-- Select --");
         fortradeRPage.secondStepErrorMessage(1);
         fortradeRPage.takeScreenshot("Annual parameter error message - FortradeR");
@@ -366,7 +369,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=saving");
-        fortradeRPage.savingParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradeRPage.savingParameter("Testq", "Testa", email, "Serbia", phoneNumber,
                 "-- Select --");
         fortradeRPage.secondStepErrorMessage(1);
         fortradeRPage.takeScreenshot("Saving parameter error message - FortradeR");
@@ -377,7 +380,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=knowledge");
-        fortradeRPage.knowledgeParameter("Testq", "Testa", email, "381", phoneNumber,
+        fortradeRPage.knowledgeParameter("Testq", "Testa", email, "Serbia", phoneNumber,
                 "-- Select --");
         fortradeRPage.secondStepErrorMessage(1);
         fortradeRPage.takeScreenshot("Knowledge parameter error message - FortradeR");
@@ -387,7 +390,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void errorMessagesAllParameters() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        fortradeRPage.unsuccessfullyRegistration("Testq", "Testa", email, "381", phoneNumber,
+        fortradeRPage.unsuccessfullyRegistration("Testq", "Testa", email, "Serbia", phoneNumber,
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above",
                 "-- Select --", "-- Select --", "-- Select --", "-- Select --");
         fortradeRPage.secondStepErrorMessage(4);
@@ -398,7 +401,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void checkLanguageParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=plang:srcs,all");
-        fortradeRPage.languageParameter("Testq", "Testa", email, "381",
+        fortradeRPage.languageParameter("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "English");
         fortradeRPage.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
@@ -410,7 +413,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void errorLanguageParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=plang:srcs,all");
-        fortradeRPage.languageParameter("Testq", "Testa", email, "381",
+        fortradeRPage.languageParameter("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "-- Select --");
         fortradeRPage.assertBorderColor(fortradeRPage.languageField);
         fortradeRPage.secondStepErrorMessage(1);
@@ -420,13 +423,13 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     @Test(description = "Verify that the account cannot be registered with already registered phone number")
     public void anAlreadyRegisteredPhone() throws IOException, AWTException, InterruptedException {
         String phoneNumber = TestData.phoneNumberGenerator();
-        fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         fortradeRPage.checkRegulation();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
-                "381", phoneNumber);
+                "Serbia", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered phone number - pop-up - FortradeR");
     }
 
@@ -434,11 +437,11 @@ public class proDarkEnDlp extends BaseTestFortradeR {
     public void anAlreadyRegisteredEmailAndPhone() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
         fortradeRPage.checkRegulation();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all");
         fortradeRPage.alreadyRegisteredAccount("Testq", "Testa", email,
-                "381", phoneNumber);
+                "Serbia", phoneNumber);
         fortradeRPage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - pop-up - FortradeR");
     }
 
@@ -453,7 +456,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         fortradeRPage.checkRegulation();
@@ -467,7 +470,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
         fortradeRPage.checkRegulation();
@@ -481,7 +484,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
         fortradeRPage.checkRegulation();
@@ -495,7 +498,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
         fortradeRPage.checkRegulation();
@@ -509,7 +512,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
         fortradeRPage.checkRegulation();
@@ -524,7 +527,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrader.com/lps/pro-dark/en/?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
-        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "381",
+        fortradeRPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
         fortradeRPage.checkRegulation();

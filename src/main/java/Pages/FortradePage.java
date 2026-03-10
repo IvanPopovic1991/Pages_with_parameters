@@ -1,9 +1,6 @@
 package Pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -42,6 +39,9 @@ public class FortradePage extends BasePage {
 
     @FindBy(xpath = "//input[@name='Prephone']")
     public WebElement countryCode;
+
+    @FindBy(xpath = "//span[@class='cps-label']")
+    public WebElement countryCodeDropdown;
 
     @FindBy(xpath = "//input[@id='TelephoneMask']")
     public WebElement phoneNumber;
@@ -397,7 +397,8 @@ public class FortradePage extends BasePage {
     public enum FieldType {
         TEXT,
         HIDDEN,
-        UNKNOWN
+        UNKNOWN,
+        DROPDOWN
     }
 
     /**
@@ -405,13 +406,26 @@ public class FortradePage extends BasePage {
      */
 
     private FieldType detectCountryCodeType() {
-        if (driver.findElements(By.id("Prephone")).size() > 0) {
+        if (driver.findElements(By.xpath("//label/div[@class='phone-prefix-wrapper']")).size() > 0) {
             return FieldType.HIDDEN;
         }
         if (countryCode.getAttribute("type").equalsIgnoreCase("text")) {
             return FieldType.TEXT;
         }
+        if (driver.findElements(By.xpath("//div[@class='country-phone-select']")).size() > 0) {
+            return FieldType.DROPDOWN;
+        }
         return FieldType.UNKNOWN;
+    }
+
+    public void selectCountry(String country) {
+        clickElement(countryCodeDropdown, "Country Dropdown");
+        By countryLocator = By.xpath("//div/ul/li[@data-name='" + country + "']");
+        WebElement countryElement = driverWait.until(
+                ExpectedConditions.visibilityOfElementLocated(countryLocator)
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", countryElement);
+        clickElement(countryElement, "Country: " + country);
     }
 
     private void validateHiddenCountryCode(String expectedValue) {
@@ -432,6 +446,9 @@ public class FortradePage extends BasePage {
                 break;
             case TEXT:
                 enterCountryCode(countryCodeData);
+                break;
+            case DROPDOWN:
+                selectCountry(countryCodeData);
                 break;
             default:
                 throw new RuntimeException("Country code type is not supported");
@@ -748,7 +765,11 @@ public class FortradePage extends BasePage {
      * @param color
      */
     public void assertColor(String color) {
-        WebElement[] fields = {firstName, lastName, email, countryCode, phoneNumber};
+        WebElement[] fields = {firstName, lastName, email, phoneNumber};
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            fields = new WebElement[]{firstName, lastName, email, countryCode, phoneNumber};
+        }
         for (int i = 0; i < fields.length; i++) {
             /**
              * Ako prosledis color vrednost kao "rgb(123, 123, 132)" onda ukljuci ovaj kod
@@ -758,7 +779,8 @@ public class FortradePage extends BasePage {
             /**
              * U suprotnom ako uneses vrednost kao "blue" onda ukljuci ovaj kod
              */
-            String borderColor = fields[i].getCssValue("border-color");
+            WebElement wrapper = fields[i].findElement(By.xpath("./parent::label"));
+            String borderColor = wrapper.getCssValue("border-color");
             // Split the RGB value
             String[] rgbValues = borderColor.replace("rgb(", "").replace(")", "").split(",");
             int red = Integer.parseInt(rgbValues[0].trim());

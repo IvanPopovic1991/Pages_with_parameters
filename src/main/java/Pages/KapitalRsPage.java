@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,10 +34,13 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//input[@name='Prephone']")
     public WebElement countryCode;
 
+    @FindBy(xpath = "//span[@class='cps-label']")
+    public WebElement countryCodeDropdown;
+
     @FindBy(xpath = "//input[@name='Telephone']")
     public WebElement phoneNumber;
 
-    @FindBy(xpath = "//[@id='main-submit-btn']")
+    @FindBy(xpath = "//button[@id='next-stage-btn']")
     public WebElement submitBtn;
 
     @FindBy(xpath = "//a[contains(text(),'Već imate nalog?')]")
@@ -48,7 +52,7 @@ public class KapitalRsPage extends BasePage {
     @FindBy(xpath = "//div[@id='platformRegulation']")
     public WebElement regulationMsg;
 
-    @FindBy(xpath = "//div[@class='userExistsLabelInner']")
+    @FindBy(xpath = "//span[@class='errorMessage'and contains(text(),'Email ili broj telefona već postoji. Molimo Vas koristite drugi email ili broj telefona.')]")
     public WebElement alrdRegEmailPopUp;
 
     @FindBy(xpath = "//iframe[@id='myWidgetIframe']")
@@ -168,8 +172,68 @@ public class KapitalRsPage extends BasePage {
         typeText(email, emailData, "imejl");
     }
 
+    /**
+     * country code type field detection
+     */
+    public enum FieldType {
+        TEXT,
+        HIDDEN,
+        UNKNOWN,
+        DROPDOWN
+    }
+
+    /**
+     * Country code method detection
+     */
+
+    private FieldType detectCountryCodeType() {
+        if (driver.findElements(By.xpath("//label/div[@class='phone-prefix-wrapper']")).size() > 0) {
+            return FieldType.HIDDEN;
+        }
+        if (countryCode.getAttribute("type").equalsIgnoreCase("text")) {
+            return FieldType.TEXT;
+        }
+        if (driver.findElements(By.xpath("//div[@class='country-phone-select']")).size() > 0) {
+            return FieldType.DROPDOWN;
+        }
+        return FieldType.UNKNOWN;
+    }
+
+    public void selectCountry(String country) {
+        clickElement(countryCodeDropdown, "Country Dropdown");
+        By countryLocator = By.xpath("//div/ul/li[@data-name='" + country + "']");
+        WebElement countryElement = driverWait.until(
+                ExpectedConditions.visibilityOfElementLocated(countryLocator)
+        );
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", countryElement);
+        clickElement(countryElement, "Country: " + country);
+    }
+
+    private void validateHiddenCountryCode(String expectedValue) {
+        String actualValue = countryCode.getAttribute("value");
+        Assert.assertEquals(actualValue, expectedValue);
+        System.out.println("Expected country code number");
+    }
+
     public void enterCountryCode(String countryCodeData) {
         typeText(countryCode, countryCodeData, "pozivni broj");
+    }
+
+    public void handleCountryCode(String countryCodeData) {
+        FieldType fieldType = detectCountryCodeType();
+        switch (fieldType) {
+            case HIDDEN:
+                validateHiddenCountryCode(countryCodeData);
+                break;
+            case TEXT:
+                enterCountryCode(countryCodeData);
+                break;
+            case DROPDOWN:
+                selectCountry(countryCodeData);
+                break;
+            default:
+                throw new RuntimeException("Country code type is not supported");
+        }
     }
 
     public void enterPhoneNumber(String phoneNumberData) {
@@ -209,7 +273,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
@@ -224,7 +289,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
@@ -243,7 +309,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
@@ -255,7 +322,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAnnual(annualData);
@@ -267,7 +335,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectSaving(savingData);
@@ -279,7 +348,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectKnowledge(knowledgeData);
@@ -296,7 +366,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectLanguage(languageData);
@@ -309,7 +380,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
@@ -352,12 +424,14 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
     }
 
-    private String expTextForPopUp = "Nevažeći imejl. Pokušajte sa drugim ili nastavite sa prijavljivanjem. Ako je potrebno, poništite lozinku u slučaju da ste je zaboravili.";
+    //private String expTextForPopUp = "Nevažeći imejl. Pokušajte sa drugim ili nastavite sa prijavljivanjem. Ako je potrebno, poništite lozinku u slučaju da ste je zaboravili.";
+    private String expTextForPopUp = "Email ili broj telefona već postoji. Molimo Vas koristite drugi email ili broj telefona.";
 
     public void assertPopUpForAlreadyRegisteredAccount(String fileName) throws IOException, AWTException {
         Assert.assertEquals(getTextBy(alrdRegEmailPopUp, "alrdRegEmailPopUp"), expTextForPopUp);
@@ -368,22 +442,23 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCode);
+        //handleCountryCode(countryCode);
+        //enterCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
     }
 
     public void assertErrorMessages() {
         for (int i = 1; i <= 4; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidation'])[position()=number]".replace("number", String.valueOf(i))), "error message " + errorMessages[i - 1]), errorMessages[i - 1]);
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))), "error message " + errorMessages[i - 1]), errorMessages[i - 1]);
         }
     }
 
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {
         Thread.sleep(2000);
         for (int i = 1; i <= numberOfParameters; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))),
-                    "error message " + "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste"), "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste");
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='selectErrorMessage'])[position()=number]".replace("number", String.valueOf(i))),
+                    "error message " + "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste."), "Molimo Vas izaberite odgovarajuću opciju iz padajuće liste.");
         }
     }
 
@@ -392,7 +467,8 @@ public class KapitalRsPage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        enterCountryCode(countryCodeData);
+        handleCountryCode(countryCodeData);
+        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
         selectAge(ageData);
@@ -405,14 +481,19 @@ public class KapitalRsPage extends BasePage {
 
     public void assertSameNameErrorMsgs() {
         for (int i = 1; i <= 2; i++) {
-            Assert.assertEquals(getTextBy(By.xpath("(//div[@class='errorValidation'])[position()=number]".replace("number", String.valueOf(i))), "Error message : " + sameNamesErrorMessages[i - 1]), sameNamesErrorMessages[i - 1]);
+            Assert.assertEquals(getTextBy(By.xpath("(//span[@class='errorMessage'])[position()=number]".replace("number", String.valueOf(i))), "Error message : " + sameNamesErrorMessages[i - 1]), sameNamesErrorMessages[i - 1]);
         }
     }
 
     public void assertColor(String color) {
-        WebElement[] fields = {firstName, lastName, email, countryCode, phoneNumber};
+        WebElement[] fields = {firstName, lastName, email, phoneNumber};
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            fields = new WebElement[]{firstName, lastName, email, countryCode, phoneNumber};
+        }
         for (int i = 0; i < fields.length; i++) {
-            String borderColor = fields[i].getCssValue("border-color");
+            WebElement wrapper = fields[i].findElement(By.xpath("./parent::label"));
+            String borderColor = wrapper.getCssValue("border-color");
             // Split the RGB value
             String[] rgbValues = borderColor.replace("rgb(", "").replace(")", "").split(",");
             int red = Integer.parseInt(rgbValues[0].trim());
@@ -463,15 +544,19 @@ public class KapitalRsPage extends BasePage {
     }
 
     public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText) {
-        clickElement(countryCode, "country code field");
-        try {
-            Robot robot = new Robot();
-            typeString(robot, wrongCountryCodeDataText);
-            clickElement(phoneNumber, "phone number field");
-            Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
-                    , "Nevažeći format telefona.");
-        } catch (Exception e) {
-            System.out.println(e);
+        FieldType fieldType = detectCountryCodeType();
+        if (fieldType.equals(FieldType.TEXT)){
+            clickElement(countryCode, "country code field");
+            try {
+                Robot robot = new Robot();
+                //typeString(robot, wrongCountryCodeDataText);
+                typeText(countryCode,"01312148","country code field");
+                clickElement(phoneNumber, "phone number field");
+                Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
+                        , "Must be a valid international phone number");
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
     }
 
