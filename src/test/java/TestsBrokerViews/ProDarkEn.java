@@ -20,7 +20,7 @@ public class ProDarkEn extends BaseTestBrokerviews {
 
     @BeforeMethod
     public void setUp(){
-        baseSetUp("Chrome","145");
+        baseSetUp("Chrome","146");
         brokerViews = new BrokerViewsPage(driver);
         crmPage = new CrmPage(driver);
     }
