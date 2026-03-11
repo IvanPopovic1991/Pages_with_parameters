@@ -2,7 +2,6 @@ package TestsFortrade;
 
 import Pages.CrmPage;
 import Pages.FortradePage;
-import Pages.Mailinator;
 import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
@@ -22,7 +21,7 @@ public class ProDark2024Dlp extends BaseTestFortrade{
     @BeforeMethod
     @Parameters({"tag"})
     public void setUp(String tag) {
-        baseSetup("Chrome", "136");
+        baseSetup("Chrome", "146");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge" + tag);

@@ -22,7 +22,7 @@ public class ProDarkDfsa extends BaseTestFortrade {
     @BeforeMethod
     @Parameters({"tag", "regulation"})
     public void setUp(String tag, String regulation) {
-        baseSetup("Chrome", "143");
+        baseSetup("Chrome", "146");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dfsa/en?fts=age-annual-saving-knowledge" + tag);

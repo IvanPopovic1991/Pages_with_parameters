@@ -19,7 +19,7 @@ public class ProDarkEn extends BaseTestPenny{
 
     @BeforeMethod
     public void setUp(){
-        baseSetUp("Chrome","145");
+        baseSetUp("Chrome","146");
         pennyStocks = new PennyStocks(driver);
         crmPage = new CrmPage(driver);
     }

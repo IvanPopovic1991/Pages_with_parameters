@@ -19,7 +19,7 @@ public class proDarkSrDlp extends BaseTestKapitalRS{
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "145");
+        baseSetup("Chrome", "146");
     }
 
     @AfterMethod

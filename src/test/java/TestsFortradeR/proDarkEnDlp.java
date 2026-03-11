@@ -21,7 +21,7 @@ public class proDarkEnDlp extends BaseTestFortradeR {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "145");
+        baseSetup("Chrome", "146");
         fortradeRPage = new FortradeRPage(driver);
         crmPage = new CrmPage(driver);
     }

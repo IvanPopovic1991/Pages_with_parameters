@@ -2,14 +2,12 @@ package TestsFortradeR;
 
 import Pages.CrmPage;
 import Pages.FortradeRPage;
-import Pages.Mailinator;
 import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.awt.*;
@@ -22,7 +20,7 @@ public class ProDark2024Dlp extends BaseTestFortradeR {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "136");
+        baseSetup("Chrome", "146");
         fortradeRPage = new FortradeRPage(driver);
         crmPage = new CrmPage(driver);
     }

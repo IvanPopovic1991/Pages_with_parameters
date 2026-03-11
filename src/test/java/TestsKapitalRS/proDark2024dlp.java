@@ -2,7 +2,6 @@ package TestsKapitalRS;
 
 import Pages.CrmPage;
 import Pages.KapitalRsPage;
-import Pages.Mailinator;
 import Pages.YopMail;
 import faker.TestData;
 import org.openqa.selenium.By;
@@ -20,7 +19,7 @@ public class proDark2024dlp extends BaseTestKapitalRS{
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "143");
+        baseSetup("Chrome", "146");
     }
 
     @AfterMethod
