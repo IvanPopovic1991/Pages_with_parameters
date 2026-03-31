@@ -8,9 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.awt.*;
-import java.io.IOException;
-
 public class CrmPage extends BasePage {
     public CrmPage(WebDriver driver) {
         super(driver);
@@ -86,6 +83,9 @@ public class CrmPage extends BasePage {
     @FindBy(xpath = "//button[@id='butBegin']")
     public WebElement closeMailPending;
 
+    @FindBy(xpath = "//div[@id='lv_language']")
+    public WebElement language;
+
     public void logInCrm(String username, String password) {
         typeText(usernameCrm, username, "username for CRM");
         typeText(passwordCrm, password, "password for CRM");
@@ -156,6 +156,12 @@ public class CrmPage extends BasePage {
         clickElement(menuBtn, "menu button");
         clickElement(envAndMarSec, "environment and marketing section button");
         loopForTagsCrm();
+    }
+
+    public void checkLanguageInCrm(String expectedText){
+        clickElement(menuBtn, "menu button");
+        clickElement(envAndMarSec, "environment and marketing section button");
+        Assert.assertEquals(readAttribute(language,"title","language field"),expectedText);
     }
 
     public void checkCrmFtsQuery(String value) {

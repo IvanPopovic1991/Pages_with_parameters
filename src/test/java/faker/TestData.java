@@ -27,4 +27,6 @@ public class TestData {
         int lineNumber = fake.number().numberBetween(1000, 10000);
         return areaCode + exchange + lineNumber;
     }
+
+    public static String nonValidPhone = "99999991";
 }
