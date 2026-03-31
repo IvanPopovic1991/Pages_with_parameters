@@ -43,7 +43,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[@class='cps-label']")
     public WebElement countryCodeDropdown;
 
-    @FindBy(xpath = "//input[@id='TelephoneMask']")
+    @FindBy(xpath = "//input[@id='Telephone']")
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//button[@id='next-stage-btn']")
@@ -187,7 +187,7 @@ public class FortradePage extends BasePage {
 
     public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
 
-    public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
+    public By fscRegulationLinkBy = By.xpath("//a[text()='GB21026472']");
 
     public By fsgDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(FSG)')]");
 
@@ -198,8 +198,9 @@ public class FortradePage extends BasePage {
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
             "Must be a valid email address.",
-            "Phone number is required"};
-    //Old page - Must be a valid international phone number error message text; For new pages non-valid text cannot be insert
+            "Must be a valid international phone number"};
+    // Must be a valid international phone number - error message text for all pages except for pages with fixed value in country code field
+    // Phone number is required - error message for lps with fixed value in country code field
 
     String[] sameNamesErrorMessages = {"First Name and Last Name cannot be equal.",
             "First Name and Last Name cannot be equal."};
@@ -216,7 +217,7 @@ public class FortradePage extends BasePage {
         String text = "";
         switch (regulation) {
             case "FSC": {
-                text = "fortrade-ma-privacy-policy/";
+                text = "wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
             }
             break;
             case "FCA": {
@@ -240,7 +241,7 @@ public class FortradePage extends BasePage {
         String text = "";
         switch (regulation) {
             case "FSC": {
-                text = "fortrade-mauritius-client-agreement/";
+                text = "wp-content/uploads/legal/FSC/Fortrade_Mauritius_Client_Agreement.pdf";
             }
             break;
             case "FCA": {
