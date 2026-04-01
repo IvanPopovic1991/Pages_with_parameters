@@ -7,9 +7,9 @@
         <listener class-name="listeners.TestExecution"/>
     </listeners>
     <suite-files>
-        <suite-file path="TestNgFortrade.xml"/>
-        <!--<suite-file path="TestNgFortradeR.xml"/>
-        <suite-file path="TestNgPennyStocks.xml"/>
+        <!--<suite-file path="TestNgFortrade.xml"/>-->
+        <suite-file path="TestNgFortradeR.xml"/>
+        <!--<suite-file path="TestNgPennyStocks.xml"/>
         <suite-file path="TestNgKapitalRs.xml"/>
         <suite-file path="TestNgBrokerViews.xml"/>-->
     </suite-files>

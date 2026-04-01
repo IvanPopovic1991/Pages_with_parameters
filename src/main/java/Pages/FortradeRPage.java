@@ -171,7 +171,7 @@ public class FortradeRPage extends BasePage {
     public String privacyPolicyFSC = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
 
     // Terms and conditions document link
-    public String termsAndConditionsFSC = "https://www.fortrade.com/fortrade-mauritius-client-agreement/";
+    public String termsAndConditionsFSC = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_Mauritius_Client_Agreement.pdf";
 
     //How to unsubscribe document link
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
@@ -318,7 +318,6 @@ public class FortradeRPage extends BasePage {
         enterLastName(lastNameData);
         enterEmail(emailData);
         handleCountryCode(countryCodeData);
-        //enterCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickSubmitButton();
         selectAge(ageData);
@@ -572,7 +571,6 @@ public class FortradeRPage extends BasePage {
         clickMenuBtn();
         String actualText = getText(regulationMsg, "regulation text");
         Assert.assertEquals(actualText, "Broker: Fortrade (Mauritius) Ltd (FSC)");
-        new BasePage(driver).takeScreenshot("Broker Fortrade Mauritius Ltd FSC - successfully registered demo account - FortradeR", regulationMsg);
     }
 
     public void alreadyRegisteredAccount(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData) {

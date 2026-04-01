@@ -6,9 +6,14 @@
         <listener class-name="listeners.Transform"/>
         <listener class-name="listeners.TestExecution"/>
     </listeners>
-    <test name="All test cases - pro dark en dlp - FortradeR">
+    <test name="All test cases - pro dark en Nob dlp - FortradeR">
         <classes>
-            <class name="TestsFortradeR.proDarkEnDlp"/>
+            <class name="TestsFortradeR.proDarkNob">
+                    <methods>
+                        <include name="verifyLanguage"/>
+                        <include name="verifyLanguageField"/>
+                    </methods>
+            </class>
         </classes>
     </test>
 </suite>
