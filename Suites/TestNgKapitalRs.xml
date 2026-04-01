@@ -8,7 +8,7 @@
     </listeners>
     <test name="All test cases - pro-dark-dlp-sr landing page - KapitalRS">
         <classes>
-            <class name="TestsKapitalRS.proDarkSrDlp"/>
+            <class name="TestsKapitalRS.proDarkNob"/>
         </classes>
     </test>
 </suite>

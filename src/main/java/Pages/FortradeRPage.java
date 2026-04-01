@@ -55,7 +55,7 @@ public class FortradeRPage extends BasePage {
     @FindBy(xpath = "//div[@class='userExistsLabelInner']")
     public WebElement alrdRegEmailPopUp;
 
-    @FindBy(xpath="//span[text()='Email or phone already exists. Please use a different email address or phone number.']")
+    @FindBy(xpath="//span[@class='errorMessage' and contains(text(),'Email or phone already exists. Please use a different email address or phone number.')]")
     WebElement alrRegisteredEmail;
 
     @FindBy(xpath = "//span[text()='Must be a valid international phone number']")
