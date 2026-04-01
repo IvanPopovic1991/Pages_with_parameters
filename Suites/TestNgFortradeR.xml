@@ -8,12 +8,7 @@
     </listeners>
     <test name="All test cases - pro dark en Nob dlp - FortradeR">
         <classes>
-            <class name="TestsFortradeR.proDarkNob">
-                    <methods>
-                        <include name="verifyLanguage"/>
-                        <include name="verifyLanguageField"/>
-                    </methods>
-            </class>
+            <class name="TestsFortradeR.proDarkNob"/>
         </classes>
     </test>
 </suite>

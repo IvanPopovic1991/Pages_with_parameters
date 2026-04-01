@@ -58,10 +58,10 @@ public class YopMail extends BasePage{
     @FindBy(xpath = "//span[contains(text(), 'KapitalRS <podrska@kapitalrs.com>')]")
     public WebElement kapitalRSEmail;
 
-    @FindBy(xpath = "//div[contains(text(),'Vaš Demo Nalog je Spreman')]")
+    @FindBy(xpath = "//div[contains(text(),'Your Demo Account is Ready')]")
     public WebElement emailTitleKRS;
 
-    @FindBy(xpath = "//td/p[contains(text(), 'Dobrodošli, Testq!')]")
+    @FindBy(xpath = "//td/p[contains(text(), 'Welcome, Testq!')]")
     public WebElement kapitalRSTestqName;
 
     public void findEmail(String emailValue){
@@ -128,7 +128,7 @@ public class YopMail extends BasePage{
         driver.switchTo().defaultContent();
         driver.switchTo().frame(mailFrame);
         Assert.assertEquals(getText(kapitalRSEmail, "getting kapitalRS email"), "KapitalRS <podrska@kapitalrs.com>");
-        Assert.assertTrue(getText(kapitalRSTestqName, "getting Testq name").contains("Dobrodošli, Testq!"));
+        Assert.assertTrue(getText(kapitalRSTestqName, "getting Testq name").contains("Welcome, Testq!"));
     }
 
     /**
