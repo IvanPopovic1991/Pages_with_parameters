@@ -417,7 +417,6 @@ public class KapitalRsPage extends BasePage {
         clickMenuBtn();
         String actualText = getText(regulationMsg, "regulation text");
         Assert.assertEquals(actualText, "Broker: Fortrade (Mauritius) Ltd (FSC)");
-        new BasePage(driver).takeScreenshot("Broker Fortrade Mauritius Ltd FSC - successfully registered demo account", regulationMsg);
     }
 
     public void alreadyRegisteredAccount(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData) {
