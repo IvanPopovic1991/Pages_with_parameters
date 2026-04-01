@@ -8,12 +8,13 @@ import faker.TestData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.awt.*;
 import java.io.IOException;
 
-public class ProDarkNob extends BaseTestBrokerviews {
+public class ProDarkNobKp extends BaseTestBrokerviews {
 
     BrokerViewsPage brokerViews;
     CrmPage crmPage;
@@ -35,6 +36,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         brokerViews.takeScreenshot("Successfully demo account registration - Broker Views",brokerViews.regulationMsg);
     }
@@ -42,12 +44,13 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the marketing tags in CRM")
     public void checkingTagsInTheCrm() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&tg=ivanA" +
                 "1434&tag1=ivanB@1434&tag2=ivanL1434&tag3=ivanM1434&gid=ivanC@1434&G_GEO=ivanD1434&G_GEOint=ivanE1434&G_" +
                 "Device=ivanF1434&G_DeviceModel=ivanG1434&G_AdPos=ivanH1434&g_Track=ivanI1434&Track=ivanj1434&gclid=ivanK1434");
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details Broker Views page", crmPage.accFullNameCrm);
@@ -58,10 +61,11 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify that the Custom tag in the CRM is empty")
     public void checkingCustomTag() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -71,9 +75,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the account is registered successfully with NON-valid tag in the URL")
     public void checkingNonValidParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=testq-testa");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=testq-testa");
         brokerViews.registerAccount1Step("Testq","Testa",email,
                 "Serbia",TestData.phoneNumberGenerator());
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkUtmContent("testq-testa");
@@ -83,9 +88,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the age value is displayed correctly in the Link ID field in the CRM")
     public void checkingAgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age");
         brokerViews.ageParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "25-34");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -98,9 +104,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the annual value is displayed correctly in the Link ID field in the CRM")
     public void checkingAnnualParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=annual");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=annual");
         brokerViews.annualParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -113,9 +120,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the saving value is displayed correctly in the Link ID field in the CRM")
     public void checkingSavingParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=saving");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=saving");
         brokerViews.savingParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$50,000-$100,000");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -128,9 +136,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the knowledge of trading value is displayed correctly in the Link ID field in the CRM")
     public void checkingKnowledgeParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=knowledge");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=knowledge");
         brokerViews.knowledgeParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "All the above");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -143,9 +152,10 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the desired communication language value is displayed correctly in the Link ID field in the CRM")
     public void checkLanguageParameter() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=plang:all");
         brokerViews.languageParameter("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkLinkIdValue("PC_windows,lang_EN");
@@ -154,7 +164,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify that wrong code cannot be submitted")
     public void assertInvalidTokenMsg() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=sms-age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=sms-age-annual-saving-knowledge-plang:all");
         brokerViews.unsuccessfullyRegistrationWrongSMS("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above",
                 "English","1", "1", "1", "1");
@@ -165,7 +175,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify that message We sent you the code again is received")
     public void didNotGetToken() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=sms-age-annual-saving-knowledge");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=sms-age-annual-saving-knowledge");
         brokerViews.tokenIsNotReceived("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         Assert.assertEquals(brokerViews.codeIsSent.getText(), "We sent you the code again");
@@ -177,7 +187,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify if user clicks pencil icon the same is returned to the 1st widget")
     public void userIsReturnedTo1stWidget() throws IOException, AWTException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=sms-age-annual-saving-knowledge");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=sms-age-annual-saving-knowledge");
         brokerViews.enterFirstName("Testq");
         brokerViews.enterLastName("Testa");
         brokerViews.enterEmail(TestData.emailGenerator());
@@ -214,8 +224,9 @@ public class ProDarkNob extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator());
         brokerViews.assertPopUpForAlreadyRegisteredAccount();
         brokerViews.takeScreenshot("Already registered email address - Broker Views",brokerViews.alrdRegEmailMsg);
@@ -227,8 +238,9 @@ public class ProDarkNob extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
                 "Serbia", phoneNumber);
         brokerViews.assertPopUpForAlreadyRegisteredAccount();
@@ -240,8 +252,9 @@ public class ProDarkNob extends BaseTestBrokerviews {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", email,
                 "Serbia", phoneNumber);
         brokerViews.assertPopUpForAlreadyRegisteredAccount();
@@ -260,7 +273,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the logo is not clickable with left click")
     public void checkingForLogoClickability() throws IOException, AWTException {
-        brokerViews.checkLogoClickability("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        brokerViews.checkLogoClickability("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.takeScreenshot("Logo is not clickable - Broker Views");
     }
 
@@ -276,6 +289,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
                 "$50,000-$100,000", "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         driver.get("https://yopmail.com/en/");
         YopMail yopMail = new YopMail(driver);
@@ -319,7 +333,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the 2nd step - age verification window cannot be submitted if it's not completed")
     public void errorMessageAgeParameter() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age");
         brokerViews.ageParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         brokerViews.secondStepErrorMessage(1);
@@ -328,7 +342,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the 2nd step - annual income verification window cannot be submitted if it's not completed")
     public void errorMessageAnnualParameter() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=annual");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=annual");
         brokerViews.annualParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         brokerViews.secondStepErrorMessage(1);
@@ -337,7 +351,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the 2nd step - value of saving and investments verification window cannot be submitted if it's not completed")
     public void errorMessageSavingParameter() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=saving");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=saving");
         brokerViews.savingParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         brokerViews.secondStepErrorMessage(1);
@@ -346,7 +360,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the 2nd step - knowledge of trading verification window cannot be submitted if it's not completed")
     public void errorMessageKnowledgeParameter() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=knowledge");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=knowledge");
         brokerViews.knowledgeParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia", TestData.phoneNumberGenerator(),
                 "-- Select --");
         brokerViews.secondStepErrorMessage(1);
@@ -355,7 +369,7 @@ public class ProDarkNob extends BaseTestBrokerviews {
 
     @Test(description = "Verify the 2nd step - desired communication language verification window cannot be submitted if it's not completed ")
     public void errorLanguageParameter() throws IOException, AWTException, InterruptedException {
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=plang:all");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=plang:all");
         brokerViews.languageParameter("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 TestData.phoneNumberGenerator(), "-- Select --");
         brokerViews.assertBorderColor(brokerViews.languageField);
@@ -375,11 +389,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM contains Dummy value")
     public void dummyLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age-plang:all&" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Dummy");
@@ -389,11 +404,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM contains Dummy value")
     public void dummy_Lead_Registration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age-plang:all&" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=annual-saving-knowledge-age-plang:all&" +
                 "ftsquery=age-equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Dummy");
@@ -403,11 +419,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM contains Invalid value")
     public void invalidLeadRegistration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Invalid");
@@ -417,11 +434,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM contains Invalid value")
     public void invalid_Lead_Registration() throws IOException, AWTException, InterruptedException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age(1)-" +
                 "or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Invalid");
@@ -431,11 +449,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM is empty")
     public void emptyLeadRegistration() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -446,11 +465,12 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify the custom tag field in the CRM is empty")
     public void empty_Lead_Registration() throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&ftsquery=age-" +
                 "equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
+        brokerViews.assertURL(TestData.url);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -461,10 +481,35 @@ public class ProDarkNob extends BaseTestBrokerviews {
     @Test(description = "Verify an error message for check box")
     public void checkBoxErrorMessage () throws IOException, AWTException {
         String email = TestData.emailGenerator();
-        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob/en");
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en");
         brokerViews.uncheckCheckBox("Testq","Testa",email,
                 "Serbia",TestData.phoneNumberGenerator());
         Assert.assertEquals(brokerViews.getText(brokerViews.errorMessageCheckBox, "check box error message"), "Please check this box to proceed.");
         brokerViews.takeScreenshot("Check box - error message - Borker Views", brokerViews.errorMessageCheckBox);
+    }
+
+    @Test(description = "Verify that the Language field in the CRM contains expected value")
+    public void verifyLanguageField() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&userLang=en");
+        brokerViews.successfullyRegistration("Testq","Testa",email,"Serbia",TestData.phoneNumberGenerator(),
+                "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
+        brokerViews.assertURL(TestData.url);
+        crmPage.checkCrmData(email,"Testq Testa", "FSC");
+        crmPage.checkLanguageInCrm("en");
+        brokerViews.takeScreenshot("Language field ",crmPage.language);
+    }
+
+    @Test(description = "Verify that the Language field in the CRM contains the default value (the language of the base " +
+            "page URL) when we enter the wrong language in the userLang parameter")
+    public void verifyLanguage() throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&userLang=he");
+        brokerViews.successfullyRegistration("Testq","Testa",email, "Serbia",TestData.phoneNumberGenerator(),
+                "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
+        brokerViews.assertURL(TestData.url);
+        crmPage.checkCrmData(email,"Testq Testa", "FSC");
+        crmPage.checkLanguageInCrm("en");
+        brokerViews.takeScreenshot("Language field - default language ",crmPage.language);
     }
 }

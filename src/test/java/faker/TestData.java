@@ -19,6 +19,8 @@ public class TestData {
 
     private static final Faker fake = new Faker();
 
+    public static String url = "https://pro.kapitalrs.com/";
+
     public static String canadaPhoneNumber() {
         int firstDigit = fake.number().numberBetween(2, 10);
         int remainingAreaDigits = fake.number().numberBetween(0, 100);

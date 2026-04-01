@@ -478,8 +478,8 @@ public class BrokerViewsPage extends BasePage {
     }
 
     public void checkRegulation() throws IOException, AWTException, InterruptedException {
-        clickNotSerbianRes();
-        Thread.sleep(2000);
+        /*clickNotSerbianRes();
+        Thread.sleep(2000);*/
         clickUsePassBtn();
         clickMenuBtn();
         String actualText = getText(regulationMsg, "regulation text");
