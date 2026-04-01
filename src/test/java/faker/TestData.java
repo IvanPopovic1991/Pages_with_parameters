@@ -19,7 +19,9 @@ public class TestData {
 
     private static final Faker fake = new Faker();
 
-    public static String url = "https://pro.kapitalrs.com/";
+    public static String kapitalRSUrl = "https://pro.kapitalrs.com/";
+
+    public static String fortradeUrl = "https://ready.fortrade.com";
 
     public static String canadaPhoneNumber() {
         int firstDigit = fake.number().numberBetween(2, 10);
