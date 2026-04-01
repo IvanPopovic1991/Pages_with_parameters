@@ -8,7 +8,7 @@
     </listeners>
     <test name="All test cases - dlp-pro-dark-en landing page - PennyStocks">
         <classes>
-            <class name="TestsPenny.ProDarkEn"/>
+            <class name="TestsPenny.PennyStocksProDarkNob"/>
         </classes>
     </test>
 </suite>

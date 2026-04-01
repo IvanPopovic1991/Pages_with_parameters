@@ -155,7 +155,7 @@ public class PennyStocks extends BasePage{
 
     public String privacyPolicyUrl = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_MA_Privacy_Policy.pdf";
 
-    public String termsAndConditionsUrl = "https://www.fortrade.com/fortrade-mauritius-client-agreement/";
+    public String termsAndConditionsUrl = "https://www.fortrade.com/wp-content/uploads/legal/FSC/Fortrade_Mauritius_Client_Agreement.pdf";
 
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 

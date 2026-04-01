@@ -3,12 +3,10 @@ package TestsBrokerViews;
 import Pages.CrmPage;
 import Pages.BrokerViewsPage;
 import Pages.YopMail;
-import TestsBrokerViews.BaseTestBrokerviews;
 import faker.TestData;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.awt.*;
@@ -36,7 +34,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         brokerViews.takeScreenshot("Successfully demo account registration - Broker Views",brokerViews.regulationMsg);
     }
@@ -50,7 +48,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.takeScreenshot("Account details Broker Views page", crmPage.accFullNameCrm);
@@ -65,7 +63,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "Yes, from a relevant role in financial services", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -78,7 +76,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=testq-testa");
         brokerViews.registerAccount1Step("Testq","Testa",email,
                 "Serbia",TestData.phoneNumberGenerator());
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkUtmContent("testq-testa");
@@ -91,7 +89,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age");
         brokerViews.ageParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "25-34");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -107,7 +105,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=annual");
         brokerViews.annualParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$15,000-$50,000");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -123,7 +121,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=saving");
         brokerViews.savingParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "$50,000-$100,000");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -139,7 +137,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=knowledge");
         brokerViews.knowledgeParameter("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator(),
                 "All the above");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkSMSVerification("--");
@@ -155,7 +153,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=plang:all");
         brokerViews.languageParameter("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkLinkIdValue("PC_windows,lang_EN");
@@ -224,7 +222,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", TestData.phoneNumberGenerator());
@@ -238,7 +236,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), "Serbia",
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
@@ -252,7 +250,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         String email = TestData.emailGenerator();
         String phoneNumber = TestData.phoneNumberGenerator();
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia", phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
         brokerViews.alreadyRegisteredAccount("Testq", "Testa", email,
@@ -289,7 +287,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000",
                 "$50,000-$100,000", "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         driver.get("https://yopmail.com/en/");
         YopMail yopMail = new YopMail(driver);
@@ -394,7 +392,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Dummy");
@@ -409,7 +407,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Dummy");
@@ -424,7 +422,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Invalid");
@@ -439,7 +437,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "None", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("Invalid");
@@ -454,7 +452,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -470,7 +468,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         brokerViews.successfullyRegistration("Testq", "Testa", email, "Serbia",
                 TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
                 "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         brokerViews.checkRegulation();
         crmPage.checkCrmData(email, "Testq Testa", "FSC");
         crmPage.checkCustomTag("");
@@ -494,7 +492,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&userLang=en");
         brokerViews.successfullyRegistration("Testq","Testa",email,"Serbia",TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         crmPage.checkCrmData(email,"Testq Testa", "FSC");
         crmPage.checkLanguageInCrm("en");
         brokerViews.takeScreenshot("Language field ",crmPage.language);
@@ -507,7 +505,7 @@ public class ProDarkNobKp extends BaseTestBrokerviews {
         driver.get("https://dlp.brokereviews.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all&userLang=he");
         brokerViews.successfullyRegistration("Testq","Testa",email, "Serbia",TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above", "English");
-        brokerViews.assertURL(TestData.url);
+        brokerViews.assertURL(TestData.kapitalRSUrl);
         crmPage.checkCrmData(email,"Testq Testa", "FSC");
         crmPage.checkLanguageInCrm("en");
         brokerViews.takeScreenshot("Language field - default language ",crmPage.language);

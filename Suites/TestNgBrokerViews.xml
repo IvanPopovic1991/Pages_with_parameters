@@ -8,12 +8,7 @@
     </listeners>
     <test name="All test cases - dlp-pro-dark-en landing page - BrokerViews">
         <classes>
-            <class name="TestsBrokerViews.ProDarkNobKp">
-                <methods>
-                    <include name="verifyLanguageField"/>
-                    <include name="verifyLanguage"/>
-                </methods>
-            </class>
+            <class name="TestsBrokerViews.ProDarkNob"/>
         </classes>
     </test>
 </suite>
