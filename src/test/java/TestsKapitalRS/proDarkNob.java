@@ -194,10 +194,39 @@ public class proDarkNob extends BaseTestKapitalRS{
         kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email,
                 "Serbia", TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000",
                 "$50,000-$100,000", "All the above");
-        kapitalRsEnPage.checkRegulation();
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge");
         kapitalRsEnPage.alreadyRegisteredAccount("Testq", "Testa", email, "Serbia", phoneNumber);
-        kapitalRsEnPage.assertPopUpForAlreadyRegisteredAccount("Already registered account - KapitalRs - pop-up");
+        kapitalRsEnPage.assertPopUpForAlreadyRegisteredAccount("Already registered email - kapitalrs");
+    }
+
+    @Test(description = "Verify that the already registered phone number cannot be register")
+    public void anAlreadyRegisteredPhone() throws IOException, AWTException {
+        String phoneNumber = TestData.phoneNumberGenerator();
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(),
+                "Serbia", phoneNumber, "25-34", "$15,000-$50,000",
+                "$50,000-$100,000", "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge");
+        kapitalRsEnPage.alreadyRegisteredAccount("Testq", "Testa",TestData.emailGenerator(), 
+                "Serbia", phoneNumber);
+        kapitalRsEnPage.assertPopUpForAlreadyRegisteredAccount("Already registered phone - kapitalrs");
+    }
+
+    @Test
+    public void anAlreadyRegisteredEmailAndPhone() throws IOException, AWTException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        String email = TestData.emailGenerator();
+        String phoneNumber = TestData.phoneNumberGenerator();
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
+                "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge");
+        kapitalRsEnPage.alreadyRegisteredAccount("Testq", "Testa", email,
+                "Serbia", phoneNumber);
+        kapitalRsEnPage.assertPopUpForAlreadyRegisteredAccount("Already registered email and phone number - error message - kapitalrs");
     }
 
     @Test(description = "Verify that the First Name cannot be the same as Last Name")
@@ -455,6 +484,102 @@ public class proDarkNob extends BaseTestKapitalRS{
         kapitalRsEnPage.takeScreenshot("Desired communication language - error - KapitalRs", kapitalRsEnPage.languageField);
     }
 
+    @Test(description = "Verify the custom tag field in the CRM contains Dummy value ")
+    public void dummyLeadRegistration() throws IOException, AWTException, InterruptedException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                TestData.phoneNumberGenerator(), "25-34", "$50,000-$100,000", "$50,000-$100,000",
+                "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa","FSC");
+        crmPage.checkCustomTag("Dummy");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Dummy - kapitalrs", crmPage.customTag);
+    }
+
+    @Test(description = "Verify the cutom tag field in the CRM contains Dummy value ")
+    public void dummy_Lead_Registration() throws IOException, AWTException, InterruptedException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
+                "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa","FSC");
+        crmPage.checkCustomTag("Dummy");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Dummy - kapitalrs", crmPage.customTag);
+    }
+
+    @Test(description = "Verify the custom tag field in the CRM is Invalid")
+    public void invalidLeadRegistration() throws InterruptedException, IOException, AWTException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age(1)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
+                "None");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa","FSC");
+        crmPage.checkCustomTag("Invalid");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Invalid - kapitalrs", crmPage.customTag);
+    }
+
+    @Test(description = "Verify the custom tag field in the CRM is Invalid")
+    public void invalid_Lead_Registration() throws InterruptedException, IOException, AWTException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age(1)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email,"Serbia",
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
+                "None");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa","FSC");
+        crmPage.checkCustomTag("Invalid");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Invalid - kapitalrs", crmPage.customTag);
+    }
+
+    @Test(description = "Verify the custom tag field in the CRM is empty")
+    public void emptyLeadRegistration() throws InterruptedException, IOException, AWTException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1,3)-or-[saving-equals(1,2,3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
+                "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa", "FSC");
+        crmPage.checkCustomTag("");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Empty - kapitalrs", crmPage.customTag);
+    }
+
+    @Test(description = "Verify the custom tag field in the CRM is empty")
+    public void empty_Lead_Registration() throws InterruptedException, IOException, AWTException {
+        kapitalRsEnPage = new KapitalRsEnPage(driver);
+        crmPage = new CrmPage(driver);
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=annual-saving-knowledge-age&" +
+                "ftsquery=age-equals(1_3)-or-[saving-equals(1_2_3)-and-knowledge-notequals(5)]");
+        kapitalRsEnPage.successfullyRegistration("Testq", "Testa", email, "Serbia",
+                TestData.phoneNumberGenerator(), "45-54", "$15,000-$50,000", "$100,000-$250,000",
+                "All the above");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
+        crmPage.checkCrmData(email, "Testq Testa", "FSC");
+        crmPage.checkCustomTag("");
+        kapitalRsEnPage.takeScreenshot("Custom Tag - Empty - kapitalrs", crmPage.customTag);
+    }
+
     @Test(description = "Verify that the Language field in the CRM contains expected value")
     public void verifyLanguageField() throws IOException, AWTException {
         kapitalRsEnPage = new KapitalRsEnPage(driver);
@@ -463,7 +588,7 @@ public class proDarkNob extends BaseTestKapitalRS{
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge&userLang=en");
         kapitalRsEnPage.successfullyRegistration("Testq","Testa",email,"Serbia",TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
-        kapitalRsEnPage.assertURL("https://pro.kapitalrs.com");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
         crmPage.checkCrmData(email,"Testq Testa","FSC");
         crmPage.checkLanguageInCrm("en");
         kapitalRsEnPage.takeScreenshot("Language field ",crmPage.language);
@@ -478,7 +603,7 @@ public class proDarkNob extends BaseTestKapitalRS{
         driver.get("https://dlp.kapitalrs.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge&userLang=he");
         kapitalRsEnPage.successfullyRegistration("Testq","Testa",email,"Serbia",TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
-        kapitalRsEnPage.assertURL("https://pro.kapitalrs.com/");
+        kapitalRsEnPage.assertURL(TestData.kapitalRSUrl);
         crmPage.checkCrmData(email,"Testq Testa","FSC");
         crmPage.checkLanguageInCrm("en");
         kapitalRsEnPage.takeScreenshot("Language field - default language ",crmPage.language);
