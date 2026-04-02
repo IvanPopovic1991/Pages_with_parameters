@@ -13,7 +13,7 @@ public class BaseTestPenny {
     public void baseSetUp(String browser, String version){
         driverManager = DriverManagerFactory.getDriverManager(browser);
         driver =driverManager.getWebDriver(version);
-        driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark-nob/en?fts=age-annual-saving-knowledge-plang:all");
+        driver.get("https://dlp.pennystocks-uk.com/lps/pro-dark-nob-kp/en?fts=age-annual-saving-knowledge-plang:all");
     }
 
     public void baseTearDown(){
