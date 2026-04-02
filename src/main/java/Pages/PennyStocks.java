@@ -159,7 +159,7 @@ public class PennyStocks extends BasePage{
 
     public String howToUnsubscribeURL = "https://www.fortrade.com/wp-content/uploads/legal/How_to_guides/How_to_unsubscribe.pdf";
 
-    public String alrHaveAccountUrl = "https://authfe.fortrade.com/oauth/account/login?appId=41fedbf7-2f03-4aac-8d1d-e11cdbb22bf8";
+    public String alrHaveAccountUrl = "https://authfe.kapitalrs.com/oauth/account/login";
 
     public void enterFirstName(String firstNameData) {
         typeText(firstName, firstNameData, "first name");
@@ -486,8 +486,8 @@ public class PennyStocks extends BasePage{
     }
 
     public void checkRegulation() throws IOException, AWTException, InterruptedException {
-        clickNotSerbianRes();
-        Thread.sleep(2000);
+        /*clickNotSerbianRes();
+        Thread.sleep(2000);*/
         clickUsePassBtn();
         clickMenuBtn();
         String actualText = getText(regulationMsg, "regulation text");
