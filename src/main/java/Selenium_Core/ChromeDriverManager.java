@@ -17,35 +17,38 @@ public class ChromeDriverManager extends DriverManager {
     public void createWebDriver(String version) {
 
         String os = System.getProperty("os.name").toLowerCase();
-        String driverFileName;
+        String driverPath;
 
+        // ===== DRIVER PATH =====
         if (os.contains("win")) {
-            driverFileName = "chromedriver" + version + ".exe"; // Windows
+            // Lokalno (Windows)
+            String driverFileName = "chromedriver" + version + ".exe";
+            driverPath = Paths.get("src", "main", "resources", driverFileName)
+                    .toAbsolutePath().toString();
         } else {
-            driverFileName = "chromedriver" + version;         // Linux / CI runner
+            // Server (Linux / Jenkins)
+            driverPath = "/usr/local/bin/chromedriver";
         }
 
-        String driverPath = Paths.get("src", "main", "resources", driverFileName)
-                .toAbsolutePath().toString();
+        System.out.println("Driver path = " + driverPath);
         System.setProperty("webdriver.chrome.driver", driverPath);
 
         // ===== OPTIONS =====
         ChromeOptions options = new ChromeOptions();
 
-        // Chrome 115+ fix ChromeExeFilePath=C:\Program Files\Google\Chrome\Application\chrome.exe
         options.addArguments("--remote-allow-origins=*");
 
-        // ===== CHROME BINARY PATH (OPTIONAL) ===== C:\Program Files\chrome-win64\chrome.exe
-        String filePath = System.getenv("ChromeExeFilePath");
-        System.out.println("Chrome path = " + filePath);
+        // ===== CHROME PATH =====
+        String chromePath = System.getenv("ChromeExeFilePath");
+        System.out.println("Chrome path = " + chromePath);
 
-        if (filePath != null && !filePath.isEmpty()) {
-            options.setBinary(filePath);
-        } else if(System.getProperty("os.name").toLowerCase().contains("linux")) {
+        if (chromePath != null && !chromePath.isEmpty()) {
+            options.setBinary(chromePath);
+        } else if (os.contains("linux")) {
             options.setBinary("/usr/bin/google-chrome");
         }
 
-        // ===== HEADLESS CONTROL =====
+        // ===== HEADLESS =====
         String headless = System.getenv("HEADLESS");
         System.out.println("HEADLESS = " + headless);
 
@@ -70,13 +73,13 @@ public class ChromeDriverManager extends DriverManager {
         // ===== DRIVER CREATION =====
         driver = new ChromeDriver(options);
 
-        // ===== WINDOW HANDLING =====
+        // ===== WINDOW =====
         if (!"true".equalsIgnoreCase(headless)) {
             driver.manage().window().maximize();
             ((JavascriptExecutor) driver).executeScript("window.focus();");
         }
 
-        // ===== TIMEOUTS =====
+        // ===== TIMEOUT =====
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 }
