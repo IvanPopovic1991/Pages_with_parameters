@@ -15,6 +15,12 @@ pipeline {
 
     stages {
 
+        stage('DEBUG PIPELINE') {
+            steps {
+                sh 'echo "=== NEW PIPELINE ACTIVE ==="'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git credentialsId: 'github-token',
