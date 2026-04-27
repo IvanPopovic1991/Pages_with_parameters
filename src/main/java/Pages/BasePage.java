@@ -203,6 +203,9 @@ public class BasePage {
         try (FileInputStream fis = new FileInputStream(destFile)) {
             io.qameta.allure.Allure.addAttachment(fileName, fis);
         }
+
+        System.out.println("SCREENSHOT PATH: " + destFile.getAbsolutePath());
+        System.out.println("WORKING DIR: " + System.getProperty("user.dir"));
     }
 
     private void takeScreenshotServer(String fileName) throws IOException {
@@ -217,6 +220,9 @@ public class BasePage {
         try (FileInputStream fis = new FileInputStream(destFile)) {
             io.qameta.allure.Allure.addAttachment(fileName, fis);
         }
+
+        System.out.println("SCREENSHOT PATH: " + destFile.getAbsolutePath());
+        System.out.println("WORKING DIR: " + System.getProperty("user.dir"));
     }
 
     public void takeScreenshot(String fileName, WebElement element) throws IOException, AWTException {
