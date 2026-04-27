@@ -37,10 +37,16 @@ pipeline {
                 script {
                     allure([
                             includeProperties: false,
-                            jdk: '',
-                            results: [[path: 'allure-results']]
+                            jdk              : '',
+                            results          : [[path: 'allure-results']]
                     ])
                 }
+            }
+        }
+        stage('Allure Generate') {
+            steps {
+                sh 'ls -R target/allure-results || true'
+                sh 'ls -R target/screenshots || true'
             }
         }
         stage('Debug files') {
@@ -52,7 +58,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/screenshots/**/*.png, target/**/*.log', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/target/screenshots/**/*.png, **/target/allure-results/**, **/target/surefire-reports/**'
         }
         failure {
             echo 'Build failed'

@@ -195,7 +195,7 @@ public class BasePage {
 
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-        File destFile = new File("target/screenshots/" + fileName + ".png");
+        File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/" + fileName + ".png");
         destFile.getParentFile().mkdirs();
 
         Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
@@ -209,7 +209,7 @@ public class BasePage {
 
         File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-        File destFile = new File("target/screenshots/" + fileName + ".png");
+        File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/" + fileName + ".png");
         destFile.getParentFile().mkdirs();
 
         Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);

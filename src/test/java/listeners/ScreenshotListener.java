@@ -46,11 +46,11 @@ public class ScreenshotListener implements ITestListener {
                 }
 
                 BasePage basePage = new BasePage(driver);
-                String screenshotName = "FAILED_" + result.getName() + "_" + System.currentTimeMillis();
+                String screenshotName = "FAILED_" + result.getName();
 
                 basePage.takeScreenshot(screenshotName);
 
-                System.out.println("📸 Jenkins screenshot saved: " + screenshotName);
+                System.out.println("📸 Jenkins screenshot - : " + screenshotName);
 
             } else {
 
