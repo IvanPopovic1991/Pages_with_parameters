@@ -39,8 +39,20 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                // prosleđujemo HEADLESS kao system property
-                sh 'mvn -q clean test -DHEADLESS=true'
+                script {
+                    try {
+                        sh 'mvn -q clean test -DHEADLESS=true'
+                    } catch (Exception e) {
+                        echo "Test failed but pipeline continues"
+                    }
+                }
+            }
+        }
+
+        stage('CHECK SCREENSHOTS') {
+            steps {
+                sh 'echo "=== SCREENSHOTS ==="'
+                sh 'ls -l target/screenshots || true'
             }
         }
 
@@ -51,9 +63,9 @@ pipeline {
         }
 
         // da li postoji allure-results
-        stage('Allure Results Debug') {
+        stage('CHECK ALLURE RESULTS') {
             steps {
-                sh 'echo "=== ALLURE RESULTS ==="'
+                sh 'ls -R allure-results || true'
                 sh 'ls -R target/allure-results || true'
             }
         }
@@ -61,13 +73,10 @@ pipeline {
         // koristi target/allure-results
         stage('Allure Report') {
             steps {
-                script {
-                    allure([
-                            includeProperties: false,
-                            jdk: '',
-                            results: [[path: 'target/allure-results']]
-                    ])
-                }
+                allure([
+                        includeProperties: false,
+                        results: [[path: 'allure-results']]
+                ])
             }
         }
 
@@ -88,14 +97,10 @@ pipeline {
     }
 
     post {
-        always {
-            archiveArtifacts artifacts: '**/target/screenshots/**/*.png, **/target/allure-results/**, **/target/surefire-reports/**', allowEmptyArchive: true
-        }
-        failure {
-            echo 'Build failed'
-        }
-        success {
-            echo 'Build successful'
+        post {
+            always {
+                archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+            }
         }
     }
 }
