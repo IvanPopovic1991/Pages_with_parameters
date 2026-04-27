@@ -34,8 +34,18 @@ pipeline {
 
         stage('Allure Report') {
             steps {
-                allure includeProperties: false,
-                        results: [[path: 'allure-results']]
+                script {
+                    allure([
+                            includeProperties: false,
+                            jdk: '',
+                            results: [[path: 'allure-results']]
+                    ])
+                }
+            }
+        }
+        stage('Debug files') {
+            steps {
+                sh 'ls -R target || true'
             }
         }
     }
