@@ -42,7 +42,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/**/*.log', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/screenshots/**/*.png, target/**/*.log', allowEmptyArchive: true
         }
         failure {
             echo 'Build failed'
