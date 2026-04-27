@@ -9,8 +9,6 @@ pipeline {
     environment {
         HEADLESS = 'true'
         ChromeExeFilePath = '/usr/bin/google-chrome'
-        // Allure CLI path (bez root instalacije)
-        PATH = "$HOME/tools/allure/bin:$PATH"
     }
 
     stages {
@@ -23,17 +21,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git credentialsId: 'github-token',
-                        url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
-            }
-        }
-
-        // provera Allure instalacije
-        stage('Check Allure') {
-            steps {
-                sh 'echo "PATH=$PATH"'
-                sh 'which allure || true'
-                sh 'allure --version || true'
+                git url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
             }
         }
 
@@ -56,13 +44,6 @@ pipeline {
             }
         }
 
-        stage('Test Report') {
-            steps {
-                junit 'target/surefire-reports/*.xml'
-            }
-        }
-
-        // da li postoji allure-results
         stage('CHECK ALLURE RESULTS') {
             steps {
                 sh 'ls -R allure-results || true'
@@ -70,7 +51,6 @@ pipeline {
             }
         }
 
-        // koristi target/allure-results
         stage('Allure Report') {
             steps {
                 allure([
@@ -79,28 +59,17 @@ pipeline {
                 ])
             }
         }
-
-        // DEBUG: screenshots
-        stage('Screenshots Debug') {
-            steps {
-                sh 'echo "=== SCREENSHOTS ==="'
-                sh 'ls -R target/screenshots || true'
-            }
-        }
-
-        stage('Debug files') {
-            steps {
-                sh 'echo "=== TARGET FOLDER ==="'
-                sh 'ls -R target || true'
-            }
-        }
     }
 
     post {
-        post {
-            always {
-                archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
-            }
+        always {
+            archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+        }
+        failure {
+            echo 'Build failed'
+        }
+        success {
+            echo 'Build successful'
         }
     }
 }
