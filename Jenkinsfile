@@ -63,7 +63,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'target/screenshots/*.png', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'target/screenshots/*.png', fingerprint: true
         }
         failure {
             echo 'Build failed'
