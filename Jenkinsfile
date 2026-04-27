@@ -9,6 +9,8 @@ pipeline {
     environment {
         HEADLESS = 'true'
         ChromeExeFilePath = '/usr/bin/google-chrome'
+        // Allure CLI path (bez root instalacije)
+        PATH = "$HOME/tools/allure/bin:$PATH"
     }
 
     stages {
@@ -20,9 +22,19 @@ pipeline {
             }
         }
 
+        // provera Allure instalacije
+        stage('Check Allure') {
+            steps {
+                sh 'echo "PATH=$PATH"'
+                sh 'which allure || true'
+                sh 'allure --version || true'
+            }
+        }
+
         stage('Build & Test') {
             steps {
-                sh 'mvn -q clean test'
+                // prosleđujemo HEADLESS kao system property
+                sh 'mvn -q clean test -DHEADLESS=true'
             }
         }
 
@@ -32,25 +44,38 @@ pipeline {
             }
         }
 
+        // da li postoji allure-results
+        stage('Allure Results Debug') {
+            steps {
+                sh 'echo "=== ALLURE RESULTS ==="'
+                sh 'ls -R target/allure-results || true'
+            }
+        }
+
+        // koristi target/allure-results
         stage('Allure Report') {
             steps {
                 script {
                     allure([
                             includeProperties: false,
-                            jdk              : '',
-                            results          : [[path: 'allure-results']]
+                            jdk: '',
+                            results: [[path: 'target/allure-results']]
                     ])
                 }
             }
         }
-        stage('Allure Generate') {
+
+        // DEBUG: screenshots
+        stage('Screenshots Debug') {
             steps {
-                sh 'ls -R target/allure-results || true'
+                sh 'echo "=== SCREENSHOTS ==="'
                 sh 'ls -R target/screenshots || true'
             }
         }
+
         stage('Debug files') {
             steps {
+                sh 'echo "=== TARGET FOLDER ==="'
                 sh 'ls -R target || true'
             }
         }
@@ -58,7 +83,7 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: '**/target/screenshots/**/*.png, **/target/allure-results/**, **/target/surefire-reports/**'
+            archiveArtifacts artifacts: '**/target/screenshots/**/*.png, **/target/allure-results/**, **/target/surefire-reports/**', allowEmptyArchive: true
         }
         failure {
             echo 'Build failed'
