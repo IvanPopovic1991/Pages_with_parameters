@@ -43,4 +43,14 @@ public abstract class DriverManager {
         }
         return driver;
     }
+
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+
+    public static WebDriver getDriver() {
+        return driverThreadLocal.get();
+    }
+
+    protected void setDriver(WebDriver driver) {
+        driverThreadLocal.set(driver);
+    }
 }

@@ -12,10 +12,7 @@ import org.testng.Assert;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.time.Duration;
@@ -202,6 +199,10 @@ public class BasePage {
         destFile.getParentFile().mkdirs();
 
         Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        try (FileInputStream fis = new FileInputStream(destFile)) {
+            io.qameta.allure.Allure.addAttachment(fileName, fis);
+        }
     }
 
     private void takeScreenshotServer(String fileName) throws IOException {
@@ -212,6 +213,10 @@ public class BasePage {
         destFile.getParentFile().mkdirs();
 
         Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        try (FileInputStream fis = new FileInputStream(destFile)) {
+            io.qameta.allure.Allure.addAttachment(fileName, fis);
+        }
     }
 
     public void takeScreenshot(String fileName, WebElement element) throws IOException, AWTException {

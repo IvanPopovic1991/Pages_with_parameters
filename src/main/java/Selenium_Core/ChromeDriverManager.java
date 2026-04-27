@@ -72,6 +72,7 @@ public class ChromeDriverManager extends DriverManager {
 
         // ===== DRIVER CREATION =====
         driver = new ChromeDriver(options);
+        setDriver(driver);
 
         // ===== WINDOW =====
         if (!"true".equalsIgnoreCase(headless)) {
