@@ -2,6 +2,11 @@ pipeline {
 
     agent any
 
+    options {
+        skipDefaultCheckout(true)   // - uklanja dupli checkout
+        timestamps()               // - čitljiviji log
+    }
+
     tools {
         maven 'Maven 3'
     }
@@ -22,13 +27,7 @@ pipeline {
 
     stages {
 
-        stage('DEBUG PIPELINE') {
-            steps {
-                sh 'echo "=== NEW PIPELINE ACTIVE ==="'
-            }
-        }
-
-        stage('Checkout') {
+      stage('Checkout') {
             steps {
                 git url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
             }
@@ -46,17 +45,12 @@ pipeline {
             }
         }
 
-        stage('CHECK SCREENSHOTS') {
+        stage('Screenshots (if any)') {
             steps {
-                sh 'echo "=== SCREENSHOTS ==="'
-                sh 'ls -l target/screenshots || true'
-            }
-        }
-
-        stage('CHECK ALLURE RESULTS') {
-            steps {
-                sh 'ls -R allure-results || true'
-                sh 'ls -R target/allure-results || true'
+                sh '''
+                    echo "=== SCREENSHOTS ==="
+                    ls target/screenshots 2>/dev/null || echo "No screenshots"
+                '''
             }
         }
 
@@ -75,10 +69,10 @@ pipeline {
             archiveArtifacts artifacts: 'target/screenshots/*.png', fingerprint: true
         }
         failure {
-            echo 'Build failed'
+            echo '❌ Build failed'
         }
         success {
-            echo 'Build successful'
+            echo '✅ Build successful'
         }
     }
 }
