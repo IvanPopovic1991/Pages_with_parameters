@@ -13,7 +13,7 @@
         <classes>
             <class name="TestsFortrade.ProDarkDrNob">
                 <methods>
-                    <include name="demoAccountRegistration"/>
+                    <include name="checkingTagsInTheCrm"/>
 <!--                    <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
