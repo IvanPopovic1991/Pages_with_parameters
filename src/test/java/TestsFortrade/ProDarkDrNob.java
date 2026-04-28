@@ -57,6 +57,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
+        fortradePage.clickAllowCookiesBtn();
         fortradePage.clickNotSerbianRes();
         fortradePage.clickUsePassBtn();
         fortradePage.clickMenuBtn();
@@ -155,7 +156,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void unsuccessfullyDemoAccountRegistration(String countryCode, String regulation) throws IOException, AWTException {
         fortradePage.unsuccessfullyRegistrationWrongData("123", "574", "abcd134324", countryCode, "fjldjoijwe");
         fortradePage.assertErrorMessages();
-        //fortradePage.assertColor("red");
         fortradePage.takeScreenshot("Unsuccessfully demo account registration " + regulation + " regulation", fortradePage.firstName);
     }
 
@@ -202,7 +202,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void emptyDemoAccountRegistration(String regulation) throws IOException, AWTException {
         fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "", "");
         fortradePage.assertErrorMessages();
-        //fortradePage.assertColor("red");
         if (regulation.equalsIgnoreCase("Asic")) {
             fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtnAsic);
         } else {
