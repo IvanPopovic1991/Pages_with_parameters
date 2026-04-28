@@ -9,6 +9,15 @@ pipeline {
     environment {
         HEADLESS = 'true'
         ChromeExeFilePath = '/usr/bin/google-chrome'
+
+        // povlači kredencijale iz Jenkins-a
+        CRM_CREDS = credentials('crm-credentials')
+
+        // mapira na varijable iz koda
+        UsernameForCrm = "${CRM_CREDS_USR}"
+        PasswordForCrm = "${CRM_CREDS_PSW}"
+        CRM_URL = credentials('crm-url')
+        URLForCrm = "${CRM_URL}"
     }
 
     stages {
