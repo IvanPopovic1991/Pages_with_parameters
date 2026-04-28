@@ -55,6 +55,9 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyButtonDecline']")
     public WebElement denyBtn;
 
+    @FindBy(xpath = "//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']")
+    public WebElement allowBtn;
+
     @FindBy(xpath = "//div[@data-cmd='menu']")
     public WebElement menuBtn;
 
@@ -194,6 +197,8 @@ public class FortradePage extends BasePage {
     public By pdsDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(PDS)')]");
 
     public By tmdDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(TMD)')]");
+
+    public By btnAllowCookies = By.xpath("//button[@id='CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll']");
 
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
@@ -477,6 +482,12 @@ public class FortradePage extends BasePage {
         clickElement(denyBtn, "deny cookies button");
     }
 
+    public void clickAllowCookiesBtn() {
+        if (isElementPresent(btnAllowCookies)) {
+            clickElement(allowBtn, "allow cookies button");
+        }
+    }
+
     public void selectAge(String ageData) {
         clickElement(age, "Age dropdown menu");
         selectFromDropdown(age, ageData, "age dropdown");
@@ -707,7 +718,7 @@ public class FortradePage extends BasePage {
 
     public void assertErrMsgForAlreadyRegisteredAccount(String fileName) throws IOException, AWTException {
         Assert.assertEquals(getTextBy(alrdRegEmailMsg, "alrdRegEmailMsg"), expErrMsgEmail);
-        new BasePage(driver).takeScreenshot(fileName,alrdRegEmailMsg);
+        new BasePage(driver).takeScreenshot(fileName, alrdRegEmailMsg);
     }
 
     public void clickConsentBtn() throws InterruptedException {
@@ -768,7 +779,7 @@ public class FortradePage extends BasePage {
     public void assertColor(String color) {
         WebElement[] fields = {firstName, lastName, email, phoneNumber};
         FieldType fieldType = detectCountryCodeType();
-        if (fieldType.equals(FieldType.TEXT)){
+        if (fieldType.equals(FieldType.TEXT)) {
             fields = new WebElement[]{firstName, lastName, email, countryCode, phoneNumber};
         }
         for (int i = 0; i < fields.length; i++) {
