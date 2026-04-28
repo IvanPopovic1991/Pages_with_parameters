@@ -4,7 +4,6 @@ pipeline {
 
     options {
         skipDefaultCheckout(true)   // - uklanja dupli checkout
-        timestamps()               // - čitljiviji log
     }
 
     tools {
