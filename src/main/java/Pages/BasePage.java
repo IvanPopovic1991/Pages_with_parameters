@@ -479,4 +479,8 @@ public class BasePage {
             System.err.println("Error while retrieving task list: " + e.getMessage());
         }
     }
+
+    public boolean isElementPresent(By locator){
+        return driver.findElements(locator).size()>0;
+    }
 }
