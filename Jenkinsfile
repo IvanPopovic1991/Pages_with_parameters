@@ -26,7 +26,14 @@ pipeline {
 
     stages {
 
-      stage('Checkout') {
+        stage('Clean Allure Results') {
+                 steps {
+                        sh 'rm -rf allure-results || true'
+                        sh 'rm -rf target/allure-results || true'
+                       }
+                }
+
+        stage('Checkout') {
             steps {
                 git url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
             }
@@ -57,7 +64,7 @@ pipeline {
             steps {
                 allure([
                         includeProperties: false,
-                        results: [[path: 'allure-results']]
+                        results          : [[path: 'allure-results']]
                 ])
             }
         }
