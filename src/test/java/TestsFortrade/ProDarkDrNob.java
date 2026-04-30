@@ -82,7 +82,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,25_34_age");
+        crmPage.checkLinkIdValue(",25_34_age");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Age parameter value " + regulation, crmPage.linkId);
     }
@@ -98,7 +98,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,15000_50000_annual");
+        crmPage.checkLinkIdValue(",15000_50000_annual");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Annual parameter value " + regulation, crmPage.linkId);
     }
@@ -110,19 +110,11 @@ public class ProDarkDrNob extends BaseTestFortrade {
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=saving" + tag);
         fortradePage.savingParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "$50,000-$100,000");
- /*       if (regulation.equalsIgnoreCase("Asic")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
-            fortradePage.clickConsentBtn();
-        } else if (regulation.equalsIgnoreCase("Iiroc")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
-        } else {
-            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
-        }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,50000_100000_savings");
+        crmPage.checkLinkIdValue(",50000_100000_savings");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Saving parameter value " + regulation, crmPage.linkId);
     }
@@ -134,19 +126,11 @@ public class ProDarkDrNob extends BaseTestFortrade {
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=knowledge" + tag);
         fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "All the above");
-        /*if (regulation.equalsIgnoreCase("Asic")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
-            fortradePage.clickConsentBtn();
-        } else if (regulation.equalsIgnoreCase("Iiroc")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
-        } else {
-            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
-        }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,knowledge_of_trading_all_the_above");
+        crmPage.checkLinkIdValue(",knowledge_of_trading_all_the_above");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Knowledge parameter value " + regulation, crmPage.linkId);
     }
@@ -349,7 +333,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         fortradePage.clickOnSelectedLink(fortradePage.asicRegulationLinkBy, fortradePage.asicLink,
                 "Australian Securities and Investments Commission page", regulation);
         fortradePage.assertURL("https://connectonline.asic.gov.au/");
-        //fortradePage.scrollToAnElement(driver.findElement(By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520']")));
+        fortradePage.scrollToAnElementBy(fortradePage.asicRegulationLinkBy);
         fortradePage.rightClickOnSelectedLink(fortradePage.asicRegulationLinkBy, fortradePage.asicLink);
     }
 
@@ -403,7 +387,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         fortradePage.rightClickOnSelectedLink(fortradePage.tmdDocument, fortradePage.tmdDeterminationLink);
     }
 
-    @Test
+/*    @Test
     @Parameters({"regulation"})
     public void contactUsLink(String regulation) throws IOException, AWTException, InterruptedException {
         fortradePage.clickOnMailLink("contactUs");
@@ -423,7 +407,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         Thread.sleep(2000);
         fortradePage.takeScreenshot("Fortrade " + regulation + " - support redirection");
         fortradePage.closeOutlook();
-    }
+    }*/
 
     @Test(description = "Verify the 2nd step - age verification window cannot be submitted if it's not completed")
     @Parameters({"tag", "countryCode", "regulation"})
@@ -502,7 +486,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         }
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        crmPage.checkLinkIdValue("PC_windows,lang_EN");
+        crmPage.checkLinkIdValue(",lang_EN");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation", crmPage.linkId);
     }

@@ -860,12 +860,6 @@ public class FortradePage extends BasePage {
     }
 
     public void checkCountryCodeErrorMessage(String wrongCountryCodeDataText, String regulation) {
-        if (!regulation.equalsIgnoreCase("iiroc")) {
-            WebDriverWait driverWait = new WebDriverWait(driver, 10);
-            driverWait.until(ExpectedConditions.visibilityOf(popUpNotification));
-        } else {
-            /*clickDenyBtn();*/
-        }
         enterCountryCode(wrongCountryCodeDataText);
         clickElement(phoneNumber, "phone number field");
         Assert.assertEquals(getTextBy(countryCodeErrorMessage, "country code error message: " + countryCodeErrorMessage.getText())
