@@ -184,12 +184,22 @@ public class CrmPage extends BasePage {
     }
 
     public void checkLinkIdValue(String linkIdValue) {
+
+        String os = System.getProperty("os.name").toLowerCase();
+
+        String expectedPlatform;
+        if (os.contains("win")) {
+            expectedPlatform = "PC_windows";
+        } else {
+            expectedPlatform = "PC_Other";
+        }
+
         CrmPage crmPage = new CrmPage(driver);
         crmPage.clickElement(menuBtn, "menu button");
         crmPage.clickElement(envAndMarSec, "environment and marketing section button");
         String linkIdVal = getText(linkId, "Link ID field from the CRM");
         System.out.println("Link ID field value from the CRM " + linkIdVal);
-        Assert.assertEquals(linkIdVal, linkIdValue);
+        Assert.assertEquals(linkIdVal, expectedPlatform+linkIdValue);
     }
 
     public void assertBorderColorInCRM(String regulation) {
