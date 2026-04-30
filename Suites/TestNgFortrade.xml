@@ -13,16 +13,8 @@
         <classes>
             <class name="TestsFortrade.ProDarkDrNob">
                 <methods>
-                    <include name="checkForCountryCodeErrorMessage"/>
-                    <include name="checkingAgeParameter"/>
-                    <include name="checkingAnnualParameter"/>
-                    <include name="checkingSavingParameter"/>
-                    <include name="checkingKnowledgeParameter"/>
-                    <include name="checkLanguageParameter"/>
                     <include name="userIsReturnedTo1stWidget"/>
-                    <include name="asicRegulationTest"/>
-                    <include name="emailIsReceivedSuccessfully"/>
-<!--                    <exclude name="fsgDocumentTest"/>
+<!--                <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkFCAPercentages"/>

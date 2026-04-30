@@ -736,7 +736,7 @@ public class FortradePage extends BasePage {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
-        /*handleCountryCode(countryCode);*/
+        handleCountryCode(countryCode);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
     }

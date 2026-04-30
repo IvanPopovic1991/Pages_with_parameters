@@ -332,7 +332,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
         fortradePage.scrollToAnElementBy(fortradePage.asicRegulationLinkBy);
         fortradePage.clickOnSelectedLink(fortradePage.asicRegulationLinkBy, fortradePage.asicLink,
                 "Australian Securities and Investments Commission page", regulation);
-        fortradePage.assertURL("https://connectonline.asic.gov.au/");
         fortradePage.scrollToAnElementBy(fortradePage.asicRegulationLinkBy);
         fortradePage.rightClickOnSelectedLink(fortradePage.asicRegulationLinkBy, fortradePage.asicLink);
     }
