@@ -64,7 +64,15 @@ public class YopMail extends BasePage{
     @FindBy(xpath = "//td/p[contains(text(), 'Welcome, Testq!')]")
     public WebElement kapitalRSTestqName;
 
+    @FindBy(xpath = "//p[text()='Consent']")
+    public WebElement consentBtn;
+
     public void findEmail(String emailValue){
+        try {
+            clickElement(consentBtn, "consent btn");
+        } catch (Exception e){
+            System.out.println(e);
+        }
         typeText(search,emailValue,"search input");
         clickElement(goBtn,"go button");/*
         wait.until(ExpectedConditions.visibilityOf(emailMessage));

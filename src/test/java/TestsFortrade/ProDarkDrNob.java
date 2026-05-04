@@ -239,7 +239,7 @@ public class ProDarkDrNob extends BaseTestFortrade {
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
-        driver.get("https://yopmail.com/en/");
+        driver.get("https://yopmail.com/");
         YopMail yopMail = new YopMail(driver);
         yopMail.findEmail(email);
         yopMail.zoomOutMethod();
