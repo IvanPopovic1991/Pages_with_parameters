@@ -12,10 +12,9 @@ import org.testng.Assert;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,7 +153,7 @@ public class BasePage {
     /**
      * takeScreenShot - new method for taking full screenshot
      */
-    public void takeScreenshot(String fileName, WebElement element) throws AWTException, IOException {
+    public void takeScreenshotLocal(String fileName, WebElement element) throws AWTException, IOException {
 
         FluentWait<WebDriver> wait = new FluentWait<>(driver)
                 .withTimeout(Duration.ofSeconds(10))
@@ -173,7 +172,7 @@ public class BasePage {
         ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/" + fileName + ".png"));
     }
 
-    public void takeScreenshot(String fileName) throws AWTException, IOException {
+    public void takeScreenshotLocal(String fileName) throws AWTException, IOException {
 
         // Using java.awt.Robot and java.awt.Dimension for full screen capture
         Robot robot = new Robot();
@@ -183,6 +182,83 @@ public class BasePage {
 
         // Saving the full screen image
         ImageIO.write(screenFullImage, "PNG", new File("src/screenshot/" + fileName + ".png"));
+    }
+
+    private void takeScreenshotServer(String fileName, WebElement element) throws IOException {
+
+        FluentWait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(10))
+                .pollingEvery(Duration.ofMillis(500))
+                .ignoring(Exception.class);
+
+        wait.until(ExpectedConditions.visibilityOf(element));
+
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/" + fileName + ".png");
+        destFile.getParentFile().mkdirs();
+
+        Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        try (FileInputStream fis = new FileInputStream(destFile)) {
+            io.qameta.allure.Allure.addAttachment(fileName, fis);
+        }
+
+        System.out.println("SCREENSHOT PATH: " + destFile.getAbsolutePath());
+        System.out.println("WORKING DIR: " + System.getProperty("user.dir"));
+    }
+
+    private void takeScreenshotServer(String fileName) throws IOException {
+
+        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        File destFile = new File(System.getProperty("user.dir") + "/target/screenshots/" + fileName + ".png");
+        destFile.getParentFile().mkdirs();
+
+        Files.copy(srcFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+        try (FileInputStream fis = new FileInputStream(destFile)) {
+            io.qameta.allure.Allure.addAttachment(fileName, fis);
+        }
+
+        System.out.println("SCREENSHOT PATH: " + destFile.getAbsolutePath());
+        System.out.println("WORKING DIR: " + System.getProperty("user.dir"));
+    }
+
+    public void takeScreenshot(String fileName, WebElement element) throws IOException, AWTException {
+
+        String headless = System.getenv("HEADLESS");
+
+        switch (headless != null ? headless.toLowerCase() : "false") {
+
+            case "true":
+                // Jenkins / server
+                takeScreenshotServer(fileName, element);
+                break;
+
+            default:
+                // Local
+                takeScreenshotLocal(fileName, element);
+                break;
+        }
+    }
+
+    public void takeScreenshot(String fileName) throws IOException, AWTException {
+
+        String headless = System.getenv("HEADLESS");
+
+        switch (headless != null ? headless.toLowerCase() : "false") {
+
+            case "true":
+                // Jenkins / server
+                takeScreenshotServer(fileName);
+                break;
+
+            default:
+                // Local
+                takeScreenshotLocal(fileName);
+                break;
+        }
     }
 
     public String getText(WebElement element, String log) {
@@ -402,5 +478,9 @@ public class BasePage {
         } catch (Exception e) {
             System.err.println("Error while retrieving task list: " + e.getMessage());
         }
+    }
+
+    public boolean isElementPresent(By locator){
+        return driver.findElements(locator).size()>0;
     }
 }

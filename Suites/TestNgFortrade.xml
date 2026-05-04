@@ -15,6 +15,7 @@
                 <methods>
                     <include name="emailIsReceivedSuccessfully"/>
                     <!--<exclude name="fsgDocumentTest"/>
+                    <exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkFCAPercentages"/>

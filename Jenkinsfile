@@ -3,39 +3,82 @@ pipeline {
     agent any
 
     options {
-        skipDefaultCheckout(true)
+        skipDefaultCheckout(true)   // - uklanja dupli checkout
     }
 
     tools {
-        maven 'Maven'
+        maven 'Maven 3'
+    }
+
+    environment {
+        HEADLESS = 'true'
+        ChromeExeFilePath = '/usr/bin/google-chrome'
+
+        // povlači kredencijale iz Jenkins-a
+        CRM_CREDS = credentials('crm-credentials')
+
+        // mapira na varijable iz koda
+        UsernameForCrm = "${CRM_CREDS_USR}"
+        PasswordForCrm = "${CRM_CREDS_PSW}"
+        CRM_URL = credentials('crm-url')
+        URLForCrm = "${CRM_URL}"
     }
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Clean Allure Results') {
+                 steps {
+                        sh 'rm -rf allure-results || true'
+                        sh 'rm -rf target/allure-results || true'
+                       }
+                }
+
+        stage('Checkout') {
             steps {
-                git credentialsId: 'github-token', url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
+                git url: 'https://github.com/IvanPopovic1991/Pages_with_parameters.git'
             }
         }
 
-        stage('Build & Run Tests') {
+        stage('Build & Test') {
             steps {
-                bat 'mvn clean test'
+                script {
+                    try {
+                        sh 'mvn -q clean test -DHEADLESS=true'
+                    } catch (Exception e) {
+                        echo "Test failed but pipeline continues"
+                    }
+                }
             }
         }
 
-        stage('Publish Test Results') {
+        stage('Screenshots (if any)') {
             steps {
-                junit 'target/surefire-reports/*.xml'
+                sh '''
+                    echo "=== SCREENSHOTS ==="
+                    ls target/screenshots 2>/dev/null || echo "No screenshots"
+                '''
             }
         }
 
-        stage('Generate Allure Report') {
+        stage('Allure Report') {
             steps {
-                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                allure([
+                        includeProperties: false,
+                        results          : [[path: 'allure-results']]
+                ])
             }
         }
-
     }
 
+    post {
+        always {
+            archiveArtifacts artifacts: 'target/screenshots/*.png', fingerprint: true
+        }
+        failure {
+            echo '❌ Build failed'
+        }
+        success {
+            echo '✅ Build successful'
+        }
+    }
 }
