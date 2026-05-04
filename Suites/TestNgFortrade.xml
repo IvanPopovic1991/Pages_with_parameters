@@ -13,13 +13,14 @@
         <classes>
             <class name="TestsFortrade.ProDarkDrNob">
                 <methods>
-                    <exclude name="fsgDocumentTest"/>
+                    <include name="emailIsReceivedSuccessfully"/>
+                    <!--<exclude name="fsgDocumentTest"/>
                     <exclude name="pdsDocumentTest"/>
                     <exclude name="tmdDocumentTest"/>
                     <exclude name="checkFCAPercentages"/>
                     <exclude name="checkCysecPercentages"/>
                     <exclude name="verifyIirocDisclaimerText"/>
-                    <exclude name="verifyAsicDisclaimerText"/>
+                    <exclude name="verifyAsicDisclaimerText"/>-->
                 </methods>
             </class>
         </classes>
