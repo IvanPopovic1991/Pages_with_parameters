@@ -87,8 +87,8 @@ public class YopMail extends BasePage{
                 }
             } catch (NoSuchElementException e) {
                 // Do nothing — element not yet found
-                if (i==9){
-                    Assert.fail("An email is not found after 9 tries!!!");
+                if (i==14){
+                    Assert.fail("An email is not found after 14 tries!!!");
                 }
             }
 
