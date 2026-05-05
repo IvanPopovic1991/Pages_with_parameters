@@ -480,6 +480,15 @@ public class BasePage {
         }
     }
 
+    public void threadSleep (int millis){
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean isElementPresent(By locator){
         return driver.findElements(locator).size()>0;
     }

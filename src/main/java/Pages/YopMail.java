@@ -1,5 +1,6 @@
 package Pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -144,7 +145,7 @@ public class YopMail extends BasePage{
      * body, and footer)
      * @throws AWTException
      */
-    public void zoomOutMethod() throws AWTException {
+    /*public void zoomOutMethod() throws AWTException {
         Robot robot = new Robot();
         for (int i = 0; i < 5; i++) {
             robot.keyPress(KeyEvent.VK_CONTROL);
@@ -152,6 +153,11 @@ public class YopMail extends BasePage{
             robot.keyRelease(KeyEvent.VK_MINUS);
             robot.keyRelease(KeyEvent.VK_CONTROL);
         }
+    }*/
+    public void zoomOutMethod() {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("document.body.style.zoom='50%'");
+            threadSleep(500);
     }
 
 }
