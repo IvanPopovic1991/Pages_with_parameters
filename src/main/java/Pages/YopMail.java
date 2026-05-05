@@ -78,7 +78,7 @@ public class YopMail extends BasePage{
         clickElement(goBtn,"go button");/*
         wait.until(ExpectedConditions.visibilityOf(emailMessage));
         wait.until(ExpectedConditions.elementToBeClickable(emailMessage));*/
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 15; i++) {
             try {
                 driver.switchTo().frame(inboxFrame);
                 //WebElement emailMessage = driver.findElement(By.xpath("//div[@class='lmfd']/span[contains(text(), 'Fortrade')]"));
