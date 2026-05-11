@@ -13,10 +13,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class ChromeDriverManager extends DriverManager {
 
+    public static String os;
+
     @Override
     public void createWebDriver(String version) {
 
-        String os = System.getProperty("os.name").toLowerCase();
+        os = System.getProperty("os.name").toLowerCase();
         String driverPath;
 
         // ===== DRIVER PATH =====
