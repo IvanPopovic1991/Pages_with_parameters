@@ -696,7 +696,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingEmptyCustomTag(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
@@ -716,7 +715,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
             value = "2";
         }
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(" + value + ")&dummyP=1"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
@@ -736,7 +734,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
             value = "2";
         }
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(" + value + ")&dummyP=0"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
@@ -756,7 +753,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
             value = "2";
         }
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(" + value + ")&dummyp=1"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
@@ -770,7 +766,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValueWithDummyTrueParameter(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&Dummy=true"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
@@ -784,7 +779,6 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValueWithDummy1Parameter(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&Dummy=true"+tag);
-        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");

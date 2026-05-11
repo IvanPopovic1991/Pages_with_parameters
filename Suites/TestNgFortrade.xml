@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Fortrade Pages">
-    <!--<listeners>
+    <listeners>
         <listener class-name="listeners.ScreenshotListener"/>
         <listener class-name="listeners.Transform"/>
         <listener class-name="listeners.TestExecution"/>
-    </listeners>-->
+    </listeners>
     <test name="Test cases - pro dark dr nob landing page - FSC regulation">
         <parameter name="countryCode" value="381"/>
         <parameter name="regulation" value="FSC"/>
@@ -19,14 +19,6 @@
                     <include name="checkingTheDummyValueWithInvalidParameter"/>
                     <include name="checkingTheDummyValueWithDummyTrueParameter"/>
                     <include name="checkingTheDummyValueWithDummy1Parameter"/>
-                    <!--<exclude name="fsgDocumentTest"/>
-                    <exclude name="fsgDocumentTest"/>
-                    <exclude name="pdsDocumentTest"/>
-                    <exclude name="tmdDocumentTest"/>
-                    <exclude name="checkFCAPercentages"/>
-                    <exclude name="checkCysecPercentages"/>
-                    <exclude name="verifyIirocDisclaimerText"/>
-                    <exclude name="verifyAsicDisclaimerText"/>-->
                 </methods>
             </class>
         </classes>
