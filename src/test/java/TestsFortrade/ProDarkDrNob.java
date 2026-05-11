@@ -695,12 +695,13 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingEmptyCustomTag(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("");
-        fortradePage.takeScreenshot("Custom tag field is empty "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field is empty "+ regulation);
     }
 
     @Test(description = "Verify that the Custom Tag field in the CRM contains the 'DummyP' value")
@@ -708,12 +709,13 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyPValue(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(1)&dummyP=1"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("DummyP");
-        fortradePage.takeScreenshot("Custom tag field contains 'dummyP' value "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field contains 'dummyP' value "+ regulation);
     }
 
     @Test(description = "Verify that the Custom Tag field in the CRM contains the 'Dummy' value")
@@ -721,12 +723,13 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValue(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(1)&dummyP=0"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("Dummy");
-        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value "+ regulation);
     }
 
     @Test(description = "Verify that the 'dummyP' parameter is ignored when it's not correctly typed in the URL")
@@ -734,12 +737,13 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValueWithInvalidParameter(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&ftsquery=device-equals(1)&dummyp=1"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("Dummy");
-        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for wrong dummy parameter "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for wrong dummy parameter "+ regulation);
     }
 
     @Test(description = "Verify that the custom tag field in the CRM contains 'Dummy' parameter")
@@ -747,12 +751,13 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValueWithDummyTrueParameter(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&Dummy=true"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("Dummy");
-        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for Dummy=true parameter "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for Dummy=true parameter "+ regulation);
     }
 
     @Test(description = "Verify that the custom tag field in the CRM contains 'Dummy' parameter")
@@ -760,11 +765,12 @@ public class ProDarkDrNob extends BaseTestFortrade {
     public void checkingTheDummyValueWithDummy1Parameter(String tag, String countryCode ,String regulation) throws InterruptedException, IOException, AWTException {
         String email = TestData.emailGenerator();
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dr-nob/en?fts=age-annual-saving-knowledge&Dummy=true"+tag);
+        System.out.println("Ovo je URL:\n" + driver.getCurrentUrl());
         fortradePage.successfullyRegistration("Testq","Testa",email,countryCode,TestData.phoneNumberGenerator(),
                 "25-34", "$15,000-$50,000", "$50,000-$100,000", "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email,"Testq Testa",regulation);
         crmPage.checkCustomTag("Dummy");
-        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for Dummy=1 parameter "+ regulation,crmPage.language);
+        fortradePage.takeScreenshot("Custom tag field contains 'dummy' value for Dummy=1 parameter "+ regulation);
     }
 }

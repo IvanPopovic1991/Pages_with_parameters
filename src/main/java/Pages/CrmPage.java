@@ -246,7 +246,7 @@ public class CrmPage extends BasePage {
         scrollToAnElement(customTag);
         Thread.sleep(1500);
         String actualValue = readAttribute(customTag, "title", "The value of custom tag");
-        System.out.println(actualValue);
+        System.out.println("This is the value of the tag: " + actualValue);
         Assert.assertEquals(actualValue, expectedValue);
     }
 
