@@ -13,12 +13,8 @@
         <classes>
             <class name="TestsFortrade.ProDarkDrNob">
                 <methods>
-                    <include name="checkingEmptyCustomTag"/>
-                    <include name="checkingTheDummyPValue"/>
-                    <include name="checkingTheDummyValue"/>
-                    <include name="checkingTheDummyValueWithInvalidParameter"/>
-                    <include name="checkingTheDummyValueWithDummyTrueParameter"/>
-                    <include name="checkingTheDummyValueWithDummy1Parameter"/>
+                    <include name="demoAccountRegistration"/>
+                    <include name="checkingTagsInTheCrm"/>
                 </methods>
             </class>
         </classes>
