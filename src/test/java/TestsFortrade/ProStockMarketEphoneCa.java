@@ -199,7 +199,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
     @Test(description = "Verify the demo account is not registered successfully with empty fields")
     @Parameters({"regulation"})
     public void emptyDemoAccountRegistration(String regulation) throws IOException, AWTException {
-        fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "", "");
+        fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "1", "");
         fortradePage.assertErrorMessages();
         //fortradePage.assertColor("red");
         if (regulation.equalsIgnoreCase("Asic")) {
