@@ -190,7 +190,7 @@ public class FortradePage extends BasePage {
 
     public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
 
-    public By fscRegulationLinkBy = By.xpath("//a[text()='GB21026472']");
+    public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
 
     public By fsgDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(FSG)')]");
 
@@ -203,17 +203,14 @@ public class FortradePage extends BasePage {
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
             "Must be a valid email address.",
-            "Must be a valid international phone number"};
+            "Phone number is required"};
     // Must be a valid international phone number - error message text for all pages except for pages with fixed value in country code field
     // Phone number is required - error message for lps with fixed value in country code field
 
     String[] sameNamesErrorMessages = {"First Name and Last Name cannot be equal.",
             "First Name and Last Name cannot be equal."};
 
-    public String iirocDisclaimerText = "By proceeding, I agree to the Privacy Policy and the Terms and Conditions By " +
-            "providing my contact details to Fortrade Canada, I agree to receive telephone calls from Customer Service " +
-            "Representatives regarding Fortrade Canada, its products, services, promotions, and offers. I can opt out of" +
-            " phone contact anytime by informing a Customer Service Representative or unsubscribing via notification settings.";
+    public String iirocDisclaimerText = "By proceeding, I agree to the Privacy Policy and the Terms and Conditions . By providing my contact details to Fortrade Canada, I agree to receive telephone calls from Customer Service Representatives regarding Fortrade Canada, its products, services, promotions, and offers. I can opt out of phone contact anytime by informing a Customer Service Representative or unsubscribing via notification settings.";
 
     public String asicDisclaimerText = "By providing your details to Fortrade Australia you are consenting to " +
             "be contacted by telephone about offers and invites to trade Contracts for Difference (CFDs).";

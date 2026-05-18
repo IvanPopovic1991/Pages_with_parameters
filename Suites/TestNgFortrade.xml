@@ -45,14 +45,9 @@
             <classes>
                 <class name="TestsFortrade.ProStockMarketEphoneCa">
                     <methods>
-                        <include name="demoAccountRegistration"/>
-                        <include name="checkingTagsInTheCrm"/>
-
-                        <!--<include name="assertInvalidTokenMsg"/>
                         <include name="emptyDemoAccountRegistration"/>
                         <include name="fscRegulationTest"/>
                         <include name="unsuccessfullyDemoAccountRegistration"/>
-                        <include name="verifyIirocDisclaimerText"/>-->
 
                         <!--<exclude name="asicRegulationTest"/>
                         <exclude name="checkingLogoClickability"/>
