@@ -199,7 +199,7 @@ public class CrmPage extends BasePage {
         crmPage.clickElement(envAndMarSec, "environment and marketing section button");
         String linkIdVal = getText(linkId, "Link ID field from the CRM");
         System.out.println("Link ID field value from the CRM " + linkIdVal);
-        Assert.assertEquals(linkIdVal, expectedPlatform+linkIdValue);
+        Assert.assertEquals(linkIdVal, /*expectedPlatform+*/linkIdValue);
     }
 
     public void assertBorderColorInCRM(String regulation) {

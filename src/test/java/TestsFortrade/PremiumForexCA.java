@@ -23,11 +23,11 @@ public class PremiumForexCA extends BaseTestFortrade {
 
     @BeforeMethod
     public void setUp() {
-        baseSetup("Chrome", "146");
+        baseSetup("Chrome", "148");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
         driver.get("https://dlp.fortrade.com/lps/premium-forex-landing-ephone-ca/en?fts=age-annual-saving-knowledge");
-     }
+    }
 
     @AfterMethod
     public void tearDown() {
@@ -202,7 +202,7 @@ public class PremiumForexCA extends BaseTestFortrade {
     public void emptyDemoAccountRegistration(String regulation) throws IOException, AWTException {
         fortradePage.unsuccessfullyRegistrationWrongData("", "", "", "", "");
         fortradePage.assertErrorMessages();
-       //fortradePage.assertColor("red");
+        //fortradePage.assertColor("red");
         if (regulation.equalsIgnoreCase("Asic")) {
             fortradePage.takeScreenshot("Demo account registration - no data " + regulation + " regulation", fortradePage.submitBtnAsic);
         } else {
