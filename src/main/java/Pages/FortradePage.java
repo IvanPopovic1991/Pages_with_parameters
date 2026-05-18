@@ -43,7 +43,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[@class='cps-label']")
     public WebElement countryCodeDropdown;
 
-    @FindBy(xpath = "//input[@id='Telephone']")
+    @FindBy(xpath = "//input[@id='TelephoneMask']")
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//button[@id='next-stage-btn']")
@@ -649,6 +649,7 @@ public class FortradePage extends BasePage {
         incorrectToken(tokenField0Value, tokenField1Value, tokenField2Value, tokenField3Value);
         //scrollToAnElement(continueBtn);
         clickContinueBtn();
+        driverWait.until(ExpectedConditions.visibilityOf(incorrectTokenMsg));
     }
 
     public void incorrectToken(String token0, String token1, String token2, String token3) {
