@@ -47,7 +47,6 @@
                     <methods>
                         <include name="contactUsLink"/>
                         <include name="supportLink"/>
-
                         <!--<exclude name="asicRegulationTest"/>
                         <exclude name="checkingLogoClickability"/>
                         <exclude name="checkForCountryCodeErrorMessage"/>
@@ -57,7 +56,7 @@
                         <exclude name="howToUnsubscribeTest"/>
                         <exclude name="checkFCAPercentages"/>
                         <exclude name="checkCysecPercentages"/>
-                        <exclude name="verifyAsicDisclaimerText"/>-->
+                        <exclude name="verifyAsicDisclaimerText"/>
                     </methods>
                 </class>
             </classes>
