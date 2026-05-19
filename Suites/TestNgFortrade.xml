@@ -45,7 +45,9 @@
             <classes>
                 <class name="TestsFortrade.ProStockMarketEphoneCa">
                     <methods>
-                        <exclude name="asicRegulationTest"/>
+                        <include name="contactUsLink"/>
+                        <include name="supportLink"/>
+                        <!--<exclude name="asicRegulationTest"/>
                         <exclude name="checkingLogoClickability"/>
                         <exclude name="checkForCountryCodeErrorMessage"/>
                         <exclude name="fsgDocumentTest"/>

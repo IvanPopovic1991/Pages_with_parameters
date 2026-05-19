@@ -9,6 +9,8 @@ import org.testng.Assert;
 
 import java.awt.*;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -381,6 +383,10 @@ public class FortradePage extends BasePage {
     public String ytURL = "https://www.youtube.com/channel/UCNCrGhrDTEN1Hx_20-kFxwg";
 
     public String insURL = "https://www.instagram.com/fortrade_online_trading/?hl=en";
+
+    public String contactUsUrl = "mailto:support@fortrade.com?subject=Client information request";
+
+    public String supportUrl = "mailto:support@fortrade.com";
 
     public void enterFirstName(String firstNameData) {
         typeText(firstName, firstNameData, "first name");
@@ -903,6 +909,12 @@ public class FortradePage extends BasePage {
             System.out.println(e);
         }
         Assert.assertTrue(isOutlookRunning());
+    }
+
+    public void checkMailLinks (WebElement element, String elementAttribute, String expectedUrl){
+        String attribute = readAttribute(element, elementAttribute, "attribute url");
+        String decodedAttribute = URLDecoder.decode(attribute, StandardCharsets.UTF_8);
+        Assert.assertEquals(decodedAttribute, expectedUrl);
     }
 
     public void secondStepErrorMessage(int numberOfParameters) throws InterruptedException {

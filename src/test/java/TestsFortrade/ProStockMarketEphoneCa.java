@@ -405,23 +405,19 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
     @Test
     @Parameters({"regulation"})
     public void contactUsLink(String regulation) throws IOException, AWTException, InterruptedException {
-        fortradePage.clickOnMailLink("contactUs");
-        Thread.sleep(1500);
+        fortradePage.checkMailLinks(fortradePage.returnDisplayedElement(fortradePage.contactUsLinkBy), "href", fortradePage.contactUsUrl);
         fortradePage.takeScreenshot("Fortrade " + regulation + " - contact us redirection");
-        fortradePage.closeOutlook();
     }
 
     @Test(description = "Verify the click on support@fortrade.com link opens email window")
     @Parameters({"regulation"})
     public void supportLink(String regulation) throws IOException, AWTException, InterruptedException {
         if (!regulation.equalsIgnoreCase("cysec")) {
-            fortradePage.clickOnMailLink("support");
+            fortradePage.checkMailLinks(fortradePage.returnDisplayedElement(fortradePage.supportLinkBy), "href", fortradePage.supportUrl);
         } else {
             System.out.println("Cysec regulation does not contain support.fortrade.com address");
         }
-        Thread.sleep(2000);
         fortradePage.takeScreenshot("Fortrade " + regulation + " - support redirection");
-        fortradePage.closeOutlook();
     }
 
     @Test(description = "Verify the 2nd step - age verification window cannot be submitted if it's not completed")
