@@ -45,11 +45,7 @@
             <classes>
                 <class name="TestsFortrade.ProStockMarketEphoneCa">
                     <methods>
-                        <include name="emptyDemoAccountRegistration"/>
-                        <include name="fscRegulationTest"/>
-                        <include name="unsuccessfullyDemoAccountRegistration"/>
-
-                        <!--<exclude name="asicRegulationTest"/>
+                        <exclude name="asicRegulationTest"/>
                         <exclude name="checkingLogoClickability"/>
                         <exclude name="checkForCountryCodeErrorMessage"/>
                         <exclude name="fsgDocumentTest"/>
@@ -58,7 +54,7 @@
                         <exclude name="howToUnsubscribeTest"/>
                         <exclude name="checkFCAPercentages"/>
                         <exclude name="checkCysecPercentages"/>
-                        <exclude name="verifyAsicDisclaimerText"/>-->
+                        <exclude name="verifyAsicDisclaimerText"/>
                     </methods>
                 </class>
             </classes>

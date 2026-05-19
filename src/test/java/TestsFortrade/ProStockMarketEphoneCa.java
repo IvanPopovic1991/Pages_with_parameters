@@ -81,7 +81,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Age parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,25_34_age");
+        crmPage.checkLinkIdValue(",25_34_age");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Age parameter value " + regulation, crmPage.linkId);
     }
@@ -97,7 +97,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Annual parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,15000_50000_annual");
+        crmPage.checkLinkIdValue(",15000_50000_annual");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Annual parameter value " + regulation, crmPage.linkId);
     }
@@ -121,7 +121,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Saving parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,50000_100000_savings");
+        crmPage.checkLinkIdValue(",50000_100000_savings");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Saving parameter value " + regulation, crmPage.linkId);
     }
@@ -145,7 +145,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
         crmPage.takeScreenshot("SMS Verification field Knowledge parameter - no value " + regulation, crmPage.smsVerification);
-        crmPage.checkLinkIdValue("PC_windows,knowledge_of_trading_all_the_above");
+        crmPage.checkLinkIdValue(",knowledge_of_trading_all_the_above");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Knowledge parameter value " + regulation, crmPage.linkId);
     }
@@ -501,7 +501,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
-        crmPage.checkLinkIdValue("PC_windows,lang_EN");
+        crmPage.checkLinkIdValue(",lang_EN");
         Thread.sleep(1000);
         crmPage.takeScreenshot("Desired communication language - " + regulation + " regulation", crmPage.linkId);
     }
