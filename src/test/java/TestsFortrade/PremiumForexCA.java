@@ -1,6 +1,5 @@
 package TestsFortrade;
 
-import Pages.BasePage;
 import Pages.CrmPage;
 import Pages.FortradePage;
 import Pages.YopMail;
@@ -219,7 +218,7 @@ public class PremiumForexCA extends BaseTestFortrade {
                 "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         driver.get("https://dlp.fortrade.com/lps/premium-forex-landing-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber());
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber());
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - error message " + regulation);
     }
 
@@ -635,7 +634,7 @@ public class PremiumForexCA extends BaseTestFortrade {
                 "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         driver.get("https://dlp.fortrade.com/lps/premium-forex-landing-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
+        fortradePage.firstStepAccRegistration("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - error message " + regulation);
     }
@@ -650,7 +649,7 @@ public class PremiumForexCA extends BaseTestFortrade {
                 "All the above");
         fortradePage.assertURL("https://ready.fortrade.com/");
         driver.get("https://dlp.fortrade.com/lps/premium-forex-landing-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - error message " + regulation);
     }

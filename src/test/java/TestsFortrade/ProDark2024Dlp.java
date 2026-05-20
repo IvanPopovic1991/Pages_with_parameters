@@ -241,7 +241,7 @@ public class ProDark2024Dlp extends BaseTestFortrade{
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge"+tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, phoneNumber);
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email, countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - pop-up " + regulation);
     }
 
@@ -559,7 +559,7 @@ public class ProDark2024Dlp extends BaseTestFortrade{
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge"+tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
+        fortradePage.firstStepAccRegistration("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - pop-up " + regulation);
     }
@@ -573,7 +573,7 @@ public class ProDark2024Dlp extends BaseTestFortrade{
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000 – $100,000",
                 "All the above");
         fortradePage.newUrl("https://www.fortrade.com/minilps/en/pro-dark-2024-dlp/?fts=age-annual-saving-knowledge"+tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - pop-up " + regulation);
     }

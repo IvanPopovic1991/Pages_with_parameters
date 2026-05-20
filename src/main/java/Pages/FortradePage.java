@@ -469,14 +469,10 @@ public class FortradePage extends BasePage {
     }
 
     public void clickOnSubmitButton() {
-        if (submitBtn.isDisplayed()) {
-            clickElement(submitBtn, "Get Started button");
-            /*try {
-                clickElement(submitBtn, "Get Started button");
-            } catch (Exception e){
-                System.out.println("Element is not clicked second time!");
-            }*/
-        } else {
+        if (submitBtn.isDisplayed()){
+            clickElement(submitBtn,"Get Started button");
+        }
+        else {
             clickElement(submitBtnAsic, "Get Started button - Asic regulation");
         }
     }
@@ -709,13 +705,13 @@ public class FortradePage extends BasePage {
         }
     }
 
-    public void alreadyRegisteredAccount(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData) {
+    public void firstStepAccRegistration(String firstNameData, String lastNameData, String emailData, String countryCodeData, String phoneNumberData) {
         enterFirstName(firstNameData);
         enterLastName(lastNameData);
         enterEmail(emailData);
         handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickOnSubmitButton();
+        clickContinueBtn();
     }
 
     private String expErrMsgEmail = "Email or phone already exists. Please use a different email address or phone number.";

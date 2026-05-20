@@ -1,10 +1,8 @@
 package TestsFortrade;
 
-import Pages.BasePage;
-import Pages.CrmPage;
-import Pages.FortradePage;
-import Pages.YopMail;
+import Pages.*;
 import faker.TestData;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
 import org.openqa.selenium.By;
 import org.testng.Assert;
@@ -20,13 +18,16 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
 
     FortradePage fortradePage;
     CrmPage crmPage;
+    ReadyFortrade readyFortrade;
 
     @BeforeMethod
-    public void setUp() {
+    @Parameters({"tag"})
+    public void setUp(String tag) {
         baseSetup("Chrome", "148");
         fortradePage = new FortradePage(driver);
         crmPage = new CrmPage(driver);
-        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge");
+        readyFortrade = new ReadyFortrade(driver);
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge"+tag);
     }
 
     @AfterMethod
@@ -109,14 +110,6 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=saving" + tag);
         fortradePage.savingParameter("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber(),
                 "$50,000-$100,000");
- /*       if (regulation.equalsIgnoreCase("Asic")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
-            fortradePage.clickConsentBtn();
-        } else if (regulation.equalsIgnoreCase("Iiroc")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
-        } else {
-            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
-        }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
@@ -133,14 +126,6 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=knowledge" + tag);
         fortradePage.knowledgeParameter("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber(),
                 "All the above");
-        /*if (regulation.equalsIgnoreCase("Asic")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
-            fortradePage.clickConsentBtn();
-        } else if (regulation.equalsIgnoreCase("Iiroc")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
-        } else {
-            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
-        }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkSMSVerification("--");
@@ -216,9 +201,9 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 TestData.canadaPhoneNumber(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
-        fortradePage.assertURL("https://ready.fortrade.com/");
-        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?" + tag);
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email, countryCode, TestData.canadaPhoneNumber());
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - error message " + regulation);
     }
 
@@ -487,14 +472,6 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=plang:srcs,all" + tag);
         fortradePage.languageParameter("Testq", "Testa", email, countryCode,
                 TestData.canadaPhoneNumber(), "English");
-       /* if (regulation.equalsIgnoreCase("Asic")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#asicupdateacceptcalls");
-            fortradePage.clickConsentBtn();
-        } else if (regulation.equalsIgnoreCase("Iiroc")) {
-            fortradePage.assertURL("https://ready.fortrade.com/#enhancedcustomerconsent");
-        } else {
-            fortradePage.assertURL("https://ready.fortrade.com/#chartticket");
-        }*/
         fortradePage.assertURL("https://ready.fortrade.com/");
         crmPage.checkCrmData(email, "Testq Testa", regulation);
         crmPage.checkLinkIdValue(",lang_EN");
@@ -518,7 +495,7 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
     @Parameters({"tag", "regulation"})
     public void checkFCAPercentages(String tag, String regulation) throws IOException, AWTException {
         driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=plang:srcs,all" + tag);
-        fortradePage.checkFCAPercentages("69% of retail investor accounts lose money when trading CFDs with this provider.");
+        fortradePage.checkFCAPercentages("70% of retail investor accounts lose money when trading CFDs with this provider.");
         //fortradePage.clickDenyBtn();
         fortradePage.takeScreenshot("Percentages - " + regulation + " regulation");
     }
@@ -628,9 +605,9 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         fortradePage.successfullyRegistration("Testq", "Testa", TestData.emailGenerator(), countryCode,
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
-        fortradePage.assertURL("https://ready.fortrade.com/");
-        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?" + tag);
+        fortradePage.firstStepAccRegistration("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - error message " + regulation);
     }
@@ -643,9 +620,9 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         fortradePage.successfullyRegistration("Testq", "Testa", email, countryCode,
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
-        fortradePage.assertURL("https://ready.fortrade.com/");
-        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?" + tag);
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - error message " + regulation);
     }
@@ -672,5 +649,159 @@ public class ProStockMarketEphoneCa extends BaseTestFortrade {
         String actualText = fortradePage.asicDisclaimer.getText();
         Assert.assertEquals(actualText, fortradePage.asicDisclaimerText);
         fortradePage.takeScreenshot("Asic disclaimer text - " + regulation, fortradePage.asicDisclaimer);
+    }
+
+    @Test(description = "TC 19.7. Verify the custom tag field in the CRM is Dummy if ftsquery device parameter is same as device " +
+            "and OS used for demo account registration")
+    @Parameters({"tag","countryCode","regulation"})
+    public void deviceIsSameAsParameter(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(1)"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkLinkIdValue("");
+        crmPage.checkCustomTag("Dummy");
+        crmPage.takeScreenshot("Custom Tag - Dummy - device " + regulation + " regulation");
+    }
+
+    @Test(description = "TC 19.8. Verify the custom tag field in the CRM is invalid if syntax is not valid")
+    @Parameters({"tag","countryCode","regulation"})
+    public void nonValidParameterSyntax(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device(1)"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkLinkIdValue("");
+        crmPage.checkCustomTag("Invalid");
+        crmPage.takeScreenshot("Custom Tag - Invalid - device " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 19.9. Verify the custom tag field in the CRM is empty if ftsquery device parameter is not " +
+            "same as device and OS used for demo account registration")
+    @Parameters({"tag","countryCode","regulation"})
+    public void deviceIsNotSameAsParameter(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(4)"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkLinkIdValue("");
+        crmPage.checkCustomTag("");
+        crmPage.takeScreenshot("Custom Tag - Empty - device " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 19.10. Verify the custom tag field in the CRM is invalid if ftsquery device parameter " +
+            "contains device and OS non valid index value")
+    @Parameters({"tag","countryCode","regulation"})
+    public void deviceParameterContainsNonValidValue(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(0)"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkLinkIdValue("");
+        crmPage.checkCustomTag("Invalid");
+        crmPage.takeScreenshot("Custom Tag - non valid device value " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 20.3. Verify that the Custom Tag in the CRM is empty")
+    @Parameters({"tag","regulation"})
+    public void checkingTheCustomTag(String tag,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        //driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?fts=age-annual-saving-knowledge"+tag);
+        fortradePage.accountRegistrationNoCountryCode("Testq","Testa",email,TestData.canadaPhoneNumber(),
+                "45-54", "$15,000-$50,000", "$100,000-$250,000","All the above");
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("");
+        crmPage.takeScreenshot("TC 20-3-Custom Tag is empty " + regulation + " regulation");
+    }
+
+    @Test(description = "TC 22.1. Verify that the Language field in the CRM contains expected value (in this case EN)")
+    @Parameters({"tag","countryCode","regulation"})
+    public void checkLanguageFieldContainsExpectedValue(String tag,String countryCode,String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?userLang=EN"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertDisplayedLanguage("EN");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkLanguageField(email, "en");
+        crmPage.takeScreenshot("Language field in the CRM contains expected (EN) value " + regulation);
+    }
+
+    @Test(description = "TC 22.2. Verify that the Language field in the CRM contains the default value (the language of the base page URL) when we enter the wrong language in the userLang parameter")
+    @Parameters({"tag","countryCode","regulation"})
+    public void checkLanguageFieldContainsDefaultValue(String tag,String countryCode,String regulation) throws IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?userLang=FRA"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertDisplayedLanguage("EN");
+        crmPage.checkCrmData(email, "Testq Testa", regulation);
+        crmPage.checkLanguageField(email, "en");
+        crmPage.takeScreenshot("Language field in the CRM contains default (EN) value " + regulation, crmPage.language);
+    }
+
+    @Test(description = "TC 23.1. Verify that the Custom Tag field in the CRM contains the DummyP value")
+    @Parameters({"tag","countryCode","regulation"})
+    public void dummypParameter(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(1)&dummyP=1"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("DummyP");
+        crmPage.takeScreenshot("TC 23-1-Custom tag-DummyP value " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 23.2. Verify that the Custom Tag field in the CRM contains the Dummy value")
+    @Parameters({"tag","countryCode","regulation"})
+    public void dummyParameter(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(1)&dummyP=0"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());readyFortrade.assertUrl("https://ready.fortrade.com/");
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("Dummy");
+        crmPage.takeScreenshot("TC 23-2-Custom tag - Dummy value " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 23.3. Verify that the dummyP parameter is ignored when it's not correctly typed in the URL")
+    @Parameters({"tag","countryCode","regulation"})
+    public void parameterDummy(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?ftsquery=device-equals(1)&dummyp=1"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("Dummy");
+        crmPage.takeScreenshot("TC 23-3-Custom tag - Dummy value " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 24.1. Verify that the custom tag field in the CRM contains Dummy parameter ")
+    @Parameters({"tag","countryCode","regulation"})
+    public void customTagContainsDummy(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?Dummy=true"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("Dummy");
+        crmPage.takeScreenshot("TC 24-1-Custom tag field - dummy " + regulation + " regulation",crmPage.customTag);
+    }
+
+    @Test(description = "TC 24.2. Verify that the custom tag field in the CRM contains Dummy parameter ")
+    @Parameters({"tag","countryCode","regulation"})
+    public void customTagContainsDummyValue(String tag,String countryCode,String regulation) throws InterruptedException, IOException, AWTException {
+        String email = TestData.emailGenerator();;
+        driver.get("https://dlp.fortrade.com/lps/pro-stock-market-ephone-ca/en?Dummy=1"+tag);
+        fortradePage.firstStepAccRegistration("Testq","Testa",email,countryCode,TestData.canadaPhoneNumber());
+        readyFortrade.assertUrl("https://ready.fortrade.com/");
+        crmPage.checkCrmData(email,"Testq Testa",regulation);
+        crmPage.checkCustomTag("Dummy");
+        crmPage.takeScreenshot("TC 24-2-Custom tag field - dummy " + regulation + " regulation",crmPage.customTag);
     }
 }
