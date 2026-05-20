@@ -259,4 +259,7 @@ public class CrmPage extends BasePage {
         System.out.println(actualValue);
         Assert.assertEquals(actualValue, expectedValue);
     }
+    public void checkLanguageField (String email, String expectedValue){
+        checkLanguageInCrm(expectedValue);
+    }
 }

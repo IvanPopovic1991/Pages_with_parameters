@@ -239,7 +239,7 @@ public class ProDarkDfsa extends BaseTestFortrade {
                 TestData.phoneNumberGenerator(), "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dfsa/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator());
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email, countryCode, TestData.phoneNumberGenerator());
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered account - error message " + regulation);
     }
 
@@ -649,7 +649,7 @@ public class ProDarkDfsa extends BaseTestFortrade {
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dfsa/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", TestData.emailGenerator(),
+        fortradePage.firstStepAccRegistration("Testq", "Testa", TestData.emailGenerator(),
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered phone number - error message " + regulation);
     }
@@ -663,7 +663,7 @@ public class ProDarkDfsa extends BaseTestFortrade {
                 phoneNumber, "25-34", "$15,000-$50,000", "$50,000-$100,000",
                 "All the above");
         driver.get("https://dlp.fortrade.com/lps/pro-dark-dfsa/en?fts=age-annual-saving-knowledge" + tag);
-        fortradePage.alreadyRegisteredAccount("Testq", "Testa", email,
+        fortradePage.firstStepAccRegistration("Testq", "Testa", email,
                 countryCode, phoneNumber);
         fortradePage.assertErrMsgForAlreadyRegisteredAccount("Already registered email and phone number - error message " + regulation);
     }
