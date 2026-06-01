@@ -45,7 +45,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[@class='cps-label']")
     public WebElement countryCodeDropdown;
 
-    @FindBy(xpath = "//input[@id='TelephoneMask']")
+    @FindBy(xpath = "//input[@id='Telephone']")
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//button[@id='next-stage-btn']")
@@ -192,7 +192,9 @@ public class FortradePage extends BasePage {
 
     public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
 
-    public By fscRegulationLinkBy = By.xpath("//a[text()=' GB21026472']");
+    public By fscRegulationLinkBy = By.xpath("//a[text()='GB21026472']");
+
+    public By dfsaRegulationLinkBy = By.xpath("//a[contains(text(),' No. F009856')]");
 
     public By fsgDocument = By.xpath("//div[@class='footerRiskDisclaimer']//div[@class='asicClass']//a[contains(text(),'(FSG)')]");
 
@@ -205,7 +207,7 @@ public class FortradePage extends BasePage {
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
             "Must be a valid email address.",
-            "Phone number is required"};
+            "Must be a valid international phone number"};
     // Must be a valid international phone number - error message text for all pages except for pages with fixed value in country code field
     // Phone number is required - error message for lps with fixed value in country code field
 
@@ -370,6 +372,8 @@ public class FortradePage extends BasePage {
 
     // Financial Services Commission, Mauritius (FSC) link
     public String fscLink = "https://opr.fscmauritius.org/ords/opr/r/fsc-opr/fsc-online-public-register-opr";
+
+    public String dfsaLink = "https://www.dfsa.ae/public-register/firms/fortrade-difc-limited";
 
     // Asic regulation - financial service guide document link
     public String fsgDocumentLink = "https://www.fortrade.com/wp-content/uploads/legal/ASIC/Fort_Securities_AU_Financial_Services_Guide-ASIC.pdf";
@@ -696,6 +700,12 @@ public class FortradePage extends BasePage {
                 new BasePage(driver).takeScreenshot("Broker Fortrade Canada Limited CIRO - successfully registered demo account", regulationMsg);
             }
             break;
+            case "DFSA":
+            {
+                Assert.assertEquals(actualText, "Broker: Fortrade (DIFC) Limited (DFSA)");
+                new BasePage(driver).takeScreenshot("Broker: Fortrade (DIFC) Limited (DFSA) - successfully registered demo account", regulationMsg);
+            }
+            break;
             case "FSC":
             default: {
                 Assert.assertEquals(actualText, "Broker: Fortrade (Mauritius) Ltd (FSC)");
@@ -711,7 +721,7 @@ public class FortradePage extends BasePage {
         enterEmail(emailData);
         handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
-        clickContinueBtn();
+        clickOnSubmitButton();
     }
 
     private String expErrMsgEmail = "Email or phone already exists. Please use a different email address or phone number.";

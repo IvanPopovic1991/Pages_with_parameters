@@ -214,6 +214,9 @@ public class CrmPage extends BasePage {
             case "asic":
                 borderColor = "rgb(0, 128, 0)";
                 break;
+            case "dfsa":
+                borderColor = "rgb(255, 255, 0)";
+                break;
             case "cysec":
                 borderColor = "";
                 break;
