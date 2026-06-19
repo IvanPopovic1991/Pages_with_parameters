@@ -45,7 +45,7 @@ public class FortradePage extends BasePage {
     @FindBy(xpath = "//span[@class='cps-label']")
     public WebElement countryCodeDropdown;
 
-    @FindBy(xpath = "//input[@id='Telephone']")
+    @FindBy(xpath = "//input[@id='TelephoneMask']")
     public WebElement phoneNumber;
 
     @FindBy(xpath = "//button[@id='next-stage-btn']")
@@ -207,7 +207,7 @@ public class FortradePage extends BasePage {
     String[] errorMessages = {"Please enter all your given first name(s).",
             "Please enter your last name.",
             "Must be a valid email address.",
-            "Must be a valid international phone number"};
+            "Phone number is required"};
     // Must be a valid international phone number - error message text for all pages except for pages with fixed value in country code field
     // Phone number is required - error message for lps with fixed value in country code field
 
@@ -722,6 +722,7 @@ public class FortradePage extends BasePage {
         handleCountryCode(countryCodeData);
         enterPhoneNumber(phoneNumberData);
         clickOnSubmitButton();
+
     }
 
     private String expErrMsgEmail = "Email or phone already exists. Please use a different email address or phone number.";
