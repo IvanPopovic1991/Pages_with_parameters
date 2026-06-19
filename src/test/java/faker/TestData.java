@@ -3,17 +3,19 @@ package faker;
 import com.github.javafaker.Faker;
 
 public class TestData {
-    public static String fakeNumber (){
+    public static String fakeNumber() {
         return new Faker().number().digits(8);
     }
-    public static String fakeWord (){
+
+    public static String fakeWord() {
         return new Faker().regexify("[a-zA-Z]{5}");
     }
 
-    public static String emailGenerator(){
-        return "test"+System.currentTimeMillis()+"@yopmail.com";
+    public static String emailGenerator() {
+        return "test" + System.currentTimeMillis() + "@yopmail.com";
     }
-    public static String phoneNumberGenerator(){
+
+    public static String phoneNumberGenerator() {
         return "000" + fakeNumber();
     }
 
@@ -32,5 +34,13 @@ public class TestData {
         return areaCode + exchange + lineNumber;
     }
 
-    public static String nonValidPhone = "99999991";
+    /** Based on Ofcom reserved test range 07700 900000–07700 900999.
+     Leading 0 removed because the application requires 10 digits.*/
+
+    public static String ukPhoneNumber() {
+        int suffix = fake.number().numberBetween(0, 1000);
+        return String.format("7700900%03d", suffix);
+    }
+
+    public static String nonValidPhone = "9999999998";
 }
