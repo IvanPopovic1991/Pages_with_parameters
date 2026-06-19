@@ -188,7 +188,7 @@ public class FortradePage extends BasePage {
 
     public By ciroRegulationLinkBy = By.xpath("//a[text()='CRN: BC1148613']");
 
-    public By asicRegulationLinkBy = By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520']");
+    public By asicRegulationLinkBy = By.xpath("//a[text()='ABN: 33 614 683 831 | AFSL: 493520.']");
 
     public By cysecRegulationLinkBy = By.xpath("//a[text()='CIF license number 385/20']");
 
