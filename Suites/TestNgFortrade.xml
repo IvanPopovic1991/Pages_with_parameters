@@ -6,96 +6,91 @@
         <listener class-name="listeners.Transform"/>
         <listener class-name="listeners.TestExecution"/>
     </listeners>
-<!--
-    <test name="Test cases - space ipo landing page - FSC regulation">
-    <parameter name="countryCode" value="381"/>
-            <parameter name="regulation" value="FSC"/>
-            <parameter name="tag" value="&amp;regulation=fsc&amp;regtest=true"/>
-            <classes>
-                <class name="TestsFortrade.SpaceIpoDlp">
-                    <methods>
-                        <exclude name="iirocRegulationTest"/>
-                        <exclude name="asicRegulationTest"/>
-                        <exclude name="cysecRegulationTest"/>
-                        <exclude name="fcaRegulationTest"/>
-                        <exclude name="fsgDocumentTest"/>
-                        <exclude name="pdsDocumentTest"/>
-                        <exclude name="tmdDocumentTest"/>
-                        <exclude name="checkCysecPercentages"/>
-                        <exclude name="checkFCAPercentages"/>
-                        <exclude name="verifyIirocDisclaimerText"/>
-                        <exclude name="verifyAsicDisclaimerText"/>
+    <!--        <test name="Test cases - space ipo landing page - FSC regulation">
+        <parameter name="countryCode" value="381"/>
+                <parameter name="regulation" value="FSC"/>
+                <parameter name="tag" value="&amp;regulation=fsc&amp;regtest=true"/>
+                <classes>
+                    <class name="TestsFortrade.SpaceIpoDlp">
+                        <methods>
+                            <exclude name="iirocRegulationTest"/>
+                            <exclude name="asicRegulationTest"/>
+                            <exclude name="cysecRegulationTest"/>
+                            <exclude name="fcaRegulationTest"/>
+                            <exclude name="fsgDocumentTest"/>
+                            <exclude name="pdsDocumentTest"/>
+                            <exclude name="tmdDocumentTest"/>
+                            <exclude name="checkCysecPercentages"/>
+                            <exclude name="checkFCAPercentages"/>
+                            <exclude name="verifyIirocDisclaimerText"/>
+                            <exclude name="verifyAsicDisclaimerText"/>
+                        </methods>
+                    </class>
+                </classes>
+            </test>-->
+    <test name="Test cases - trusted broker e-phone uk landing page - FCA regulation">
+        <parameter name="countryCode" value="44"/>
+        <parameter name="regulation" value="FCA"/>
+        <parameter name="tag" value="&amp;regulation=fca&amp;regtest=true"/>
+        <classes>
+            <class name="TestsFortrade.TrustedBrokerEPhone">
+                <methods>
+                    <exclude name="checkingLogoClickability"/>
+                    <exclude name="asicRegulationTest"/>
+                    <exclude name="fsgDocumentTest"/>
+                    <exclude name="pdsDocumentTest"/>
+                    <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="verifyIirocDisclaimerText"/>
+                    <exclude name="checkForCountryCodeErrorMessage"/>
+                    <exclude name="verifyAsicDisclaimerText"/>
                     </methods>
-                </class>
-            </classes>
-        </test>
--->
-        <test name="Test cases - space ipo landing page - FCA regulation">
-            <parameter name="countryCode" value="44"/>
-            <parameter name="regulation" value="FCA"/>
-            <parameter name="tag" value="&amp;regulation=fca&amp;regtest=true"/>
-            <classes>
-                <class name="TestsFortrade.SpaceIpoDlp">
-                    <methods>
-                        <exclude name="iirocRegulationTest"/>
-                        <exclude name="asicRegulationTest"/>
-                        <exclude name="cysecRegulationTest"/>
-                        <exclude name="fscRegulationTest"/>
-                        <exclude name="fsgDocumentTest"/>
-                        <exclude name="pdsDocumentTest"/>
-                        <exclude name="tmdDocumentTest"/>
-                        <exclude name="checkCysecPercentages"/>
-                        <exclude name="verifyIirocDisclaimerText"/>
-                        <exclude name="verifyAsicDisclaimerText"/>
-                    </methods>
-                </class>
-            </classes>
-        </test>
-        <test name="Test cases - space ipo landing page - iiroc regulation">
-            <parameter name="countryCode" value="1"/>
-            <parameter name="regulation" value="iiroc"/>
-            <parameter name="tag" value="&amp;regulation=iiroc&amp;regtest=true"/>
-            <classes>
-                <class name="TestsFortrade.SpaceIpoDlp">
-                    <methods>
-                        <exclude name="checkingLogoClickability"/>
-                        <exclude name="fsgDocumentTest"/>
-                        <exclude name="pdsDocumentTest"/>
-                        <exclude name="tmdDocumentTest"/>
-                        <exclude name="howToUnsubscribeTest"/>
-                        <exclude name="checkFCAPercentages"/>
-                        <exclude name="checkCysecPercentages"/>
-                        <exclude name="verifyAsicDisclaimerText"/>
-                        <exclude name="asicRegulationTest"/>
-                        <exclude name="cysecRegulationTest"/>
-                        <exclude name="fscRegulationTest"/>
-                    </methods>
-                </class>
-            </classes>
-        </test>
-<!--
-        <test name="Test cases - commodities 2 dark new long ai dlp landing page - Asic regulation">
-            <parameter name="countryCode" value="61"/>
-            <parameter name="regulation" value="Asic"/>
-            <parameter name="tag" value="&amp;regulation=asic&amp;regtest=true"/>
-            <classes>
-                <class name="TestsFortrade.SpaceIpoDlp">
-                    <methods>
-                        <exclude name="verifyIirocDisclaimerText"/>
-                        <exclude name="fcaRegulationTest"/>
-                        <exclude name="iirocRegulationTest"/>
-                        <exclude name="cysecRegulationTest"/>
-                        <exclude name="fscRegulationTest"/>
-                        <exclude name="privacyPolicyTest"/>
-                        <exclude name="termsAndConditionsTest"/>
-                        <exclude name="howToUnsubscribeTest"/>
-                        <exclude name="checkFCAPercentages"/>
-                        <exclude name="checkCysecPercentages"/>
-                    </methods>
-                </class>
-            </classes>
-        </test>
--->
+            </class>
+        </classes>
+    </test>
+    <!--  <test name="Test cases - space ipo landing page - iiroc regulation">
+          <parameter name="countryCode" value="1"/>
+          <parameter name="regulation" value="iiroc"/>
+          <parameter name="tag" value="&amp;regulation=iiroc&amp;regtest=true"/>
+          <classes>
+              <class name="TestsFortrade.SpaceIpoDlp">
+                  <methods>
+                      <exclude name="checkingLogoClickability"/>
+                      <exclude name="fsgDocumentTest"/>
+                      <exclude name="pdsDocumentTest"/>
+                      <exclude name="tmdDocumentTest"/>
+                      <exclude name="howToUnsubscribeTest"/>
+                      <exclude name="checkFCAPercentages"/>
+                      <exclude name="checkCysecPercentages"/>
+                      <exclude name="verifyAsicDisclaimerText"/>
+                      <exclude name="asicRegulationTest"/>
+                      <exclude name="cysecRegulationTest"/>
+                      <exclude name="fscRegulationTest"/>
+                  </methods>
+              </class>
+          </classes>
+      </test>-->
+    <!--  <test name="Test cases - commodities 2 dark new long ai dlp landing page - Asic regulation">
+          <parameter name="countryCode" value="61"/>
+          <parameter name="regulation" value="Asic"/>
+          <parameter name="tag" value="&amp;regulation=asic&amp;regtest=true"/>
+          <classes>
+              <class name="TestsFortrade.SpaceIpoDlp">
+                  <methods>
+                      <exclude name="verifyIirocDisclaimerText"/>
+                      <exclude name="fcaRegulationTest"/>
+                      <exclude name="iirocRegulationTest"/>
+                      <exclude name="cysecRegulationTest"/>
+                      <exclude name="fscRegulationTest"/>
+                      <exclude name="privacyPolicyTest"/>
+                      <exclude name="termsAndConditionsTest"/>
+                      <exclude name="howToUnsubscribeTest"/>
+                      <exclude name="checkFCAPercentages"/>
+                      <exclude name="checkCysecPercentages"/>
+                  </methods>
+              </class>
+          </classes>
+      </test>-->
     <!--    <test name="Test cases - commodities 2 dark new long ai dlp landing page - cysec regulation">
             <parameter name="regulation" value="cysec"/>
             &lt;!&ndash;<parameter name="tag" value="&amp;tg=skip&amp;G_GEO=1000997&amp;regulation=CYSEC"/>&ndash;&gt;
@@ -113,29 +108,27 @@
                 </class>
             </classes>
         </test>-->
-<!--
-        <test name="Test cases - space ipo landing page - DFSA regulation">
-            <parameter name="countryCode" value="971"/>
-            <parameter name="regulation" value="DFSA"/>
-            <parameter name="tag" value="&amp;regulation=dfsa&amp;regtest=true"/>
-            <classes>
-                <class name="TestsFortrade.SpaceIpoDlp">
-                    <methods>
-                        <exclude name="fcaRegulationTest"/>
-                        <exclude name="iirocRegulationTest"/>
-                        <exclude name="asicRegulationTest"/>
-                        <exclude name="cysecRegulationTest"/>
-                        <exclude name="fscRegulationTest"/>
-                        <exclude name="fsgDocumentTest"/>
-                        <exclude name="pdsDocumentTest"/>
-                        <exclude name="tmdDocumentTest"/>
-                        <exclude name="checkFCAPercentages"/>
-                        <exclude name="checkCysecPercentages"/>
-                        <exclude name="verifyIirocDisclaimerText"/>
-                        <exclude name="verifyAsicDisclaimerText"/>
-                    </methods>
-                </class>
-            </classes>
-        </test>
--->
+    <!--<test name="Test cases - space ipo landing page - DFSA regulation">
+        <parameter name="countryCode" value="971"/>
+        <parameter name="regulation" value="DFSA"/>
+        <parameter name="tag" value="&amp;regulation=dfsa&amp;regtest=true"/>
+        <classes>
+            <class name="TestsFortrade.SpaceIpoDlp">
+                <methods>
+                    <exclude name="fcaRegulationTest"/>
+                    <exclude name="iirocRegulationTest"/>
+                    <exclude name="asicRegulationTest"/>
+                    <exclude name="cysecRegulationTest"/>
+                    <exclude name="fscRegulationTest"/>
+                    <exclude name="fsgDocumentTest"/>
+                    <exclude name="pdsDocumentTest"/>
+                    <exclude name="tmdDocumentTest"/>
+                    <exclude name="checkFCAPercentages"/>
+                    <exclude name="checkCysecPercentages"/>
+                    <exclude name="verifyIirocDisclaimerText"/>
+                    <exclude name="verifyAsicDisclaimerText"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
 </suite>

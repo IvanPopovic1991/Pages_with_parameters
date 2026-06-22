@@ -8,12 +8,7 @@
     </listeners>
     <test name="All test cases - pro dark en Nob dlp - FortradeR">
         <classes>
-            <class name="TestsFortradeR.NvidiaDlp">
-                <methods>
-                    <include name="footerPrivacyPolicy"/>
-                    <include name="fscRegulationTest"/>
-                </methods>
-            </class>
+            <class name="TestsFortradeR.NvidiaDlp"/>
         </classes>
     </test>
 </suite>
