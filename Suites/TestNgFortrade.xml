@@ -44,7 +44,7 @@
                     <exclude name="verifyIirocDisclaimerText"/>
                     <exclude name="checkForCountryCodeErrorMessage"/>
                     <exclude name="verifyAsicDisclaimerText"/>
-                </methods>
+                    </methods>
             </class>
         </classes>
     </test>
